@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PM. Securities | Cybersecurity Consultancy & Learners Club</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        darkBg: '#0B111E',
+                        cardBg: '#121A2E',
+                        cyberRed: '#FF4A5A',
+                        cyberCyan: '#00F0FF',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0B111E;
+            color: #E2E8F0;
+            scroll-behavior: smooth;
+        }
+        /* Subtle geometric grid background */
+        .grid-bg {
+            background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased">
+
+    <header class="border-b border-slate-800 bg-darkBg/80 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+                <span class="font-display font-bold text-2xl tracking-wider text-white">PM.<span class="text-cyberRed">SECURITIES</span></span>
+            </div>
+            <nav class="hidden md:flex space-x-8 text-sm font-medium tracking-wide text-slate-400">
+                <a href="#consultancy" class="hover:text-cyberCyan transition-colors">Consultancy</a>
+                <a href="#club" class="hover:text-cyberRed transition-colors">Learners Club</a>
+                <a href="#contact" class="hover:text-white transition-colors">Connect</a>
+            </nav>
+            <div>
+                <a href="#contact" class="border border-cyberCyan text-cyberCyan px-5 py-2 rounded-sm text-sm font-semibold tracking-wide hover:bg-cyberCyan/10 transition-all duration-300">
+                    Get in Touch
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <section class="relative grid-bg pt-24 pb-20 overflow-hidden">
+        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-cyberCyan/5 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyberRed/5 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-5xl mx-auto px-6 text-center relative z-10">
+            <div class="inline-flex items-center gap-2 px-3 py-1 border border-slate-800 bg-slate-900/60 rounded-full text-xs font-semibold tracking-wider text-slate-400 uppercase mb-6">
+                <span class="w-2 h-2 rounded-full bg-cyberCyan animate-pulse"></span> Dual-Mission Cyber Architecture
+            </div>
+            <h1 class="font-display text-4xl sm:text-6xl font-bold tracking-tight text-white mb-6 leading-tight">
+                Securing Systems. <br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r via-cyberCyan to-cyberRed bg-cyberCyan">Cultivating Talent.</span>
+            </h1>
+            <p class="text-lg text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed">
+                Premium offensive and defensive enterprise cybersecurity consultancy paired with an elite ecosystem for next-generation security engineers.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                <a href="#consultancy" class="w-full sm:w-auto bg-white text-darkBg font-bold px-8 py-4 rounded-sm hover:bg-slate-200 transition-all shadow-lg shadow-white/5 tracking-wide text-sm">
+                    Retain Consultancy
+                </a>
+                <a href="#club" class="w-full sm:w-auto border border-slate-700 bg-slate-900/40 text-slate-300 font-bold px-8 py-4 rounded-sm hover:bg-slate-800/60 hover:text-white transition-all tracking-wide text-sm">
+                    Join Learners Guild
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="border-y border-slate-900 bg-slate-950/40 backdrop-blur-sm">
+        <div class="max-w-7xl mx-auto px-6 py-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div>
+                    <p class="font-display text-3xl font-bold text-white">99.9%</p>
+                    <p class="text-xs text-slate-500 uppercase tracking-widest mt-1">Infrastructure Resilience</p>
+                </div>
+                <div>
+                    <p class="font-display text-3xl font-bold text-cyberCyan">24/7/365</p>
+                    <p class="text-xs text-slate-500 uppercase tracking-widest mt-1">Threat Intelligence</p>
+                </div>
+                <div>
+                    <p class="font-display text-3xl font-bold text-cyberRed">500+</p>
+                    <p class="text-xs text-slate-500 uppercase tracking-widest mt-1">Vetted Club Members</p>
+                </div>
+                <div>
+                    <p class="font-display text-3xl font-bold text-white">Zero</p>
+                    <p class="text-xs text-slate-500 uppercase tracking-widest mt-1">Post-Remediation Breaches</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="max-w-7xl mx-auto px-6 py-24">
+        <div class="grid md:grid-cols-2 gap-12">
+            
+            <div id="consultancy" class="group border border-slate-800/80 bg-cardBg/30 p-10 rounded-sm relative overflow-hidden transition-all duration-300 hover:border-cyberCyan/40">
+                <div class="absolute top-0 left-0 w-1 h-0 bg-cyberCyan group-hover:h-full transition-all duration-500"></div>
+                <div class="mb-6">
+                    <span class="text-xs font-bold tracking-widest uppercase text-cyberCyan">Enterprise Tier</span>
+                    <h2 class="font-display text-3xl font-bold text-white mt-2">PM. Strategic Consultancy</h2>
+                </div>
+                <p class="text-slate-400 mb-8 leading-relaxed">
+                    We deploy battle-tested defensive architecture, comprehensive zero-trust assessments, and penetration testing methodologies engineered to safeguard enterprise infrastructure and compliance pipelines.
+                </p>
+                <ul class="space-y-4 text-sm text-slate-300 mb-10">
+                    <li class="flex items-center gap-3">
+                        <span class="w-1.5 h-1.5 bg-cyberCyan"></span> Advanced Red Teaming & Hardening
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <span class="w-1.5 h-1.5 bg-cyberCyan"></span> Compliance Audits & Risk Assessment
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <span class="w-1.5 h-1.5 bg-cyberCyan"></span> Incident Response Preparedness
+                    </li>
+                </ul>
+                <a href="#contact" class="inline-flex items-center font-bold text-sm tracking-wide text-white group-hover:text-cyberCyan transition-colors">
+                    Schedule a Consultation <span class="ml-2 transform group-hover:translate-x-1 transition-transform">→</span>
+                </a>
+            </div>
+
+            <div id="club" class="group border border-slate-800/80 bg-cardBg/30 p-10 rounded-sm relative overflow-hidden transition-all duration-300 hover:border-cyberRed/40">
+                <div class="absolute top-0 left-0 w-1 h-0 bg-cyberRed group-hover:h-full transition-all duration-500"></div>
+                <div class="mb-6">
+                    <span class="text-xs font-bold tracking-widest uppercase text-cyberRed">Academy Tier</span>
+                    <h2 class="font-display text-3xl font-bold text-white mt-2">PM. Learners Guild</h2>
+                </div>
+                <p class="text-slate-400 mb-8 leading-relaxed">
+                    An elite interactive platform engineered for aspiring cybersecurity specialists. Gain access to collaborative capture-the-flag environments, deep-dive vulnerability research labs, and close mentoring from operational experts.
+                </p>
+                <ul class="space-y-4 text-sm text-slate-300 mb-10">
+                    <li class="flex items-center gap-3">
+                        <span class="w-1.5 h-1.5 bg-cyberRed"></span> Proprietary Sandboxed Lab Environments
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <span class="w-1.5 h-1.5 bg-cyberRed"></span> Weekly Live-Fire Warfare (CTF)
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <span class="w-1.5 h-1.5 bg-cyberRed"></span> Direct Enterprise Recruitment Access
+                    </li>
+                </ul>
+                <a href="#contact" class="inline-flex items-center font-bold text-sm tracking-wide text-white group-hover:text-cyberRed transition-colors">
+                    Apply for Access <span class="ml-2 transform group-hover:translate-x-1 transition-transform">→</span>
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="contact" class="border-t border-slate-900 bg-slate-950/30 relative overflow-hidden py-24">
+        <div class="max-w-4xl mx-auto px-6 relative z-10 text-center">
+            <span class="text-xs font-bold tracking-widest uppercase text-cyberCyan">Secure Channels</span>
+            <h2 class="font-display text-4xl font-bold text-white mt-3 mb-4">Establish Connection</h2>
+            <p class="text-slate-400 max-w-lg mx-auto mb-12 text-sm leading-relaxed">
+                Reach out via our verified protocols to negotiate commercial partnerships or initiate club enrollment validations.
+            </p>
+
+            <div class="grid sm:grid-cols-3 gap-6 text-left">
+                <div class="border border-slate-800 bg-darkBg p-6 rounded-sm flex flex-col justify-between hover:border-slate-700 transition-colors">
+                    <div>
+                        <div class="text-xs font-bold tracking-wider text-slate-500 uppercase mb-2">Discord Handle</div>
+                        <div class="font-display text-lg font-semibold text-white select-all">Coolhello189</div>
+                    </div>
+                    <span class="text-xs text-cyberCyan mt-4 block font-medium">Add user directly →</span>
+                </div>
+
+                <div class="border border-slate-800 bg-darkBg p-6 rounded-sm flex flex-col justify-between hover:border-slate-700 transition-colors">
+                    <div>
+                        <div class="text-xs font-bold tracking-wider text-slate-500 uppercase mb-2">Direct Mail</div>
+                        <a href="mailto:pm.securities2@gmail.com" class="font-display text-base font-semibold text-white break-all hover:text-cyberCyan transition-colors">pm.securities2@gmail.com</a>
+                    </div>
+                    <span class="text-xs text-cyberCyan mt-4 block font-medium">Send encrypted mail →</span>
+                </div>
+
+                <div class="border border-slate-800 bg-darkBg p-6 rounded-sm flex flex-col justify-between hover:border-slate-700 transition-colors">
+                    <div>
+                        <div class="text-xs font-bold tracking-wider text-slate-500 uppercase mb-2">Comms Hot-Line</div>
+                        <a href="tel:9119925344" class="font-display text-lg font-semibold text-white hover:text-cyberCyan transition-colors">9119925344</a>
+                    </div>
+                    <span class="text-xs text-cyberCyan mt-4 block font-medium">Voice / Signal channels →</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="border-t border-slate-900 bg-slate-950/80 py-12">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+            <span class="font-display font-bold tracking-wider text-sm text-slate-400">PM. SECURITIES</span>
+            <div class="flex space-x-6 text-xs text-slate-500">
+                <a href="#" class="hover:text-slate-300">Privacy Policy</a>
+                <a href="#" class="hover:text-slate-300">Terms of Service</a>
+                <a href="#" class="hover:text-slate-300">Internal Portal</a>
+            </div>
+            <p class="text-xs text-slate-600">&copy; 2026 PM. Securities. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
