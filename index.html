@@ -335,22 +335,35 @@
             const type = document.getElementById('course-type').value;
             const desc = document.getElementById('course-desc').value;
 
-            // FIX PLACED HERE: Chained .setHeaders() to force package initialization payload
-            const { error } = await _supabase
-                .from('courses')
-                .insert([{ title, type, description: desc }])
-                .setHeaders({ 'x-admin-key': password });
+            // Universal Native Fetch Routine: Bypasses library wrapper method limits entirely
+            try {
+                const response = await fetch(`${SUPABASE_URL}/rest/v1/courses`, {
+                    method: 'POST',
+                    headers: {
+                        'apikey': SUPABASE_ANON_KEY,
+                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                        'Content-Type': 'application/json',
+                        'Prefer': 'return=minimal',
+                        'x-admin-key': password // 🔑 Injects the secure environment credential directly over the wire
+                    },
+                    body: JSON.stringify({ title, type, description: desc })
+                });
 
-            if (error) {
-                alert('Authentication verification routine failed. Row Level Policy execution mismatch.');
-                return;
+                if (!response.ok) {
+                    alert('Authentication verification routine failed. Row Level Policy execution mismatch.');
+                    return;
+                }
+
+                // Sync successful -> clean forms, update array matrix layout, toggle view off
+                fetchCoursesFromDatabase();
+                document.getElementById('course-form').reset();
+                toggleAdminModal();
+                alert('Success: Database cluster synced. Content node online.');
+
+            } catch (err) {
+                console.error('Network execution failure:', err);
+                alert('Network connection failure.');
             }
-
-            // Sync successful -> clean forms, update array matrix layout, toggle view off
-            fetchCoursesFromDatabase();
-            document.getElementById('course-form').reset();
-            toggleAdminModal();
-            alert('Success: Database cluster synced. Content node online.');
         }
 
         // Bind core initialization events to frame rendering hooks
