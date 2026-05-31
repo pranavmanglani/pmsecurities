@@ -3,259 +3,156 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PM. Securities | Cybersecurity Consultancy & Learners Club</title>
+    <title>PM. Securities | Cybersecurity Hub & Courses</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: {
-                        sans: ['Plus Jakarta Sans', 'sans-serif'],
-                        display: ['Space Grotesk', 'sans-serif'],
-                    },
-                    colors: {
-                        darkBg: '#0B111E',
-                        cardBg: '#121A2E',
-                        cyberRed: '#FF4A5A',
-                        cyberCyan: '#00F0FF',
-                    }
+                    fontFamily: { sans: ['Plus Jakarta Sans', 'sans-serif'], display: ['Space Grotesk', 'sans-serif'] },
+                    colors: { darkBg: '#0B111E', cardBg: '#121A2E', cyberRed: '#FF4A5A', cyberCyan: '#00F0FF' }
                 }
             }
         }
     </script>
     <style>
-        body {
-            background-color: #0B111E;
-            color: #E2E8F0;
-            scroll-behavior: smooth;
-        }
-        /* Subtle geometric grid background */
-        .grid-bg {
-            background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                              linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-            background-size: 40px 40px;
-        }
+        body { background-color: #0B111E; color: #E2E8F0; scroll-behavior: smooth; }
+        .grid-bg { background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px); background-size: 40px 40px; }
     </style>
 </head>
-<body class="font-sans antialiased">
+<body class="font-sans antialiased grid-bg">
 
+    <!-- HERO / NAV (Abbreviated for structure) -->
     <header class="border-b border-slate-800 bg-darkBg/80 backdrop-blur-md sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <div class="flex items-center space-x-2">
-                <span class="font-display font-bold text-2xl tracking-wider text-white">PM.<span class="text-cyberRed">SECURITIES</span></span>
-            </div>
-            <nav class="hidden md:flex space-x-8 text-sm font-medium tracking-wide text-slate-400">
-                <a href="#consultancy" class="hover:text-cyberCyan transition-colors">Consultancy</a>
-                <a href="#club" class="hover:text-cyberRed transition-colors">Learners Club</a>
-                <a href="#about" class="hover:text-white transition-colors">About Us</a>
-                <a href="#contact" class="hover:text-white transition-colors">Connect</a>
+            <span class="font-display font-bold text-2xl text-white">PM.<span class="text-cyberRed">SECURITIES</span></span>
+            <nav class="space-x-6 text-sm text-slate-400">
+                <a href="#courses" class="hover:text-cyberCyan">Courses</a>
+                <button onclick="toggleAdminModal()" class="text-slate-500 hover:text-white border border-slate-800 px-3 py-1 rounded">Admin Access</button>
             </nav>
-            <div>
-                <a href="https://chat.whatsapp.com/ED56BL8Qd0J1UNrtvOb1Rd?s=cl&p=a&mlu=4" target="_blank" class="bg-gradient-to-r from-cyberCyan to-cyberRed text-darkBg px-5 py-2 rounded-sm text-sm font-bold tracking-wide hover:opacity-90 transition-all duration-300">
-                    Join Community
-                </a>
-            </div>
         </div>
     </header>
 
-    <section class="relative grid-bg pt-24 pb-20 overflow-hidden">
-        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-cyberCyan/5 rounded-full blur-3xl pointer-events-none"></div>
-        <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyberRed/5 rounded-full blur-3xl pointer-events-none"></div>
+    <!-- COURSES SECTION -->
+    <section id="courses" class="max-w-7xl mx-auto px-6 py-24">
+        <div class="text-center mb-12">
+            <span class="text-xs font-bold tracking-widest uppercase text-cyberCyan">Training Operations</span>
+            <h2 class="font-display text-4xl font-bold text-white mt-2">Cybersecurity Academy Labs</h2>
+        </div>
 
-        <div class="max-w-5xl mx-auto px-6 text-center relative z-10">
-            <div class="inline-flex items-center gap-2 px-3 py-1 border border-slate-800 bg-slate-900/60 rounded-full text-xs font-semibold tracking-wider text-slate-400 uppercase mb-6">
-                <span class="w-2 h-2 rounded-full bg-cyberCyan animate-pulse"></span> Dual-Mission Cyber Architecture
+        <!-- Course Grid -->
+        <div id="course-container" class="grid md:grid-cols-3 gap-8">
+            <!-- Default Placeholder Course (Free) -->
+            <div class="border border-slate-800 bg-cardBg/40 p-6 rounded relative flex flex-col justify-between">
+                <div>
+                    <span class="absolute top-4 right-4 bg-emerald-500/10 text-emerald-400 text-xs px-2 py-1 rounded font-bold">FREE</span>
+                    <h3 class="text-xl font-bold text-white mb-2 mt-4">Linux Command Line Warfare</h3>
+                    <p class="text-slate-400 text-sm mb-6">Master essential terminal utilities and security command-line architectures necessary for practical operation penetration metrics.</p>
+                </div>
+                <a href="#" class="bg-slate-800 text-center py-2 text-sm font-bold text-white rounded hover:bg-slate-700">Access Curriculum</a>
             </div>
-            <h1 class="font-display text-4xl sm:text-6xl font-bold tracking-tight text-white mb-6 leading-tight">
-                Securing Systems. <br>
-                <span class="text-transparent bg-clip-text bg-gradient-to-r via-cyberCyan to-cyberRed bg-cyberCyan">Cultivating Talent.</span>
-            </h1>
-            <p class="text-lg text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed">
-                Premium offensive and defensive enterprise cybersecurity consultancy paired with an elite ecosystem for next-generation security engineers.
-            </p>
-            <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
-                <a href="#consultancy" class="w-full sm:w-auto bg-white text-darkBg font-bold px-8 py-4 rounded-sm hover:bg-slate-200 transition-all shadow-lg shadow-white/5 tracking-wide text-sm">
-                    Retain Consultancy
-                </a>
-                <a href="https://chat.whatsapp.com/ED56BL8Qd0J1UNrtvOb1Rd?s=cl&p=a&mlu=4" target="_blank" class="w-full sm:w-auto border border-cyberCyan bg-cyberCyan/10 text-cyberCyan font-bold px-8 py-4 rounded-sm hover:bg-cyberCyan hover:text-darkBg transition-all tracking-wide text-sm">
-                    Join WhatsApp Community
-                </a>
+
+            <!-- Default Placeholder Course (Paid) -->
+            <div class="border border-cyberRed/30 bg-cardBg/40 p-6 rounded relative flex flex-col justify-between">
+                <div>
+                    <span class="absolute top-4 right-4 bg-cyberRed/10 text-cyberRed text-xs px-2 py-1 rounded font-bold">PREMIUM</span>
+                    <h3 class="text-xl font-bold text-white mb-2 mt-4">Advanced Red Team Infrastructure</h3>
+                    <p class="text-slate-400 text-sm mb-6">An enterprise deep-dive into setting up secure external command-and-control servers, obfuscation nodes, and evading monitoring detection pipelines.</p>
+                </div>
+                <a href="#" class="bg-gradient-to-r from-cyberCyan to-cyberRed text-darkBg text-center py-2 text-sm font-bold rounded hover:opacity-90">Enroll via Telegram/WhatsApp</a>
             </div>
         </div>
     </section>
 
-    <section class="border-y border-slate-900 bg-slate-950/40 backdrop-blur-sm">
-        <div class="max-w-7xl mx-auto px-6 py-8">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-                <div>
-                    <p class="font-display text-3xl font-bold text-white">99.9%</p>
-                    <p class="text-xs text-slate-500 uppercase tracking-widest mt-1">Infrastructure Resilience</p>
-                </div>
-                <div>
-                    <p class="font-display text-3xl font-bold text-cyberCyan">24/7/365</p>
-                    <p class="text-xs text-slate-500 uppercase tracking-widest mt-1">Threat Intelligence</p>
-                </div>
-                <div>
-                    <p class="font-display text-3xl font-bold text-cyberRed">500+</p>
-                    <p class="text-xs text-slate-500 uppercase tracking-widest mt-1">Vetted Club Members</p>
-                </div>
-                <div>
-                    <p class="font-display text-3xl font-bold text-white">Zero</p>
-                    <p class="text-xs text-slate-500 uppercase tracking-widest mt-1">Post-Remediation Breaches</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="max-w-7xl mx-auto px-6 py-24">
-        <div class="grid md:grid-cols-2 gap-12">
+    <!-- ADMIN MODAL PANEL -->
+    <div id="admin-modal" class="fixed inset-0 bg-darkBg/90 backdrop-blur-sm hidden items-center justify-center z-50 p-4">
+        <div class="bg-cardBg border border-slate-800 p-8 rounded-lg max-w-md w-full relative">
+            <button onclick="toggleAdminModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white">&times;</button>
+            <h3 class="font-display text-2xl font-bold text-white mb-6">Course Intel Upload Manager</h3>
             
-            <div id="consultancy" class="group border border-slate-800/80 bg-cardBg/30 p-10 rounded-sm relative overflow-hidden transition-all duration-300 hover:border-cyberCyan/40">
-                <div class="absolute top-0 left-0 w-1 h-0 bg-cyberCyan group-hover:h-full transition-all duration-500"></div>
-                <div class="mb-6">
-                    <span class="text-xs font-bold tracking-widest uppercase text-cyberCyan">Enterprise Tier</span>
-                    <h2 class="font-display text-3xl font-bold text-white mt-2">PM. Strategic Consultancy</h2>
+            <form id="course-form" onsubmit="handleCourseUpload(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs uppercase text-slate-400 mb-1">Admin Security Password</label>
+                    <input type="password" id="admin-password" required class="w-full bg-slate-950 border border-slate-800 rounded p-2 text-white focus:border-cyberCyan focus:outline-none">
                 </div>
-                <p class="text-slate-400 mb-8 leading-relaxed">
-                    We deploy battle-tested defensive architecture, comprehensive zero-trust assessments, and penetration testing methodologies engineered to safeguard enterprise infrastructure and compliance pipelines.
-                </p>
-                <ul class="space-y-4 text-sm text-slate-300 mb-10">
-                    <li class="flex items-center gap-3">
-                        <span class="w-1.5 h-1.5 bg-cyberCyan"></span> Advanced Red Teaming & Hardening
-                    </li>
-                    <li class="flex items-center gap-3">
-                        <span class="w-1.5 h-1.5 bg-cyberCyan"></span> Compliance Audits & Risk Assessment
-                    </li>
-                    <li class="flex items-center gap-3">
-                        <span class="w-1.5 h-1.5 bg-cyberCyan"></span> Incident Response Preparedness
-                    </li>
-                </ul>
-                <a href="#contact" class="inline-flex items-center font-bold text-sm tracking-wide text-white group-hover:text-cyberCyan transition-colors">
-                    Schedule a Consultation <span class="ml-2 transform group-hover:translate-x-1 transition-transform">→</span>
-                </a>
-            </div>
-
-            <div id="club" class="group border border-slate-800/80 bg-cardBg/30 p-10 rounded-sm relative overflow-hidden transition-all duration-300 hover:border-cyberRed/40">
-                <div class="absolute top-0 left-0 w-1 h-0 bg-cyberRed group-hover:h-full transition-all duration-500"></div>
-                <div class="mb-6">
-                    <span class="text-xs font-bold tracking-widest uppercase text-cyberRed">Academy Tier</span>
-                    <h2 class="font-display text-3xl font-bold text-white mt-2">PM. Learners Guild</h2>
+                <div>
+                    <label class="block text-xs uppercase text-slate-400 mb-1">Course Title</label>
+                    <input type="text" id="course-title" required class="w-full bg-slate-950 border border-slate-800 rounded p-2 text-white focus:border-cyberCyan focus:outline-none">
                 </div>
-                <p class="text-slate-400 mb-8 leading-relaxed">
-                    An elite interactive platform engineered for aspiring cybersecurity specialists. Gain access to collaborative capture-the-flag environments, deep-dive vulnerability research labs, and close mentoring from operational experts.
-                </p>
-                <ul class="space-y-4 text-sm text-slate-300 mb-10">
-                    <li class="flex items-center gap-3">
-                        <span class="w-1.5 h-1.5 bg-cyberRed"></span> Proprietary Sandboxed Lab Environments
-                    </li>
-                    <li class="flex items-center gap-3">
-                        <span class="w-1.5 h-1.5 bg-cyberRed"></span> Weekly Live-Fire Warfare (CTF)
-                    </li>
-                    <li class="flex items-center gap-3">
-                        <span class="w-1.5 h-1.5 bg-cyberRed"></span> Direct Enterprise Recruitment Access
-                    </li>
-                </ul>
-                <a href="https://chat.whatsapp.com/ED56BL8Qd0J1UNrtvOb1Rd?s=cl&p=a&mlu=4" target="_blank" class="inline-flex items-center font-bold text-sm tracking-wide text-white group-hover:text-cyberRed transition-colors">
-                    Apply Via WhatsApp Community <span class="ml-2 transform group-hover:translate-x-1 transition-transform">→</span>
-                </a>
-            </div>
-
+                <div>
+                    <label class="block text-xs uppercase text-slate-400 mb-1">Course Type</label>
+                    <select id="course-type" class="w-full bg-slate-950 border border-slate-800 rounded p-2 text-white focus:border-cyberCyan focus:outline-none">
+                        <option value="free">Free Course</option>
+                        <option value="paid">Premium Paid Course</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs uppercase text-slate-400 mb-1">Course Brief Description</label>
+                    <textarea id="course-desc" rows="3" required class="w-full bg-slate-950 border border-slate-800 rounded p-2 text-white focus:border-cyberCyan focus:outline-none"></textarea>
+                </div>
+                <button type="submit" class="w-full bg-cyberCyan text-darkBg font-bold py-2 rounded text-sm hover:opacity-90 transition-all">Publish Live Course</button>
+            </form>
         </div>
-    </section>
+    </div>
 
-    <section id="about" class="border-t border-slate-900 bg-slate-950/20 py-24">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <span class="text-xs font-bold tracking-widest uppercase text-cyberRed">Command & Structure</span>
-                <h2 class="font-display text-4xl font-bold text-white mt-3">Leadership & Partners</h2>
-                <p class="text-slate-400 max-w-xl mx-auto mt-4 text-sm leading-relaxed">
-                    Bridging elite enterprise strategy with modern practical cybersecurity education.
-                </p>
-            </div>
+    <script>
+        function toggleAdminModal() {
+            const modal = document.getElementById('admin-modal');
+            modal.classList.toggle('hidden');
+            modal.classList.toggle('flex');
+        }
 
-            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                <div class="border border-slate-800 bg-cardBg/20 p-8 rounded-sm relative">
-                    <div class="w-12 h-12 bg-slate-800 rounded-full mb-6 flex items-center justify-center border border-slate-700">
-                        <span class="text-white font-bold font-display">PM</span>
-                    </div>
-                    <div class="text-xs font-bold uppercase tracking-wider text-cyberCyan mb-1">Founder & CEO</div>
-                    <h3 class="font-display text-2xl font-bold text-white mb-3">Pranav Manglani</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                        Founder of PM. Securities. Dedicated to building hardened enterprise infrastructure architectures and scaling defensive engineering frameworks for clients globally.
-                    </p>
-                </div>
+        async function handleCourseUpload(e) {
+            e.preventDefault();
+            const password = document.getElementById('admin-password').value;
+            const title = document.getElementById('course-title').value;
+            const type = document.getElementById('course-type').value;
+            const desc = document.getElementById('course-desc').value;
 
-                <div class="border border-slate-800 bg-cardBg/20 p-8 rounded-sm relative flex flex-col justify-between">
+            // Send payload data directly back to Netlify's backend runtime function processing system
+            try {
+                const response = await fetch('/.netlify/functions/manage-courses', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ password, title, type, desc })
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    alert(data.error || 'Unauthorized connection handshake anomaly detected.');
+                    return;
+                }
+
+                // Render dynamic item output securely inside HTML layout
+                const container = document.getElementById('course-container');
+                const badgeClass = type === 'free' ? 'bg-emerald-500/10 text-emerald-400' : 'bg-cyberRed/10 text-cyberRed';
+                const borderClass = type === 'free' ? 'border-slate-800' : 'border-cyberRed/30';
+                const buttonMarkup = type === 'free' 
+                    ? `<a href="#" class="bg-slate-800 text-center py-2 text-sm font-bold text-white rounded">Access Curriculum</a>`
+                    : `<a href="#" class="bg-gradient-to-r from-cyberCyan to-cyberRed text-darkBg text-center py-2 text-sm font-bold rounded">Enroll Now</a>`;
+
+                const courseElement = document.createElement('div');
+                courseElement.className = `border ${borderClass} bg-cardBg/40 p-6 rounded relative flex flex-col justify-between`;
+                courseElement.innerHTML = `
                     <div>
-                        <div class="w-12 h-12 bg-slate-800 rounded-full mb-6 flex items-center justify-center border border-slate-700 overflow-hidden">
-                            <span class="text-white font-bold font-display">YG</span>
-                        </div>
-                        <div class="text-xs font-bold uppercase tracking-wider text-cyberRed mb-1">Yuvi Cybersecurity</div>
-                        <h3 class="font-display text-2xl font-bold text-white mb-3">Yuvraj Gupta</h3>
-                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                            Renowned Cybersecurity specialist, technical educator, and architect driving educational technology platforms designed to mentor the next generation of operators.
-                        </p>
+                        <span class="absolute top-4 right-4 ${badgeClass} text-xs px-2 py-1 rounded font-bold">${type.toUpperCase()}</span>
+                        <h3 class="text-xl font-bold text-white mb-2 mt-4">${title}</h3>
+                        <p class="text-slate-400 text-sm mb-6">${desc}</p>
                     </div>
-                    <div>
-                        <a href="https://learnwithyuviwebapp.web.app" target="_blank" class="inline-block text-center w-full border border-cyberRed/30 text-cyberRed font-bold text-xs uppercase tracking-widest py-3 px-4 rounded-sm hover:bg-cyberRed hover:text-white transition-all duration-300">
-                            Access Platform Website
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+                    ${buttonMarkup}
+                `;
+                
+                container.prepend(courseElement);
+                document.getElementById('course-form').reset();
+                toggleAdminModal();
+                alert('Course safely written and added successfully to live render frame!');
 
-    <section id="contact" class="border-t border-slate-900 bg-slate-950/50 relative overflow-hidden py-24">
-        <div class="max-w-4xl mx-auto px-6 relative z-10 text-center">
-            <span class="text-xs font-bold tracking-widest uppercase text-cyberCyan">Secure Channels</span>
-            <h2 class="font-display text-4xl font-bold text-white mt-3 mb-4">Establish Connection</h2>
-            <p class="text-slate-400 max-w-lg mx-auto mb-12 text-sm leading-relaxed">
-                Reach out via our verified protocols to negotiate commercial partnerships or initiate club enrollment validations.
-            </p>
-
-            <div class="grid sm:grid-cols-3 gap-6 text-left">
-                <div class="border border-slate-800 bg-darkBg p-6 rounded-sm flex flex-col justify-between hover:border-slate-700 transition-colors">
-                    <div>
-                        <div class="text-xs font-bold tracking-wider text-slate-500 uppercase mb-2">Discord Handle</div>
-                        <div class="font-display text-lg font-semibold text-white select-all">Coolhello189</div>
-                    </div>
-                    <span class="text-xs text-cyberCyan mt-4 block font-medium">Add user directly →</span>
-                </div>
-
-                <div class="border border-slate-800 bg-darkBg p-6 rounded-sm flex flex-col justify-between hover:border-slate-700 transition-colors">
-                    <div>
-                        <div class="text-xs font-bold tracking-wider text-slate-500 uppercase mb-2">Direct Mail</div>
-                        <a href="mailto:pm.securities2@gmail.com" class="font-display text-base font-semibold text-white break-all hover:text-cyberCyan transition-colors">pm.securities2@gmail.com</a>
-                    </div>
-                    <span class="text-xs text-cyberCyan mt-4 block font-medium">Send encrypted mail →</span>
-                </div>
-
-                <div class="border border-slate-800 bg-darkBg p-6 rounded-sm flex flex-col justify-between hover:border-slate-700 transition-colors">
-                    <div>
-                        <div class="text-xs font-bold tracking-wider text-slate-500 uppercase mb-2">Comms Hot-Line</div>
-                        <a href="tel:9119925344" class="font-display text-lg font-semibold text-white hover:text-cyberCyan transition-colors">9119925344</a>
-                    </div>
-                    <span class="text-xs text-cyberCyan mt-4 block font-medium">Voice / Signal channels →</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="border-t border-slate-900 bg-slate-950/80 py-12">
-        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
-            <span class="font-display font-bold tracking-wider text-sm text-slate-400">PM. SECURITIES</span>
-            <div class="flex space-x-6 text-xs text-slate-500">
-                <a href="#" class="hover:text-slate-300">Privacy Policy</a>
-                <a href="#" class="hover:text-slate-300">Terms of Service</a>
-                <a href="#" class="hover:text-slate-300">Internal Portal</a>
-            </div>
-            <p class="text-xs text-slate-600">&copy; 2026 PM. Securities. All rights reserved.</p>
-        </div>
-    </footer>
-
+            } catch (err) {
+                alert('Connection failure mapping deployment functions.');
+            }
+        }
+    </script>
 </body>
 </html>
