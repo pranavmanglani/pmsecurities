@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PM. Securities | Cybersecurity Consultancy & Learners Club</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
@@ -27,12 +28,7 @@
         }
     </script>
     <style>
-        body {
-            background-color: #0B111E;
-            color: #E2E8F0;
-            scroll-behavior: smooth;
-        }
-        /* Subtle geometric grid background */
+        body { background-color: #0B111E; color: #E2E8F0; scroll-behavior: smooth; }
         .grid-bg {
             background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
                               linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
@@ -42,7 +38,6 @@
 </head>
 <body class="font-sans antialiased grid-bg">
 
-    <!-- NAVIGATION -->
     <header class="border-b border-slate-800 bg-darkBg/80 backdrop-blur-md sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
             <div class="flex items-center space-x-2">
@@ -64,7 +59,6 @@
         </div>
     </header>
 
-    <!-- HERO SECTION -->
     <section class="relative pt-24 pb-20 overflow-hidden">
         <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-cyberCyan/5 rounded-full blur-3xl pointer-events-none"></div>
         <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyberRed/5 rounded-full blur-3xl pointer-events-none"></div>
@@ -91,7 +85,6 @@
         </div>
     </section>
 
-    <!-- TRUST METRICS -->
     <section class="border-y border-slate-900 bg-slate-950/40 backdrop-blur-sm">
         <div class="max-w-7xl mx-auto px-6 py-8">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
@@ -115,11 +108,8 @@
         </div>
     </section>
 
-    <!-- THE DUAL PILLARS -->
     <section class="max-w-7xl mx-auto px-6 py-24">
         <div class="grid md:grid-cols-2 gap-12">
-            
-            <!-- CONSULTANCY PILLAR -->
             <div id="consultancy" class="group border border-slate-800/80 bg-cardBg/30 p-10 rounded-sm relative overflow-hidden transition-all duration-300 hover:border-cyberCyan/40">
                 <div class="absolute top-0 left-0 w-1 h-0 bg-cyberCyan group-hover:h-full transition-all duration-500"></div>
                 <div class="mb-6">
@@ -130,22 +120,15 @@
                     We deploy battle-tested defensive architecture, comprehensive zero-trust assessments, and penetration testing methodologies engineered to safeguard enterprise infrastructure and compliance pipelines.
                 </p>
                 <ul class="space-y-4 text-sm text-slate-300 mb-10">
-                    <li class="flex items-center gap-3">
-                        <span class="w-1.5 h-1.5 bg-cyberCyan"></span> Advanced Red Teaming & Hardening
-                    </li>
-                    <li class="flex items-center gap-3">
-                        <span class="w-1.5 h-1.5 bg-cyberCyan"></span> Compliance Audits & Risk Assessment
-                    </li>
-                    <li class="flex items-center gap-3">
-                        <span class="w-1.5 h-1.5 bg-cyberCyan"></span> Incident Response Preparedness
-                    </li>
+                    <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-cyberCyan"></span> Advanced Red Teaming & Hardening</li>
+                    <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-cyberCyan"></span> Compliance Audits & Risk Assessment</li>
+                    <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-cyberCyan"></span> Incident Response Preparedness</li>
                 </ul>
                 <a href="#contact" class="inline-flex items-center font-bold text-sm tracking-wide text-white group-hover:text-cyberCyan transition-colors">
                     Schedule a Consultation <span class="ml-2 transform group-hover:translate-x-1 transition-transform">→</span>
                 </a>
             </div>
 
-            <!-- CLUB PILLAR -->
             <div id="club" class="group border border-slate-800/80 bg-cardBg/30 p-10 rounded-sm relative overflow-hidden transition-all duration-300 hover:border-cyberRed/40">
                 <div class="absolute top-0 left-0 w-1 h-0 bg-cyberRed group-hover:h-full transition-all duration-500"></div>
                 <div class="mb-6">
@@ -156,229 +139,197 @@
                     An elite interactive platform engineered for aspiring cybersecurity specialists. Gain access to collaborative capture-the-flag environments, deep-dive vulnerability research labs, and close mentoring from operational experts.
                 </p>
                 <ul class="space-y-4 text-sm text-slate-300 mb-10">
-                    <li class="flex items-center gap-3">
-                        <span class="w-1.5 h-1.5 bg-cyberRed"></span> Proprietary Sandboxed Lab Environments
-                    </li>
-                    <li class="flex items-center gap-3">
-                        <span class="w-1.5 h-1.5 bg-cyberRed"></span> Weekly Live-Fire Warfare (CTF)
-                    </li>
-                    <li class="flex items-center gap-3">
-                        <span class="w-1.5 h-1.5 bg-cyberRed"></span> Direct Enterprise Recruitment Access
-                    </li>
+                    <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-cyberRed"></span> Proprietary Sandboxed Lab Environments</li>
+                    <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-cyberRed"></span> Weekly Live-Fire Warfare (CTF)</li>
+                    <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-cyberRed"></span> Direct Enterprise Recruitment Access</li>
                 </ul>
                 <a href="https://chat.whatsapp.com/ED56BL8Qd0J1UNrtvOb1Rd?s=cl&p=a&mlu=4" target="_blank" class="inline-flex items-center font-bold text-sm tracking-wide text-white group-hover:text-cyberRed transition-colors">
                     Apply Via WhatsApp Community <span class="ml-2 transform group-hover:translate-x-1 transition-transform">→</span>
                 </a>
             </div>
-
         </div>
     </section>
 
-    <!-- COURSES MODULE SECTION -->
     <section id="courses" class="border-t border-slate-900 bg-slate-950/10 py-24">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-16">
                 <span class="text-xs font-bold tracking-widest uppercase text-cyberCyan">Syllabus Matrix</span>
                 <h2 class="font-display text-4xl font-bold text-white mt-3">Cybersecurity Training Operations</h2>
                 <p class="text-slate-400 max-w-xl mx-auto mt-4 text-sm leading-relaxed">
-                    Deploying structural knowledge resources through managed tactical courses.
+                    Dynamic courses pulled directly from your secure database cluster.
                 </p>
             </div>
 
-            <!-- Dynamic Target Container Container Grid -->
             <div id="course-container" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Course Template 1 (Free Core Asset) -->
-                <div class="border border-slate-800 bg-cardBg/40 p-6 rounded-sm relative flex flex-col justify-between">
-                    <div>
-                        <span class="absolute top-4 right-4 bg-emerald-500/10 text-emerald-400 text-xs px-2 py-1 rounded font-bold tracking-wider">FREE</span>
-                        <h3 class="text-xl font-bold text-white mb-2 mt-4 font-display">Linux Command Line Warfare</h3>
-                        <p class="text-slate-400 text-sm mb-6 leading-relaxed">Master internal shell environments, administrative access pipelines, and core tools used during network threat evaluation phases.</p>
-                    </div>
-                    <a href="https://chat.whatsapp.com/ED56BL8Qd0J1UNrtvOb1Rd?s=cl&p=a&mlu=4" target="_blank" class="bg-slate-800 text-center py-2.5 text-sm font-bold text-white rounded-sm hover:bg-slate-700 transition-colors">Access Curriculum Assets</a>
                 </div>
-
-                <!-- Course Template 2 (Paid Premium Asset) -->
-                <div class="border border-cyberRed/30 bg-cardBg/40 p-6 rounded-sm relative flex flex-col justify-between">
-                    <div>
-                        <span class="absolute top-4 right-4 bg-cyberRed/10 text-cyberRed text-xs px-2 py-1 rounded font-bold tracking-wider">PREMIUM</span>
-                        <h3 class="text-xl font-bold text-white mb-2 mt-4 font-display">Enterprise Red Team Architecture</h3>
-                        <p class="text-slate-400 text-sm mb-6 leading-relaxed">Deep-dive structural mapping into designing obfuscated Command and Control (C2) servers and bypassing Next-Gen detection arrays.</p>
-                    </div>
-                    <a href="https://chat.whatsapp.com/ED56BL8Qd0J1UNrtvOb1Rd?s=cl&p=a&mlu=4" target="_blank" class="bg-gradient-to-r from-cyberCyan to-cyberRed text-darkBg text-center py-2.5 text-sm font-bold rounded-sm hover:opacity-90 transition-all">Request Direct Enrollment</a>
-                </div>
-            </div>
         </div>
     </section>
 
-    <!-- ABOUT US SECTION -->
     <section id="about" class="border-t border-slate-900 bg-slate-950/20 py-24">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-16">
                 <span class="text-xs font-bold tracking-widest uppercase text-cyberRed">Command & Structure</span>
                 <h2 class="font-display text-4xl font-bold text-white mt-3">Leadership & Partners</h2>
-                <p class="text-slate-400 max-w-xl mx-auto mt-4 text-sm leading-relaxed">
-                    Bridging elite enterprise strategy with modern practical cybersecurity education.
-                </p>
             </div>
-
             <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                <!-- FOUNDER CARD -->
-                <div class="border border-slate-800 bg-cardBg/20 p-8 rounded-sm relative">
-                    <div class="w-12 h-12 bg-slate-800 rounded-full mb-6 flex items-center justify-center border border-slate-700">
-                        <span class="text-white font-bold font-display">PM</span>
-                    </div>
+                <div class="border border-slate-800 bg-cardBg/20 p-8 rounded-sm">
+                    <div class="w-12 h-12 bg-slate-800 rounded-full mb-6 flex items-center justify-center border border-slate-700"><span class="text-white font-bold font-display">PM</span></div>
                     <div class="text-xs font-bold uppercase tracking-wider text-cyberCyan mb-1">Founder & CEO</div>
                     <h3 class="font-display text-2xl font-bold text-white mb-3">PM</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                        Founder of PM. Securities. Dedicated to building hardened enterprise infrastructure architectures and scaling defensive engineering frameworks for clients globally.
-                    </p>
+                    <p class="text-slate-400 text-sm leading-relaxed">Founder of PM. Securities. Dedicated to building hardened enterprise architectures globally.</p>
                 </div>
-
-                <!-- PARTNER CARD (YUVRAJ GUPTA) -->
-                <div class="border border-slate-800 bg-cardBg/20 p-8 rounded-sm relative flex flex-col justify-between">
+                <div class="border border-slate-800 bg-cardBg/20 p-8 rounded-sm flex flex-col justify-between">
                     <div>
-                        <div class="w-12 h-12 bg-slate-800 rounded-full mb-6 flex items-center justify-center border border-slate-700 overflow-hidden">
-                            <span class="text-white font-bold font-display">YG</span>
-                        </div>
+                        <div class="w-12 h-12 bg-slate-800 rounded-full mb-6 flex items-center justify-center border border-slate-700"><span class="text-white font-bold font-display">YG</span></div>
                         <div class="text-xs font-bold uppercase tracking-wider text-cyberRed mb-1">Yuvi Cybersecurity</div>
                         <h3 class="font-display text-2xl font-bold text-white mb-3">Yuvraj Gupta</h3>
-                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                            Renowned Cybersecurity specialist, technical educator, and architect driving educational technology platforms designed to mentor the next generation of operators.
-                        </p>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">Renowned Cybersecurity specialist, technical educator, and platform architect.</p>
                     </div>
-                    <div>
-                        <a href="https://learnwithyuviwebapp.web.app" target="_blank" class="inline-block text-center w-full border border-cyberRed/30 text-cyberRed font-bold text-xs uppercase tracking-widest py-3 px-4 rounded-sm hover:bg-cyberRed hover:text-white transition-all duration-300">
-                            Access Platform Website
-                        </a>
-                    </div>
+                    <a href="https://learnwithyuviwebapp.web.app" target="_blank" class="text-center w-full border border-cyberRed/30 text-cyberRed font-bold text-xs uppercase tracking-widest py-3 px-4 rounded-sm hover:bg-cyberRed hover:text-white transition-all">Access Platform Website</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CONTACT COMMUNICATIONS INTEL SECTION -->
-    <section id="contact" class="border-t border-slate-900 bg-slate-950/50 relative overflow-hidden py-24">
-        <div class="max-w-4xl mx-auto px-6 relative z-10 text-center">
+    <section id="contact" class="border-t border-slate-900 bg-slate-950/50 py-24">
+        <div class="max-w-4xl mx-auto px-6 text-center">
             <span class="text-xs font-bold tracking-widest uppercase text-cyberCyan">Secure Channels</span>
-            <h2 class="font-display text-4xl font-bold text-white mt-3 mb-4">Establish Connection</h2>
-            <p class="text-slate-400 max-w-lg mx-auto mb-12 text-sm leading-relaxed">
-                Reach out via our verified protocols to negotiate commercial partnerships or initiate club enrollment validations.
-            </p>
-
+            <h2 class="font-display text-4xl font-bold text-white mt-3 mb-12">Establish Connection</h2>
             <div class="grid sm:grid-cols-3 gap-6 text-left">
-                <!-- Discord -->
-                <div class="border border-slate-800 bg-darkBg p-6 rounded-sm flex flex-col justify-between hover:border-slate-700 transition-colors">
-                    <div>
-                        <div class="text-xs font-bold tracking-wider text-slate-500 uppercase mb-2">Discord Handle</div>
-                        <div class="font-display text-lg font-semibold text-white select-all">Coolhello189</div>
-                    </div>
-                    <span class="text-xs text-cyberCyan mt-4 block font-medium">Add user directly →</span>
+                <div class="border border-slate-800 bg-darkBg p-6 rounded-sm">
+                    <div class="text-xs font-bold tracking-wider text-slate-500 uppercase mb-2">Discord Handle</div>
+                    <div class="font-display text-lg font-semibold text-white select-all">Coolhello189</div>
                 </div>
-
-                <!-- Email -->
-                <div class="border border-slate-800 bg-darkBg p-6 rounded-sm flex flex-col justify-between hover:border-slate-700 transition-colors">
-                    <div>
-                        <div class="text-xs font-bold tracking-wider text-slate-500 uppercase mb-2">Direct Mail</div>
-                        <a href="mailto:pm.securities2@gmail.com" class="font-display text-base font-semibold text-white break-all hover:text-cyberCyan transition-colors">pm.securities2@gmail.com</a>
-                    </div>
-                    <span class="text-xs text-cyberCyan mt-4 block font-medium">Send encrypted mail →</span>
+                <div class="border border-slate-800 bg-darkBg p-6 rounded-sm">
+                    <div class="text-xs font-bold tracking-wider text-slate-500 uppercase mb-2">Direct Mail</div>
+                    <a href="mailto:pm.securities2@gmail.com" class="font-display text-base font-semibold text-white break-all">pm.securities2@gmail.com</a>
                 </div>
-
-                <!-- Mobile -->
-                <div class="border border-slate-800 bg-darkBg p-6 rounded-sm flex flex-col justify-between hover:border-slate-700 transition-colors">
-                    <div>
-                        <div class="text-xs font-bold tracking-wider text-slate-500 uppercase mb-2">Comms Hot-Line</div>
-                        <a href="tel:9119925344" class="font-display text-lg font-semibold text-white hover:text-cyberCyan transition-colors">9119925344</a>
-                    </div>
-                    <span class="text-xs text-cyberCyan mt-4 block font-medium">Voice / Signal channels →</span>
+                <div class="border border-slate-800 bg-darkBg p-6 rounded-sm">
+                    <div class="text-xs font-bold tracking-wider text-slate-500 uppercase mb-2">Comms Hot-Line</div>
+                    <a href="tel:9119925344" class="font-display text-lg font-semibold text-white">9119925344</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ADMIN MODAL CONTROL MATRIX -->
     <div id="admin-modal" class="fixed inset-0 bg-darkBg/95 backdrop-blur-md hidden items-center justify-center z-50 p-4">
         <div class="bg-cardBg border border-slate-800 p-8 rounded-sm max-w-md w-full relative">
             <button onclick="toggleAdminModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-xl">&times;</button>
-            <h3 class="font-display text-xl font-bold text-white mb-6 tracking-wide">Course Node Upload Manager</h3>
-            
+            <h3 class="font-display text-xl font-bold text-white mb-6">Course Node Upload Manager</h3>
             <form id="course-form" onsubmit="handleCourseUpload(event)" class="space-y-4">
                 <div>
-                    <label class="block text-xs uppercase tracking-wider text-slate-400 mb-1">ADMIN PASSWORD:</label>
-                    <input type="password" id="admin-password" required class="w-full bg-slate-950 border border-slate-800 rounded-sm p-2.5 text-white focus:border-cyberCyan focus:outline-none text-sm">
+                    <label class="block text-xs uppercase tracking-wider text-slate-400 mb-1">Secure Environment Key</label>
+                    <input type="password" id="admin-password" required class="w-full bg-slate-950 border border-slate-800 rounded-sm p-2.5 text-white text-sm focus:border-cyberCyan focus:outline-none">
                 </div>
                 <div>
                     <label class="block text-xs uppercase tracking-wider text-slate-400 mb-1">Course Title</label>
-                    <input type="text" id="course-title" required class="w-full bg-slate-950 border border-slate-800 rounded-sm p-2.5 text-white focus:border-cyberCyan focus:outline-none text-sm">
+                    <input type="text" id="course-title" required class="w-full bg-slate-950 border border-slate-800 rounded-sm p-2.5 text-white text-sm focus:border-cyberCyan focus:outline-none">
                 </div>
                 <div>
                     <label class="block text-xs uppercase tracking-wider text-slate-400 mb-1">Access Configuration Tier</label>
-                    <select id="course-type" class="w-full bg-slate-950 border border-slate-800 rounded-sm p-2.5 text-white focus:border-cyberCyan focus:outline-none text-sm">
+                    <select id="course-type" class="w-full bg-slate-950 border border-slate-800 rounded-sm p-2.5 text-white text-sm focus:border-cyberCyan focus:outline-none">
                         <option value="free">Free Course</option>
                         <option value="paid">Premium Paid Course</option>
                     </select>
                 </div>
                 <div>
-                    <label class="block text-xs uppercase tracking-wider text-slate-400 mb-1">Course Core Overview Brief</label>
-                    <textarea id="course-desc" rows="3" required class="w-full bg-slate-950 border border-slate-800 rounded-sm p-2.5 text-white focus:border-cyberCyan focus:outline-none text-sm"></textarea>
+                    <label class="block text-xs uppercase tracking-wider text-slate-400 mb-1">Course Overview Brief</label>
+                    <textarea id="course-desc" rows="3" required class="w-full bg-slate-950 border border-slate-800 rounded-sm p-2.5 text-white text-sm focus:border-cyberCyan focus:outline-none"></textarea>
                 </div>
-                <button type="submit" class="w-full bg-gradient-to-r from-cyberCyan to-cyberRed text-darkBg font-bold py-3 rounded-sm text-xs uppercase tracking-widest hover:opacity-90 transition-opacity mt-2">Inject Course Module</button>
+                <button type="submit" class="w-full bg-gradient-to-r from-cyberCyan to-cyberRed text-darkBg font-bold py-3 rounded-sm text-xs uppercase tracking-widest hover:opacity-90 transition-all">Inject Course Module</button>
             </form>
         </div>
     </div>
 
-    <!-- FOOTER WITH INTEGRATED HTML SITEMAP -->
     <footer class="border-t border-slate-900 bg-slate-950/80 pt-16 pb-12">
         <div class="max-w-7xl mx-auto px-6">
-            
-            <!-- HTML Sitemap Grid Section -->
-            <div class="grid grid-cols-2 md:grid-cols-3 gap-8 pb-12 border-b border-slate-900/60 text-xs">
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-8 pb-12 text-xs">
                 <div>
                     <h4 class="text-slate-400 font-bold uppercase tracking-wider mb-3">Enterprise Core</h4>
                     <ul class="space-y-2 text-slate-500">
                         <li><a href="#consultancy" class="hover:text-cyberCyan transition-colors">Strategic Consultancy</a></li>
-                        <li><a href="#consultancy" class="hover:text-cyberCyan transition-colors">Red Teaming Solutions</a></li>
                     </ul>
                 </div>
                 <div>
                     <h4 class="text-slate-400 font-bold uppercase tracking-wider mb-3">Academy Ecosystem</h4>
                     <ul class="space-y-2 text-slate-500">
                         <li><a href="#club" class="hover:text-cyberRed transition-colors">PM. Learners Guild</a></li>
-                        <li><a href="#courses" class="hover:text-cyberRed transition-colors">Training Matrices</a></li>
-                        <li><a href="https://chat.whatsapp.com/ED56BL8Qd0J1UNrtvOb1Rd?s=cl&p=a&mlu=4" target="_blank" class="hover:text-cyberRed transition-colors">WhatsApp Engine</a></li>
                     </ul>
                 </div>
                 <div>
                     <h4 class="text-slate-400 font-bold uppercase tracking-wider mb-3">Authority Channels</h4>
                     <ul class="space-y-2 text-slate-500">
                         <li><a href="#about" class="hover:text-white transition-colors">Leadership Hub</a></li>
-                        <li><a href="https://learnwithyuviwebapp.web.app" target="_blank" class="hover:text-white transition-colors">Yuvi External Node</a></li>
-                        <li><a href="#contact" class="hover:text-white transition-colors">Secure Intel Links</a></li>
                     </ul>
                 </div>
             </div>
-
-            <!-- Footer Branding Row -->
-            <div class="flex flex-col md:flex-row justify-between items-center gap-6 pt-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6 pt-8 border-t border-slate-900/60">
                 <span class="font-display font-bold tracking-wider text-sm text-slate-400">PM. SECURITIES</span>
-                <div class="flex space-x-6 text-xs text-slate-500">
-                    <a href="#" class="hover:text-slate-300">Privacy Policy</a>
-                    <a href="#" class="hover:text-slate-300">Terms of Service</a>
-                    <a href="#" class="hover:text-slate-300">Internal Portal</a>
-                </div>
                 <p class="text-xs text-slate-600">&copy; 2026 PM. Securities. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
-    <!-- INTERACTION LOGIC ARCHITECTURE JS -->
     <script>
+        // =========================================================================
+        // 🛠️ INTEGRATED PRODUCTION API CREDENTIAL KEYS:
+        // =========================================================================
+        const SUPABASE_URL = "https://dxabaafoboaoawwmignq.supabase.co"; 
+        const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR4YWJhYWZvYm9hb2F3d21pZ25xIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAyMjY1MzgsImV4cCI6MjA5NTgwMjUzOH0.pBazFISQbM1srXh5GSSf2GUu7Kz0qhYgl_eB67RvJUc";
+        // =========================================================================
+
+        // Initialize connection cluster
+        const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
         function toggleAdminModal() {
             const modal = document.getElementById('admin-modal');
             modal.classList.toggle('hidden');
             modal.classList.toggle('flex');
         }
 
+        // Generate dynamic HTML list layouts
+        function renderCourseCard(title, type, desc) {
+            const container = document.getElementById('course-container');
+            const badgeStyle = type === 'free' ? 'bg-emerald-500/10 text-emerald-400' : 'bg-cyberRed/10 text-cyberRed';
+            const borderStyle = type === 'free' ? 'border-slate-800' : 'border-cyberRed/30';
+            const targetAction = type === 'free'
+                ? `<a href="https://chat.whatsapp.com/ED56BL8Qd0J1UNrtvOb1Rd?s=cl&p=a&mlu=4" target="_blank" class="bg-slate-800 text-center py-2.5 text-sm font-bold text-white rounded-sm hover:bg-slate-700 transition-colors">Access Curriculum Assets</a>`
+                : `<a href="https://chat.whatsapp.com/ED56BL8Qd0J1UNrtvOb1Rd?s=cl&p=a&mlu=4" target="_blank" class="bg-gradient-to-r from-cyberCyan to-cyberRed text-darkBg text-center py-2.5 text-sm font-bold rounded-sm hover:opacity-90 transition-all">Request Direct Enrollment</a>`;
+
+            const courseCard = document.createElement('div');
+            courseCard.className = `border ${borderStyle} bg-cardBg/40 p-6 rounded-sm relative flex flex-col justify-between`;
+            courseCard.innerHTML = `
+                <div>
+                    <span class="absolute top-4 right-4 ${badgeStyle} text-xs px-2 py-1 rounded font-bold tracking-wider">${type.toUpperCase()}</span>
+                    <h3 class="text-xl font-bold text-white mb-2 mt-4 font-display">${title}</h3>
+                    <p class="text-slate-400 text-sm mb-6 leading-relaxed">${desc}</p>
+                </div>
+                ${targetAction}
+            `;
+            container.appendChild(courseCard);
+        }
+
+        // Pull active entries from database pool
+        async function fetchCoursesFromDatabase() {
+            const { data, error } = await _supabase
+                .from('courses')
+                .select('*')
+                .order('created_at', { ascending: false });
+
+            if (error) {
+                console.error('Data sync synchronization engine failure:', error);
+                return;
+            }
+
+            const container = document.getElementById('course-container');
+            container.innerHTML = ''; // Clear loading frameworks
+            
+            data.forEach(course => {
+                renderCourseCard(course.title, course.type, course.description);
+            });
+        }
+
+        // Handle structural data writes using security authentication rules
         async function handleCourseUpload(e) {
             e.preventDefault();
             const password = document.getElementById('admin-password').value;
@@ -386,49 +337,25 @@
             const type = document.getElementById('course-type').value;
             const desc = document.getElementById('course-desc').value;
 
-            try {
-                // Secure serverless communication channel with Netlify Function runtime
-                const response = await fetch('/.netlify/functions/manage-courses', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ password, title, type, desc })
-                });
+            // Submit row entry while passing input field directly into authentication headers
+            const { error } = await _supabase
+                .from('courses')
+                .insert([{ title, type, description: desc }], { headers: { 'x-admin-key': password } });
 
-                const data = await response.json();
-
-                if (!response.ok) {
-                    alert(data.error || 'Authentication verification routine failed.');
-                    return;
-                }
-
-                // If environment password verification returns OK, safely mount node to UI frame
-                const container = document.getElementById('course-container');
-                const badgeStyle = type === 'free' ? 'bg-emerald-500/10 text-emerald-400' : 'bg-cyberRed/10 text-cyberRed';
-                const borderStyle = type === 'free' ? 'border-slate-800' : 'border-cyberRed/30';
-                const targetAction = type === 'free'
-                    ? `<a href="https://chat.whatsapp.com/ED56BL8Qd0J1UNrtvOb1Rd?s=cl&p=a&mlu=4" target="_blank" class="bg-slate-800 text-center py-2.5 text-sm font-bold text-white rounded-sm">Access Curriculum Assets</a>`
-                    : `<a href="https://chat.whatsapp.com/ED56BL8Qd0J1UNrtvOb1Rd?s=cl&p=a&mlu=4" target="_blank" class="bg-gradient-to-r from-cyberCyan to-cyberRed text-darkBg text-center py-2.5 text-sm font-bold rounded-sm">Request Direct Enrollment</a>`;
-
-                const courseCard = document.createElement('div');
-                courseCard.className = `border ${borderStyle} bg-cardBg/40 p-6 rounded-sm relative flex flex-col justify-between`;
-                courseCard.innerHTML = `
-                    <div>
-                        <span class="absolute top-4 right-4 ${badgeStyle} text-xs px-2 py-1 rounded font-bold tracking-wider">${type.toUpperCase()}</span>
-                        <h3 class="text-xl font-bold text-white mb-2 mt-4 font-display">${title}</h3>
-                        <p class="text-slate-400 text-sm mb-6 leading-relaxed">${desc}</p>
-                    </div>
-                    ${targetAction}
-                `;
-
-                container.prepend(courseCard);
-                document.getElementById('course-form').reset();
-                toggleAdminModal();
-                alert('Success: New training node successfully deployed to live render view.');
-
-            } catch (err) {
-                alert('Fatal interface pipeline communications payload execution exception.');
+            if (error) {
+                alert('Authentication verification routine failed. Row Level Policy execution mismatch.');
+                return;
             }
+
+            // Sync successful -> clean forms, update array matrix layout, toggle view off
+            fetchCoursesFromDatabase();
+            document.getElementById('course-form').reset();
+            toggleAdminModal();
+            alert('Success: Database cluster synced. Content node online.');
         }
+
+        // Bind core initialization events to frame rendering hooks
+        window.addEventListener('DOMContentLoaded', fetchCoursesFromDatabase);
     </script>
 </body>
 </html>
