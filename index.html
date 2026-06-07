@@ -94,8 +94,7 @@
                 <div>
                     <p class="font-display text-3xl font-bold text-cyberCyan">24/7/365</p>
                     <p class="text-xs text-slate-500 uppercase tracking-widest mt-1">Threat Intelligence</p>
-                </div>
-                <div>
+                </div>                <div>
                     <p class="font-display text-3xl font-bold text-cyberRed">500+</p>
                     <p class="text-xs text-slate-500 uppercase tracking-widest mt-1">Vetted Club Members</p>
                 </div>
@@ -231,7 +230,7 @@
                 </div>
                 <div id="student-key-wrapper" class="hidden">
                     <label class="block text-xs uppercase tracking-wider text-cyberRed font-bold mb-1">Set Student Access Passcode</label>
-                    <input type="text" id="course-student-key" class="w-full bg-slate-950 border border-cyberRed/40 rounded-sm p-2.5 text-white text-sm focus:border-cyberRed focus:outline-none" placeholder="e.g. LINUX_VIP_2026">
+                    <input type="text" id="course-student-key" class="w-full bg-slate-950 border border-cyberRed/40 rounded-sm p-2.5 text-white text-sm focus:border-cyberRed focus:outline-none" placeholder="e.g. PASSCODE_123">
                 </div>
                 <div>
                     <label class="block text-xs uppercase tracking-wider text-slate-400 mb-1">Course Asset Link (Google Drive URL)</label>
@@ -292,7 +291,7 @@
             modal.classList.toggle('flex');
         }
 
-        // Toggles passcode box when admin toggles between free/paid settings
+        // 🔑 Handler function to toggle visibility of unique student passcode box in the panel form UI
         function toggleStudentKeyField(type) {
             const wrapper = document.getElementById('student-key-wrapper');
             const input = document.getElementById('course-student-key');
@@ -309,7 +308,7 @@
         // Stateless runtime downloader linking to header-controlled table assets
         async function requestCourseAsset(courseId, courseType) {
             let accessKey = "";
-            
+                        
             if (courseType === 'paid') {
                 accessKey = prompt("Enter Premium Access Passcode to pull asset layer:");
                 if (!accessKey) return;
@@ -337,7 +336,7 @@
                 if (payload && payload.length > 0 && payload[0].drive_link) {
                     window.open(payload[0].drive_link, '_blank');
                 } else {
-                    alert("Access key invalid for this specific course blueprint.");
+                    alert("Access key invalid or resource restricted.");
                 }
             } catch (err) {
                 console.error("Secure asset fetch exception:", err);
@@ -350,7 +349,7 @@
             const container = document.getElementById('course-container');
             const badgeStyle = type === 'free' ? 'bg-emerald-500/10 text-emerald-400' : 'bg-cyberRed/10 text-cyberRed';
             const borderStyle = type === 'free' ? 'border-slate-800' : 'border-cyberRed/30';
-            
+                        
             const actionText = type === 'free' ? 'Access Curriculum Assets' : 'Unlock Premium Content';
             const actionClass = type === 'free' 
                 ? 'bg-slate-800 text-white hover:bg-slate-700' 
@@ -385,7 +384,7 @@
 
             const container = document.getElementById('course-container');
             container.innerHTML = ''; 
-             
+                         
             data.forEach(course => {
                 renderCourseCard(course.id, course.title, course.type, course.description);
             });
@@ -398,11 +397,11 @@
             const title = document.getElementById('course-title').value;
             const type = document.getElementById('course-type').value;
             const driveLink = document.getElementById('course-drive-link').value;
-            const studentKey = document.getElementById('course-student-key').value; // 🔑 Grabs password from runtime form input
+            const studentKey = document.getElementById('course-student-key').value; // 🔑 Pulls the typed pass from input field value string
             const desc = document.getElementById('course-desc').value;
 
             try {
-                // Step 1: Create public details entry
+                // Step 1: Create public details entry and pull back its generated primary key ID structure
                 const courseResponse = await fetch(`${SUPABASE_URL}/rest/v1/courses`, {
                     method: 'POST',
                     headers: {
@@ -423,7 +422,7 @@
                 const createdCourses = await courseResponse.json();
                 const newCourseId = createdCourses[0].id;
 
-                // Step 2: Tie the returned numerical identifier to the hidden drive link and custom student passcode
+                // Step 2: Tie the returned ID to the drive link and map the unique passcode parameter string
                 const assetResponse = await fetch(`${SUPABASE_URL}/rest/v1/course_assets`, {
                     method: 'POST',
                     headers: {
@@ -436,7 +435,7 @@
                     body: JSON.stringify({ 
                         course_id: newCourseId, 
                         drive_link: driveLink,
-                        student_key: type === 'paid' ? studentKey : null -- Only saves key row if tier is paid
+                        student_key: type === 'paid' ? studentKey : null // 🔑 Maps the custom course password parameter to the database row structure safely
                     })
                 });
 
@@ -448,7 +447,7 @@
                 // Sync successful -> reset UI structures
                 fetchCoursesFromDatabase();
                 document.getElementById('course-form').reset();
-                toggleStudentKeyField('free'); // reset hidden box state
+                toggleStudentKeyField('free'); // reset hidden box state back to baseline normal
                 toggleAdminModal();
                 alert('Success: Core modules injected. Asset deployment nodes online.');
 
@@ -458,6 +457,7 @@
             }
         }
 
+        // Bind core initialization events to frame rendering hooks
         window.addEventListener('DOMContentLoaded', fetchCoursesFromDatabase);
     </script>
 </body>
