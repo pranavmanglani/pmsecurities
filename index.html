@@ -6,7 +6,7 @@
     <title>PM. Securities | Cybersecurity Consultancy & Learners Club</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <link rel="icon" type="image/png" href="https://img.icons8.com/cyber-security/64/shield.png">
+    <link rel="icon" type="image/png" href="https://scontent-del3-2.cdninstagram.com/v/t51.82787-19/707097039_17897632374454018_8200499950204435188_n.jpg?stp=dst-jpg_s150x150_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-del3-2.cdninstagram.com&_nc_cat=110&_nc_oc=Q6cZ2gHL6X0wVwOQVjlqYMRcO9XzXam3XuSyRtBqqbqIgXC0TcXL3nRWQLu7IRVWx8zootNBAqUUk5WB_ueBiP7SYTOA&_nc_ohc=VHXoryhBA_cQ7kNvwH8r_VT&_nc_gid=6FIBzgK6OhI39XbWbM94fw&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af_hNdbU7w8ISB_QefBCxvWmACSX46wHlHB3g47A0OMoBw&oe=6A2218DE&_nc_sid=8b3546">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
@@ -62,6 +62,7 @@
     <section class="relative pt-24 pb-20 overflow-hidden">
         <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-cyberCyan/5 rounded-full blur-3xl pointer-events-none"></div>
         <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyberRed/5 rounded-full blur-3xl pointer-events-none"></div>
+
         <div class="max-w-5xl mx-auto px-6 text-center relative z-10">
             <div class="inline-flex items-center gap-2 px-3 py-1 border border-slate-800 bg-slate-900/60 rounded-full text-xs font-semibold tracking-wider text-slate-400 uppercase mb-6">
                 <span class="w-2 h-2 rounded-full bg-cyberCyan animate-pulse"></span> Dual-Mission Cyber Architecture
@@ -158,6 +159,7 @@
                     Dynamic courses pulled directly our secure database cluster. These courses are tailored for beginners to advanced professionals by Pranav manglani and Yuvraj Gupta
                 </p>
             </div>
+
             <div id="course-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
         </div>
     </section>
@@ -224,18 +226,10 @@
                 </div>
                 <div>
                     <label class="block text-xs uppercase tracking-wider text-slate-400 mb-1">Access Configuration Tier</label>
-                    <select id="course-type" onchange="toggleStudentKeyField(this.value)" class="w-full bg-slate-950 border border-slate-800 rounded-sm p-2.5 text-white text-sm focus:border-cyberCyan focus:outline-none">
+                    <select id="course-type" class="w-full bg-slate-950 border border-slate-800 rounded-sm p-2.5 text-white text-sm focus:border-cyberCyan focus:outline-none">
                         <option value="free">Free Course</option>
                         <option value="paid">Premium Paid Course</option>
                     </select>
-                </div>
-                <div id="student-key-wrapper" class="hidden">
-                    <label class="block text-xs uppercase tracking-wider text-cyberRed font-bold mb-1">Set Student Access Passcode</label>
-                    <input type="text" id="course-student-key" class="w-full bg-slate-950 border border-cyberRed/40 rounded-sm p-2.5 text-white text-sm focus:border-cyberRed focus:outline-none" placeholder="e.g. PASSCODE_123">
-                </div>
-                <div>
-                    <label class="block text-xs uppercase tracking-wider text-slate-400 mb-1">Course Asset Link (Google Drive URL)</label>
-                    <input type="url" id="course-drive-link" required class="w-full bg-slate-950 border border-slate-800 rounded-sm p-2.5 text-white text-sm focus:border-cyberCyan focus:outline-none" placeholder="https://drive.google.com/...">
                 </div>
                 <div>
                     <label class="block text-xs uppercase tracking-wider text-slate-400 mb-1">Course Overview Brief</label>
@@ -276,9 +270,14 @@
     </footer>
 
     <script>
+        // =========================================================================
+        // 🛠️ INTEGRATED PRODUCTION API CREDENTIAL KEYS:
+        // =========================================================================
         const SUPABASE_URL = "https://dxabaafoboaoawwmignq.supabase.co"; 
         const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR4YWJhYWZvYm9hb2F3d21pZ25xIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAyMjY1MzgsImV4cCI6MjA5NTgwMjUzOH0.pBazFISQbM1srXh5GSSf2GUu7Kz0qhYgl_eB67RvJUc";
+        // =========================================================================
 
+        // Initialize connection cluster
         const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
         function toggleAdminModal() {
@@ -287,157 +286,80 @@
             modal.classList.toggle('flex');
         }
 
-        function toggleStudentKeyField(type) {
-            const wrapper = document.getElementById('student-key-wrapper');
-            const input = document.getElementById('course-student-key');
-            if (type === 'paid') {
-                wrapper.classList.remove('hidden');
-                input.required = true;
-            } else {
-                wrapper.classList.add('hidden');
-                input.required = false;
-                input.value = "";
-            }
-        }
-
-        async function requestCourseAsset(courseId, courseType) {
-            let accessKey = "";
-                        
-            if (courseType === 'paid') {
-                accessKey = prompt("Enter Premium Access Passcode to pull asset layer:");
-                if (!accessKey) return;
-            } else {
-                accessKey = "public_access";
-            }
-
-            try {
-                const response = await fetch(SUPABASE_URL + '/rest/v1/course_assets?course_id=eq.' + courseId + '&select=drive_link', {
-                    method: 'GET',
-                    headers: {
-                        'apikey': SUPABASE_ANON_KEY,
-                        'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
-                        'x-student-key': accessKey 
-                    }
-                });
-
-                if (!response.ok) {
-                    alert("Asset dispatch rejected. Cryptographic match criteria not met.");
-                    return;
-                }
-
-                const payload = await response.json();
-
-                if (payload && payload.length > 0 && payload[0].drive_link) {
-                    window.open(payload[0].drive_link, '_blank');
-                } else {
-                    alert("Access key invalid or resource restricted.");
-                }
-            } catch (err) {
-                console.error("Secure asset fetch exception:", err);
-                alert("Network execution failure during access validation verification.");
-            }
-        }
-
-        function renderCourseCard(id, title, type, desc) {
+        // Generate dynamic HTML list layouts
+        function renderCourseCard(title, type, desc) {
             const container = document.getElementById('course-container');
             const badgeStyle = type === 'free' ? 'bg-emerald-500/10 text-emerald-400' : 'bg-cyberRed/10 text-cyberRed';
             const borderStyle = type === 'free' ? 'border-slate-800' : 'border-cyberRed/30';
-                        
-            const actionText = type === 'free' ? 'Access Curriculum Assets' : 'Unlock Premium Content';
-            const actionClass = type === 'free' 
-                ? 'bg-slate-800 text-white hover:bg-slate-700' 
-                : 'bg-gradient-to-r from-cyberCyan to-cyberRed text-darkBg hover:opacity-90';
+            const targetAction = type === 'free'
+                ? `<a href="https://chat.whatsapp.com/ED56BL8Qd0J1UNrtvOb1Rd?s=cl&p=a&mlu=4" target="_blank" class="bg-slate-800 text-center py-2.5 text-sm font-bold text-white rounded-sm hover:bg-slate-700 transition-colors">Access Curriculum Assets</a>`
+                : `<a href="https://chat.whatsapp.com/ED56BL8Qd0J1UNrtvOb1Rd?s=cl&p=a&mlu=4" target="_blank" class="bg-gradient-to-r from-cyberCyan to-cyberRed text-darkBg text-center py-2.5 text-sm font-bold rounded-sm hover:opacity-90 transition-all">Request Direct Enrollment</a>`;
 
             const courseCard = document.createElement('div');
-            courseCard.className = 'border ' + borderStyle + ' bg-cardBg/40 p-6 rounded-sm relative flex flex-col justify-between';
-            courseCard.innerHTML = '<div>' +
-                '<span class="absolute top-4 right-4 ' + badgeStyle + ' text-xs px-2 py-1 rounded font-bold tracking-wider">' + type.toUpperCase() + '</span>' +
-                '<h3 class="text-xl font-bold text-white mb-2 mt-4 font-display">' + title + '</h3>' +
-                '<p class="text-slate-400 text-sm mb-6 leading-relaxed">' + desc + '</p>' +
-                '</div>' +
-                '<button onclick="requestCourseAsset(\'' + id + '\', \'' + type + '\')" class="w-full py-2.5 text-sm font-bold rounded-sm transition-all text-center select-none ' + actionClass + '">' +
-                actionText +
-                '</button>';
+            courseCard.className = `border ${borderStyle} bg-cardBg/40 p-6 rounded-sm relative flex flex-col justify-between`;
+            courseCard.innerHTML = `
+                <div>
+                    <span class="absolute top-4 right-4 ${badgeStyle} text-xs px-2 py-1 rounded font-bold tracking-wider">${type.toUpperCase()}</span>
+                    <h3 class="text-xl font-bold text-white mb-2 mt-4 font-display">${title}</h3>
+                    <p class="text-slate-400 text-sm mb-6 leading-relaxed">${desc}</p>
+                </div>
+                ${targetAction}
+            `;
             container.appendChild(courseCard);
         }
 
+        // Pull active entries from database pool
         async function fetchCoursesFromDatabase() {
-            const result = await _supabase
+            const { data, error } = await _supabase
                 .from('courses')
-                .select('id, title, type, description')
+                .select('*')
                 .order('created_at', { ascending: false });
 
-            if (result.error) {
-                console.error('Data sync synchronization engine failure:', result.error);
+            if (error) {
+                console.error('Data sync synchronization engine failure:', error);
                 return;
             }
 
             const container = document.getElementById('course-container');
-            container.innerHTML = ''; 
-                         
-            if (result.data) {
-                result.data.forEach(function(course) {
-                    renderCourseCard(course.id, course.title, course.type, course.description);
-                });
-            }
+            container.innerHTML = ''; // Clear loading frameworks
+             
+            data.forEach(course => {
+                renderCourseCard(course.title, course.type, course.description);
+            });
         }
 
+        // Handle structural data writes using security authentication rules
         async function handleCourseUpload(e) {
             e.preventDefault();
             const password = document.getElementById('admin-password').value;
             const title = document.getElementById('course-title').value;
             const type = document.getElementById('course-type').value;
-            const driveLink = document.getElementById('course-drive-link').value;
-            const studentKey = document.getElementById('course-student-key').value; 
             const desc = document.getElementById('course-desc').value;
 
+            // Universal Native Fetch Routine: Bypasses library wrapper method limits entirely
             try {
-                const courseResponse = await fetch(SUPABASE_URL + '/rest/v1/courses', {
+                const response = await fetch(`${SUPABASE_URL}/rest/v1/courses`, {
                     method: 'POST',
                     headers: {
                         'apikey': SUPABASE_ANON_KEY,
-                        'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
-                        'Content-Type': 'application/json',
-                        'Prefer': 'return=representation', 
-                        'x-admin-key': password
-                    },
-                    body: JSON.stringify({ title: title, type: type, description: desc })
-                });
-
-                if (!courseResponse.ok) {
-                    alert('Authentication verification routine failed at Layer 1: Courses initialization.');
-                    return;
-                }
-
-                const createdCourses = await courseResponse.json();
-                const newCourseId = createdCourses[0].id;
-
-                const assetResponse = await fetch(SUPABASE_URL + '/rest/v1/course_assets', {
-                    method: 'POST',
-                    headers: {
-                        'apikey': SUPABASE_ANON_KEY,
-                        'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
+                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
                         'Content-Type': 'application/json',
                         'Prefer': 'return=minimal',
-                        'x-admin-key': password
+                        'x-admin-key': password // 🔑 Injects the secure environment credential directly over the wire
                     },
-                    body: JSON.stringify({ 
-                        course_id: newCourseId, 
-                        drive_link: driveLink,
-                        student_key: type === 'paid' ? studentKey : null
-                    })
+                    body: JSON.stringify({ title, type, description: desc })
                 });
 
-                if (!assetResponse.ok) {
-                    alert('Authentication verification routine failed at Layer 2: Asset mapping deployment.');
+                if (!response.ok) {
+                    alert('Authentication verification routine failed. Row Level Policy execution mismatch.');
                     return;
                 }
 
+                // Sync successful -> clean forms, update array matrix layout, toggle view off
                 fetchCoursesFromDatabase();
                 document.getElementById('course-form').reset();
-                toggleStudentKeyField('free'); 
                 toggleAdminModal();
-                alert('Success: Core modules injected. Asset deployment nodes online.');
+                alert('Success: Database cluster synced. Content node online.');
 
             } catch (err) {
                 console.error('Network execution failure:', err);
@@ -445,6 +367,7 @@
             }
         }
 
+        // Bind core initialization events to frame rendering hooks
         window.addEventListener('DOMContentLoaded', fetchCoursesFromDatabase);
     </script>
 </body>
