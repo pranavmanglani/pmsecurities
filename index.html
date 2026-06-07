@@ -159,7 +159,6 @@
                     Dynamic courses pulled directly our secure database cluster. These courses are tailored for beginners to advanced professionals by Pranav manglani and Yuvraj Gupta
                 </p>
             </div>
-
             <div id="course-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
         </div>
     </section>
@@ -232,6 +231,10 @@
                     </select>
                 </div>
                 <div>
+                    <label class="block text-xs uppercase tracking-wider text-slate-400 mb-1">Course Asset Link (Google Drive URL)</label>
+                    <input type="url" id="course-drive-link" required class="w-full bg-slate-950 border border-slate-800 rounded-sm p-2.5 text-white text-sm focus:border-cyberCyan focus:outline-none" placeholder="https://drive.google.com/...">
+                </div>
+                <div>
                     <label class="block text-xs uppercase tracking-wider text-slate-400 mb-1">Course Overview Brief</label>
                     <textarea id="course-desc" rows="3" required class="w-full bg-slate-950 border border-slate-800 rounded-sm p-2.5 text-white text-sm focus:border-cyberCyan focus:outline-none"></textarea>
                 </div>
@@ -286,14 +289,59 @@
             modal.classList.toggle('flex');
         }
 
+        // Stateless runtime downloader linking to header-controlled table assets
+        async function requestCourseAsset(courseId, courseType) {
+            let accessKey = "";
+            
+            // If it's a premium course, prompt the viewer for their temporary passcode variable
+            if (courseType === 'paid') {
+                accessKey = prompt("Enter Premium Access Passcode to pull asset layer:");
+                if (!accessKey) return;
+            } else {
+                // Free courses pass an arbitrary public string since RLS permits it natively
+                accessKey = "public_access";
+            }
+
+            try {
+                // Raw Fetch execution mirroring the admin portal workflow in reverse
+                const response = await fetch(`${SUPABASE_URL}/rest/v1/course_assets?course_id=eq.${courseId}&select=drive_link`, {
+                    method: 'GET',
+                    headers: {
+                        'apikey': SUPABASE_ANON_KEY,
+                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                        'x-student-key': accessKey // 🔑 Variable parameter passed directly into the pipeline over the network
+                    }
+                });
+
+                if (!response.ok) {
+                    alert("Asset dispatch rejected. Cryptographic match criteria not met.");
+                    return;
+                }
+
+                const payload = await response.json();
+
+                if (payload && payload.length > 0 && payload[0].drive_link) {
+                    // Verification success -> Trigger stateless exit point directly to Google Drive
+                    window.open(payload[0].drive_link, '_blank');
+                } else {
+                    alert("Access key invalid or resource restricted.");
+                }
+            } catch (err) {
+                console.error("Secure asset fetch exception:", err);
+                alert("Network execution failure during access validation verification.");
+            }
+        }
+
         // Generate dynamic HTML list layouts
-        function renderCourseCard(title, type, desc) {
+        function renderCourseCard(id, title, type, desc) {
             const container = document.getElementById('course-container');
             const badgeStyle = type === 'free' ? 'bg-emerald-500/10 text-emerald-400' : 'bg-cyberRed/10 text-cyberRed';
             const borderStyle = type === 'free' ? 'border-slate-800' : 'border-cyberRed/30';
-            const targetAction = type === 'free'
-                ? `<a href="https://chat.whatsapp.com/ED56BL8Qd0J1UNrtvOb1Rd?s=cl&p=a&mlu=4" target="_blank" class="bg-slate-800 text-center py-2.5 text-sm font-bold text-white rounded-sm hover:bg-slate-700 transition-colors">Access Curriculum Assets</a>`
-                : `<a href="https://chat.whatsapp.com/ED56BL8Qd0J1UNrtvOb1Rd?s=cl&p=a&mlu=4" target="_blank" class="bg-gradient-to-r from-cyberCyan to-cyberRed text-darkBg text-center py-2.5 text-sm font-bold rounded-sm hover:opacity-90 transition-all">Request Direct Enrollment</a>`;
+            
+            const actionText = type === 'free' ? 'Access Curriculum Assets' : 'Unlock Premium Content';
+            const actionClass = type === 'free' 
+                ? 'bg-slate-800 text-white hover:bg-slate-700' 
+                : 'bg-gradient-to-r from-cyberCyan to-cyberRed text-darkBg hover:opacity-90';
 
             const courseCard = document.createElement('div');
             courseCard.className = `border ${borderStyle} bg-cardBg/40 p-6 rounded-sm relative flex flex-col justify-between`;
@@ -303,7 +351,9 @@
                     <h3 class="text-xl font-bold text-white mb-2 mt-4 font-display">${title}</h3>
                     <p class="text-slate-400 text-sm mb-6 leading-relaxed">${desc}</p>
                 </div>
-                ${targetAction}
+                <button onclick="requestCourseAsset('${id}', '${type}')" class="w-full py-2.5 text-sm font-bold rounded-sm transition-all text-center select-none ${actionClass}">
+                    ${actionText}
+                </button>
             `;
             container.appendChild(courseCard);
         }
@@ -312,7 +362,7 @@
         async function fetchCoursesFromDatabase() {
             const { data, error } = await _supabase
                 .from('courses')
-                .select('*')
+                .select('id, title, type, description')
                 .order('created_at', { ascending: false });
 
             if (error) {
@@ -324,42 +374,64 @@
             container.innerHTML = ''; // Clear loading frameworks
              
             data.forEach(course => {
-                renderCourseCard(course.title, course.type, course.description);
+                renderCourseCard(course.id, course.title, course.type, course.description);
             });
         }
 
-        // Handle structural data writes using security authentication rules
+        // Handle structural data writes using sequential native fetch requests
         async function handleCourseUpload(e) {
             e.preventDefault();
             const password = document.getElementById('admin-password').value;
             const title = document.getElementById('course-title').value;
             const type = document.getElementById('course-type').value;
+            const driveLink = document.getElementById('course-drive-link').value;
             const desc = document.getElementById('course-desc').value;
 
-            // Universal Native Fetch Routine: Bypasses library wrapper method limits entirely
             try {
-                const response = await fetch(`${SUPABASE_URL}/rest/v1/courses`, {
+                // Step 1: Create public details entry and pull back its generated UUID array structure
+                const courseResponse = await fetch(`${SUPABASE_URL}/rest/v1/courses`, {
+                    method: 'POST',
+                    headers: {
+                        'apikey': SUPABASE_ANON_KEY,
+                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                        'Content-Type': 'application/json',
+                        'Prefer': 'return=representation', // Tells Supabase to hand back the generated rows containing the auto-created ID
+                        'x-admin-key': password
+                    },
+                    body: JSON.stringify({ title, type, description: desc })
+                });
+
+                if (!courseResponse.ok) {
+                    alert('Authentication verification routine failed at Layer 1: Courses initialization.');
+                    return;
+                }
+
+                const createdCourses = await courseResponse.json();
+                const newCourseId = createdCourses[0].id;
+
+                // Step 2: Tie the returned UUID to the hidden drive link in the protected assets table
+                const assetResponse = await fetch(`${SUPABASE_URL}/rest/v1/course_assets`, {
                     method: 'POST',
                     headers: {
                         'apikey': SUPABASE_ANON_KEY,
                         'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
                         'Content-Type': 'application/json',
                         'Prefer': 'return=minimal',
-                        'x-admin-key': password // 🔑 Injects the secure environment credential directly over the wire
+                        'x-admin-key': password
                     },
-                    body: JSON.stringify({ title, type, description: desc })
+                    body: JSON.stringify({ course_id: newCourseId, drive_link: driveLink })
                 });
 
-                if (!response.ok) {
-                    alert('Authentication verification routine failed. Row Level Policy execution mismatch.');
+                if (!assetResponse.ok) {
+                    alert('Authentication verification routine failed at Layer 2: Asset mapping deployment.');
                     return;
                 }
 
-                // Sync successful -> clean forms, update array matrix layout, toggle view off
+                // Sync successful -> clean forms, update layout array matrix, toggle view off
                 fetchCoursesFromDatabase();
                 document.getElementById('course-form').reset();
                 toggleAdminModal();
-                alert('Success: Database cluster synced. Content node online.');
+                alert('Success: Core modules injected. Asset deployment nodes online.');
 
             } catch (err) {
                 console.error('Network execution failure:', err);
