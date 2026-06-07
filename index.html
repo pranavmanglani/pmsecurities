@@ -62,7 +62,6 @@
     <section class="relative pt-24 pb-20 overflow-hidden">
         <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-cyberCyan/5 rounded-full blur-3xl pointer-events-none"></div>
         <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyberRed/5 rounded-full blur-3xl pointer-events-none"></div>
-
         <div class="max-w-5xl mx-auto px-6 text-center relative z-10">
             <div class="inline-flex items-center gap-2 px-3 py-1 border border-slate-800 bg-slate-900/60 rounded-full text-xs font-semibold tracking-wider text-slate-400 uppercase mb-6">
                 <span class="w-2 h-2 rounded-full bg-cyberCyan animate-pulse"></span> Dual-Mission Cyber Architecture
@@ -225,10 +224,14 @@
                 </div>
                 <div>
                     <label class="block text-xs uppercase tracking-wider text-slate-400 mb-1">Access Configuration Tier</label>
-                    <select id="course-type" class="w-full bg-slate-950 border border-slate-800 rounded-sm p-2.5 text-white text-sm focus:border-cyberCyan focus:outline-none">
+                    <select id="course-type" onchange="toggleStudentKeyField(this.value)" class="w-full bg-slate-950 border border-slate-800 rounded-sm p-2.5 text-white text-sm focus:border-cyberCyan focus:outline-none">
                         <option value="free">Free Course</option>
                         <option value="paid">Premium Paid Course</option>
                     </select>
+                </div>
+                <div id="student-key-wrapper" class="hidden">
+                    <label class="block text-xs uppercase tracking-wider text-cyberRed font-bold mb-1">Set Student Access Passcode</label>
+                    <input type="text" id="course-student-key" class="w-full bg-slate-950 border border-cyberRed/40 rounded-sm p-2.5 text-white text-sm focus:border-cyberRed focus:outline-none" placeholder="e.g. LINUX_VIP_2026">
                 </div>
                 <div>
                     <label class="block text-xs uppercase tracking-wider text-slate-400 mb-1">Course Asset Link (Google Drive URL)</label>
@@ -289,27 +292,38 @@
             modal.classList.toggle('flex');
         }
 
+        // Toggles passcode box when admin toggles between free/paid settings
+        function toggleStudentKeyField(type) {
+            const wrapper = document.getElementById('student-key-wrapper');
+            const input = document.getElementById('course-student-key');
+            if (type === 'paid') {
+                wrapper.classList.remove('hidden');
+                input.required = true;
+            } else {
+                wrapper.classList.add('hidden');
+                input.required = false;
+                input.value = "";
+            }
+        }
+
         // Stateless runtime downloader linking to header-controlled table assets
         async function requestCourseAsset(courseId, courseType) {
             let accessKey = "";
             
-            // If it's a premium course, prompt the viewer for their temporary passcode variable
             if (courseType === 'paid') {
                 accessKey = prompt("Enter Premium Access Passcode to pull asset layer:");
                 if (!accessKey) return;
             } else {
-                // Free courses pass an arbitrary public string since RLS permits it natively
                 accessKey = "public_access";
             }
 
             try {
-                // Raw Fetch execution mirroring the admin portal workflow in reverse
                 const response = await fetch(`${SUPABASE_URL}/rest/v1/course_assets?course_id=eq.${courseId}&select=drive_link`, {
                     method: 'GET',
                     headers: {
                         'apikey': SUPABASE_ANON_KEY,
                         'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-                        'x-student-key': accessKey // 🔑 Variable parameter passed directly into the pipeline over the network
+                        'x-student-key': accessKey 
                     }
                 });
 
@@ -321,10 +335,9 @@
                 const payload = await response.json();
 
                 if (payload && payload.length > 0 && payload[0].drive_link) {
-                    // Verification success -> Trigger stateless exit point directly to Google Drive
                     window.open(payload[0].drive_link, '_blank');
                 } else {
-                    alert("Access key invalid or resource restricted.");
+                    alert("Access key invalid for this specific course blueprint.");
                 }
             } catch (err) {
                 console.error("Secure asset fetch exception:", err);
@@ -371,7 +384,7 @@
             }
 
             const container = document.getElementById('course-container');
-            container.innerHTML = ''; // Clear loading frameworks
+            container.innerHTML = ''; 
              
             data.forEach(course => {
                 renderCourseCard(course.id, course.title, course.type, course.description);
@@ -385,17 +398,18 @@
             const title = document.getElementById('course-title').value;
             const type = document.getElementById('course-type').value;
             const driveLink = document.getElementById('course-drive-link').value;
+            const studentKey = document.getElementById('course-student-key').value; // 🔑 Grabs password from runtime form input
             const desc = document.getElementById('course-desc').value;
 
             try {
-                // Step 1: Create public details entry and pull back its generated UUID array structure
+                // Step 1: Create public details entry
                 const courseResponse = await fetch(`${SUPABASE_URL}/rest/v1/courses`, {
                     method: 'POST',
                     headers: {
                         'apikey': SUPABASE_ANON_KEY,
                         'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
                         'Content-Type': 'application/json',
-                        'Prefer': 'return=representation', // Tells Supabase to hand back the generated rows containing the auto-created ID
+                        'Prefer': 'return=representation', 
                         'x-admin-key': password
                     },
                     body: JSON.stringify({ title, type, description: desc })
@@ -409,7 +423,7 @@
                 const createdCourses = await courseResponse.json();
                 const newCourseId = createdCourses[0].id;
 
-                // Step 2: Tie the returned UUID to the hidden drive link in the protected assets table
+                // Step 2: Tie the returned numerical identifier to the hidden drive link and custom student passcode
                 const assetResponse = await fetch(`${SUPABASE_URL}/rest/v1/course_assets`, {
                     method: 'POST',
                     headers: {
@@ -419,7 +433,11 @@
                         'Prefer': 'return=minimal',
                         'x-admin-key': password
                     },
-                    body: JSON.stringify({ course_id: newCourseId, drive_link: driveLink })
+                    body: JSON.stringify({ 
+                        course_id: newCourseId, 
+                        drive_link: driveLink,
+                        student_key: type === 'paid' ? studentKey : null -- Only saves key row if tier is paid
+                    })
                 });
 
                 if (!assetResponse.ok) {
@@ -427,9 +445,10 @@
                     return;
                 }
 
-                // Sync successful -> clean forms, update layout array matrix, toggle view off
+                // Sync successful -> reset UI structures
                 fetchCoursesFromDatabase();
                 document.getElementById('course-form').reset();
+                toggleStudentKeyField('free'); // reset hidden box state
                 toggleAdminModal();
                 alert('Success: Core modules injected. Asset deployment nodes online.');
 
@@ -439,7 +458,6 @@
             }
         }
 
-        // Bind core initialization events to frame rendering hooks
         window.addEventListener('DOMContentLoaded', fetchCoursesFromDatabase);
     </script>
 </body>
