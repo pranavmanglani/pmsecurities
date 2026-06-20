@@ -38,178 +38,384 @@
     </style>
 </head>
 <body class="font-sans antialiased grid-bg">
-    <header class="border-b border-slate-800 bg-darkBg/80 backdrop-blur-md sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <div class="flex items-center space-x-2">
-                <span class="font-display font-bold text-2xl tracking-wider text-white">PM.<span class="text-cyberRed">SECURITIES</span></span>
-            </div>
-            <nav class="hidden md:flex space-x-8 text-sm font-medium tracking-wide text-slate-400">
-                <a href="#consultancy" class="hover:text-cyberCyan transition-colors">Consultancy</a>
-                <a href="#club" class="hover:text-cyberRed transition-colors">Learners Club</a>
-                <a href="#courses" class="hover:text-cyberCyan transition-colors">Academy Courses</a>
-                <a href="#about" class="hover:text-white transition-colors">About Us</a>
-                <a href="#contact" class="hover:text-white transition-colors">Connect</a>
-            </nav>
-            <div class="flex items-center space-x-4">
-                <button onclick="toggleAdminModal()" class="text-xs text-slate-500 hover:text-white border border-slate-800 px-3 py-1.5 rounded transition-colors">Admin Portal</button>
-                <a href="https://chat.whatsapp.com/ED56BL8Qd0J1UNrtvOb1Rd?s=cl&p=a&mlu=4" target="_blank" class="bg-gradient-to-r from-cyberCyan to-cyberRed text-darkBg px-5 py-2 rounded-sm text-sm font-bold tracking-wide hover:opacity-90 transition-all duration-300">
-                    Join Community
-                </a>
-            </div>
-        </div>
-    </header>
 
-    <section class="relative pt-24 pb-20 overflow-hidden">
-        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-cyberCyan/5 rounded-full blur-3xl pointer-events-none"></div>
-        <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyberRed/5 rounded-full blur-3xl pointer-events-none"></div>
-
-        <div class="max-w-5xl mx-auto px-6 text-center relative z-10">
-            <div class="inline-flex items-center gap-2 px-3 py-1 border border-slate-800 bg-slate-900/60 rounded-full text-xs font-semibold tracking-wider text-slate-400 uppercase mb-6">
-                <span class="w-2 h-2 rounded-full bg-cyberCyan animate-pulse"></span> Dual-Mission Cyber Architecture
-            </div>
-            <h1 class="font-display text-4xl sm:text-6xl font-bold tracking-tight text-white mb-6 leading-tight">
-                Securing Systems. <br>
-                <span class="text-transparent bg-clip-text bg-gradient-to-r via-cyberCyan to-cyberRed bg-cyberCyan">Cultivating Talent.</span>
-            </h1>
-            <p class="text-lg text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed">
-                Premium offensive and defensive enterprise cybersecurity consultancy paired with an elite ecosystem for next-generation security engineers.
-            </p>
-            <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
-                <a href="#consultancy" class="w-full sm:w-auto bg-white text-darkBg font-bold px-8 py-4 rounded-sm hover:bg-slate-200 transition-all shadow-lg shadow-white/5 tracking-wide text-sm">
-                    Retain Consultancy
-                </a>
-                <a href="https://chat.whatsapp.com/ED56BL8Qd0J1UNrtvOb1Rd?s=cl&p=a&mlu=4" target="_blank" class="w-full sm:w-auto border border-cyberCyan bg-cyberCyan/10 text-cyberCyan font-bold px-8 py-4 rounded-sm hover:bg-cyberCyan hover:text-darkBg transition-all tracking-wide text-sm">
-                    Join WhatsApp Community
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <section class="border-y border-slate-900 bg-slate-950/40 backdrop-blur-sm">
-        <div class="max-w-7xl mx-auto px-6 py-8">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-                <div>
-                    <p class="font-display text-3xl font-bold text-white">99.9%</p>
-                    <p class="text-xs text-slate-500 uppercase tracking-widest mt-1">Infrastructure Resilience</p>
+    <div id="main-homepage-view">
+        <header class="border-b border-slate-800 bg-darkBg/80 backdrop-blur-md sticky top-0 z-50">
+            <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                    <span class="font-display font-bold text-2xl tracking-wider text-white">PM.<span class="text-cyberRed">SECURITIES</span></span>
                 </div>
-                <div>
-                    <p class="font-display text-3xl font-bold text-cyberCyan">24/7/365</p>
-                    <p class="text-xs text-slate-500 uppercase tracking-widest mt-1">Threat Intelligence</p>
-                </div>
-                <div>
-                    <p class="font-display text-3xl font-bold text-cyberRed">500+</p>
-                    <p class="text-xs text-slate-500 uppercase tracking-widest mt-1">Vetted Club Members</p>
-                </div>
-                <div>
-                    <p class="font-display text-3xl font-bold text-white">Zero</p>
-                    <p class="text-xs text-slate-500 uppercase tracking-widest mt-1">Post-Remediation Breaches</p>
+                <nav class="hidden md:flex space-x-8 text-sm font-medium tracking-wide text-slate-400">
+                    <a href="#consultancy" class="hover:text-cyberCyan transition-colors">Consultancy</a>
+                    <a href="#club" class="hover:text-cyberRed transition-colors">Learners Club</a>
+                    <a href="#courses" class="hover:text-cyberCyan transition-colors">Academy Courses</a>
+                    <a href="#about" class="hover:text-white transition-colors">About Us</a>
+                    <a href="#contact" class="hover:text-white transition-colors">Connect</a>
+                </nav>
+                <div class="flex items-center space-x-4">
+                    <button onclick="toggleAdminModal()" class="text-xs text-slate-500 hover:text-white border border-slate-800 px-3 py-1.5 rounded transition-colors">Admin Portal</button>
+                    <a href="https://chat.whatsapp.com/ED56BL8Qd0J1UNrtvOb1Rd?s=cl&p=a&mlu=4" target="_blank" class="bg-gradient-to-r from-cyberCyan to-cyberRed text-darkBg px-5 py-2 rounded-sm text-sm font-bold tracking-wide hover:opacity-90 transition-all duration-300">
+                        Join Community
+                    </a>
                 </div>
             </div>
-        </div>
-    </section>
+        </header>
 
-    <section class="max-w-7xl mx-auto px-6 py-24">
-        <div class="grid md:grid-cols-2 gap-12">
-            <div id="consultancy" class="group border border-slate-800/80 bg-cardBg/30 p-10 rounded-sm relative overflow-hidden transition-all duration-300 hover:border-cyberCyan/40">
-                <div class="absolute top-0 left-0 w-1 h-0 bg-cyberCyan group-hover:h-full transition-all duration-500"></div>
-                <div class="mb-6">
-                    <span class="text-xs font-bold tracking-widest uppercase text-cyberCyan">Enterprise Tier</span>
-                    <h2 class="font-display text-3xl font-bold text-white mt-2">PM. Strategic Consultancy</h2>
+        <section class="relative pt-24 pb-20 overflow-hidden">
+            <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-cyberCyan/5 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyberRed/5 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="max-w-5xl mx-auto px-6 text-center relative z-10">
+                <div class="inline-flex items-center gap-2 px-3 py-1 border border-slate-800 bg-slate-900/60 rounded-full text-xs font-semibold tracking-wider text-slate-400 uppercase mb-6">
+                    <span class="w-2 h-2 rounded-full bg-cyberCyan animate-pulse"></span> Dual-Mission Cyber Architecture
                 </div>
-                <p class="text-slate-400 mb-8 leading-relaxed">
-                    We deploy battle-tested defensive architecture, comprehensive zero-trust assessments, and penetration testing methodologies engineered to safeguard enterprise infrastructure and compliance pipelines.
+                <h1 class="font-display text-4xl sm:text-6xl font-bold tracking-tight text-white mb-6 leading-tight">
+                    Securing Systems. <br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r via-cyberCyan to-cyberRed bg-cyberCyan">Cultivating Talent.</span>
+                </h1>
+                <p class="text-lg text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed">
+                    Premium offensive and defensive enterprise cybersecurity consultancy paired with an elite ecosystem for next-generation security engineers.
                 </p>
-                <ul class="space-y-4 text-sm text-slate-300 mb-10">
-                    <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-cyberCyan"></span> Advanced Red Teaming & Hardening</li>
-                    <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-cyberCyan"></span> Compliance Audits & Risk Assessment</li>
-                    <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-cyberCyan"></span> Incident Response Preparedness</li>
-                </ul>
-                <a href="#contact" class="inline-flex items-center font-bold text-sm tracking-wide text-white group-hover:text-cyberCyan transition-colors">
-                    Schedule a Consultation <span class="ml-2 transform group-hover:translate-x-1 transition-transform">→</span>
-                </a>
-            </div>
-
-            <div id="club" class="group border border-slate-800/80 bg-cardBg/30 p-10 rounded-sm relative overflow-hidden transition-all duration-300 hover:border-cyberRed/40">
-                <div class="absolute top-0 left-0 w-1 h-0 bg-cyberRed group-hover:h-full transition-all duration-500"></div>
-                <div class="mb-6">
-                    <span class="text-xs font-bold tracking-widest uppercase text-cyberRed">Academy Tier</span>
-                    <h2 class="font-display text-3xl font-bold text-white mt-2">PM. Learners Guild</h2>
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                    <a href="#consultancy" class="w-full sm:w-auto bg-white text-darkBg font-bold px-8 py-4 rounded-sm hover:bg-slate-200 transition-all shadow-lg shadow-white/5 tracking-wide text-sm">
+                        Retain Consultancy
+                    </a>
+                    <a href="https://chat.whatsapp.com/ED56BL8Qd0J1UNrtvOb1Rd?s=cl&p=a&mlu=4" target="_blank" class="w-full sm:w-auto border border-cyberCyan bg-cyberCyan/10 text-cyberCyan font-bold px-8 py-4 rounded-sm hover:bg-cyberCyan hover:text-darkBg transition-all tracking-wide text-sm">
+                        Join WhatsApp Community
+                    </a>
                 </div>
-                <p class="text-slate-400 mb-8 leading-relaxed">
-                    An elite interactive platform engineered for aspiring cybersecurity specialists. Gain access to collaborative capture-the-flag environments, deep-dive vulnerability research labs, and close mentoring from operational experts.
-                </p>
-                <ul class="space-y-4 text-sm text-slate-300 mb-10">
-                    <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-cyberRed"></span> Proprietary Sandboxed Lab Environments</li>
-                    <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-cyberRed"></span> Weekly Live-Fire Warfare (CTF)</li>
-                    <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-cyberRed"></span> Direct Enterprise Recruitment Access</li>
-                </ul>
-                <a href="https://chat.whatsapp.com/ED56BL8Qd0J1UNrtvOb1Rd?s=cl&p=a&mlu=4" target="_blank" class="inline-flex items-center font-bold text-sm tracking-wide text-white group-hover:text-cyberRed transition-colors">
-                    Apply Via WhatsApp Community <span class="ml-2 transform group-hover:translate-x-1 transition-transform">→</span>
-                </a>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="courses" class="border-t border-slate-900 bg-slate-950/10 py-24">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <span class="text-xs font-bold tracking-widest uppercase text-cyberCyan">Syllabus Matrix</span>
-                <h2 class="font-display text-4xl font-bold text-white mt-3">Cybersecurity Training Operations</h2>
-                <p class="text-slate-400 max-w-xl mx-auto mt-4 text-sm leading-relaxed">
-                    Dynamic courses pulled directly our secure database cluster. These courses are tailored for beginners to advanced professionals by Pranav manglani and Yuvraj Gupta
-                </p>
-            </div>
-
-            <div id="course-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
-        </div>
-    </section>
-
-    <section id="about" class="border-t border-slate-900 bg-slate-950/20 py-24">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <span class="text-xs font-bold tracking-widest uppercase text-cyberRed">Command & Structure</span>
-                <h2 class="font-display text-4xl font-bold text-white mt-3">Leadership & Partners</h2>
-            </div>
-            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                <div class="border border-slate-800 bg-cardBg/20 p-8 rounded-sm">
-                    <div class="w-12 h-12 bg-slate-800 rounded-full mb-6 flex items-center justify-center border border-slate-700"><span class="text-white font-bold font-display">PM</span></div>
-                    <div class="text-xs font-bold uppercase tracking-wider text-cyberCyan mb-1">Founder & CEO</div>
-                    <h3 class="font-display text-2xl font-bold text-white mb-3">Pranav Manglani</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">Founder of PM. Securities. Pranav is a cybersecurity enthusiast, researcher. He is dedicated to building educational cybersecurity initiatives, conducting security research, and helping aspiring learners gain practical experience through hands-on training and community engagement.</p>
-                </div>
-                <div class="border border-slate-800 bg-cardBg/20 p-8 rounded-sm flex flex-col justify-between">
+        <section class="border-y border-slate-900 bg-slate-950/40 backdrop-blur-sm">
+            <div class="max-w-7xl mx-auto px-6 py-8">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
                     <div>
-                        <div class="w-12 h-12 bg-slate-800 rounded-full mb-6 flex items-center justify-center border border-slate-700"><span class="text-white font-bold font-display">YG</span></div>
-                        <div class="text-xs font-bold uppercase tracking-wider text-cyberRed mb-1">Yuvi Cybersecurity</div>
-                        <h3 class="font-display text-2xl font-bold text-white mb-3">Yuvraj Gupta</h3>
-                        <p class="text-slate-400 text-sm leading-relaxed mb-6">Renowned Cybersecurity specialist, technical educator, and platform architect.</p>
+                        <p class="font-display text-3xl font-bold text-white">99.9%</p>
+                        <p class="text-xs text-slate-500 uppercase tracking-widest mt-1">Infrastructure Resilience</p>
                     </div>
-                    <a href="https://learnwithyuviwebapp.web.app" target="_blank" class="text-center w-full border border-cyberRed/30 text-cyberRed font-bold text-xs uppercase tracking-widest py-3 px-4 rounded-sm hover:bg-cyberRed hover:text-white transition-all">Access Platform Website</a>
+                    <div>
+                        <p class="font-display text-3xl font-bold text-cyberCyan">24/7/365</p>
+                        <p class="text-xs text-slate-500 uppercase tracking-widest mt-1">Threat Intelligence</p>
+                    </div>
+                    <div>
+                        <p class="font-display text-3xl font-bold text-cyberRed">500+</p>
+                        <p class="text-xs text-slate-500 uppercase tracking-widest mt-1">Vetted Club Members</p>
+                    </div>
+                    <div>
+                        <p class="font-display text-3xl font-bold text-white">Zero</p>
+                        <p class="text-xs text-slate-500 uppercase tracking-widest mt-1">Post-Remediation Breaches</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="contact" class="border-t border-slate-900 bg-slate-950/50 py-24">
-        <div class="max-w-4xl mx-auto px-6 text-center">
-            <span class="text-xs font-bold tracking-widest uppercase text-cyberCyan">Secure Channels</span>
-            <h2 class="font-display text-4xl font-bold text-white mt-3 mb-12">Establish Connection</h2>
-            <div class="grid sm:grid-cols-3 gap-6 text-left">
-                <div class="border border-slate-800 bg-darkBg p-6 rounded-sm">
-                    <div class="text-xs font-bold tracking-wider text-slate-500 uppercase mb-2">Discord Handle</div>
-                    <div class="font-display text-lg font-semibold text-white select-all">Coolhello189</div>
+        <section class="max-w-7xl mx-auto px-6 py-24">
+            <div class="grid md:grid-cols-2 gap-12">
+                <div id="consultancy" class="group border border-slate-800/80 bg-cardBg/30 p-10 rounded-sm relative overflow-hidden transition-all duration-300 hover:border-cyberCyan/40">
+                    <div class="absolute top-0 left-0 w-1 h-0 bg-cyberCyan group-hover:h-full transition-all duration-500"></div>
+                    <div class="mb-6">
+                        <span class="text-xs font-bold tracking-widest uppercase text-cyberCyan">Enterprise Tier</span>
+                        <h2 class="font-display text-3xl font-bold text-white mt-2">PM. Strategic Consultancy</h2>
+                    </div>
+                    <p class="text-slate-400 mb-8 leading-relaxed">
+                        We deploy battle-tested defensive architecture, comprehensive zero-trust assessments, and penetration testing methodologies engineered to safeguard enterprise infrastructure and compliance pipelines.
+                    </p>
+                    <ul class="space-y-4 text-sm text-slate-300 mb-10">
+                        <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-cyberCyan"></span> Advanced Red Teaming & Hardening</li>
+                        <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-cyberCyan"></span> Compliance Audits & Risk Assessment</li>
+                        <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-cyberCyan"></span> Incident Response Preparedness</li>
+                    </ul>
+                    <a href="#contact" class="inline-flex items-center font-bold text-sm tracking-wide text-white group-hover:text-cyberCyan transition-colors">
+                        Schedule a Consultation <span class="ml-2 transform group-hover:translate-x-1 transition-transform">→</span>
+                    </a>
                 </div>
-                <div class="border border-slate-800 bg-darkBg p-6 rounded-sm">
-                    <div class="text-xs font-bold tracking-wider text-slate-500 uppercase mb-2">Direct Mail</div>
-                    <a href="mailto:pm.securities2@gmail.com" class="font-display text-base font-semibold text-white break-all">pm.securities2@gmail.com</a>
-                </div>
-                <div class="border border-slate-800 bg-darkBg p-6 rounded-sm">
-                    <div class="text-xs font-bold tracking-wider text-slate-500 uppercase mb-2">Comms Hot-Line</div>
-                    <a href="tel:9119925344" class="font-display text-lg font-semibold text-white">9119925344</a>
+
+                <div id="club" class="group border border-slate-800/80 bg-cardBg/30 p-10 rounded-sm relative overflow-hidden transition-all duration-300 hover:border-cyberRed/40">
+                    <div class="absolute top-0 left-0 w-1 h-0 bg-cyberRed group-hover:h-full transition-all duration-500"></div>
+                    <div class="mb-6">
+                        <span class="text-xs font-bold tracking-widest uppercase text-cyberRed">Academy Tier</span>
+                        <h2 class="font-display text-3xl font-bold text-white mt-2">PM. Learners Guild</h2>
+                    </div>
+                    <p class="text-slate-400 mb-8 leading-relaxed">
+                        An elite interactive platform engineered for aspiring cybersecurity specialists. Gain access to collaborative capture-the-flag environments, deep-dive vulnerability research labs, and close mentoring from operational experts.
+                    </p>
+                    <ul class="space-y-4 text-sm text-slate-300 mb-10">
+                        <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-cyberRed"></span> Proprietary Sandboxed Lab Environments</li>
+                        <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-cyberRed"></span> Weekly Live-Fire Warfare (CTF)</li>
+                        <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-cyberRed"></span> Direct Enterprise Recruitment Access</li>
+                    </ul>
+                    <a href="https://chat.whatsapp.com/ED56BL8Qd0J1UNrtvOb1Rd?s=cl&p=a&mlu=4" target="_blank" class="inline-flex items-center font-bold text-sm tracking-wide text-white group-hover:text-cyberRed transition-colors">
+                        Apply Via WhatsApp Community <span class="ml-2 transform group-hover:translate-x-1 transition-transform">→</span>
+                    </a>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+
+        <section id="courses" class="border-t border-slate-900 bg-slate-950/10 py-24">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="text-center mb-16">
+                    <span class="text-xs font-bold tracking-widest uppercase text-cyberCyan">Syllabus Matrix</span>
+                    <h2 class="font-display text-4xl font-bold text-white mt-3">Cybersecurity Training Operations</h2>
+                    <p class="text-slate-400 max-w-xl mx-auto mt-4 text-sm leading-relaxed">
+                        Dynamic courses pulled directly our secure database cluster. These courses are tailored for beginners to advanced professionals by Pranav manglani and Yuvraj Gupta
+                    </p>
+                </div>
+                <div id="course-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+            </div>
+        </section>
+
+        <section id="about" class="border-t border-slate-900 bg-slate-950/20 py-24">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="text-center mb-16">
+                    <span class="text-xs font-bold tracking-widest uppercase text-cyberRed">Command & Structure</span>
+                    <h2 class="font-display text-4xl font-bold text-white mt-3">Leadership & Partners</h2>
+                </div>
+                <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                    <div class="border border-slate-800 bg-cardBg/20 p-8 rounded-sm flex flex-col justify-between hover:border-cyberCyan/50 transition-all duration-300 group">
+                        <div>
+                            <div class="w-12 h-12 bg-slate-800 rounded-full mb-6 flex items-center justify-center border border-slate-700"><span class="text-white font-bold font-display">PM</span></div>
+                            <div class="text-xs font-bold uppercase tracking-wider text-cyberCyan mb-1">Founder & CEO</div>
+                            <h3 class="font-display text-2xl font-bold text-white mb-3 group-hover:text-cyberCyan transition-colors">Pranav Manglani</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-6">Founder of PM. Securities. Pranav is a cybersecurity enthusiast, researcher. He is dedicated to building educational cybersecurity initiatives, conducting security research, and helping aspiring learners gain practical experience through hands-on training and community engagement.</p>
+                        </div>
+                        <button onclick="navigateToCustomProfile()" class="text-center w-full border border-cyberCyan/30 text-cyberCyan font-bold text-xs uppercase tracking-widest py-3 px-4 rounded-sm hover:bg-cyberCyan hover:text-darkBg transition-all">Click to View Profile & Books</button>
+                    </div>
+                    <div class="border border-slate-800 bg-cardBg/20 p-8 rounded-sm flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 bg-slate-800 rounded-full mb-6 flex items-center justify-center border border-slate-700"><span class="text-white font-bold font-display">YG</span></div>
+                            <div class="text-xs font-bold uppercase tracking-wider text-cyberRed mb-1">Yuvi Cybersecurity</div>
+                            <h3 class="font-display text-2xl font-bold text-white mb-3">Yuvraj Gupta</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-6">Renowned Cybersecurity specialist, technical educator, and platform architect.</p>
+                        </div>
+                        <a href="https://learnwithyuviwebapp.web.app" target="_blank" class="text-center w-full border border-cyberRed/30 text-cyberRed font-bold text-xs uppercase tracking-widest py-3 px-4 rounded-sm hover:bg-cyberRed hover:text-white transition-all">Access Platform Website</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="border-t border-slate-900 bg-slate-950/50 py-24">
+            <div class="max-w-4xl mx-auto px-6 text-center">
+                <span class="text-xs font-bold tracking-widest uppercase text-cyberCyan">Secure Channels</span>
+                <h2 class="font-display text-4xl font-bold text-white mt-3 mb-12">Establish Connection</h2>
+                <div class="grid sm:grid-cols-3 gap-6 text-left">
+                    <div class="border border-slate-800 bg-darkBg p-6 rounded-sm">
+                        <div class="text-xs font-bold tracking-wider text-slate-500 uppercase mb-2">Discord Handle</div>
+                        <div class="font-display text-lg font-semibold text-white select-all">Coolhello189</div>
+                    </div>
+                    <div class="border border-slate-800 bg-darkBg p-6 rounded-sm">
+                        <div class="text-xs font-bold tracking-wider text-slate-500 uppercase mb-2">Direct Mail</div>
+                        <a href="mailto:pm.securities2@gmail.com" class="font-display text-base font-semibold text-white break-all">pm.securities2@gmail.com</a>
+                    </div>
+                    <div class="border border-slate-800 bg-darkBg p-6 rounded-sm">
+                        <div class="text-xs font-bold tracking-wider text-slate-500 uppercase mb-2">Comms Hot-Line</div>
+                        <a href="tel:9119925344" class="font-display text-lg font-semibold text-white">9119925344</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="custom-profile-view" class="hidden min-h-screen flex flex-col">
+        <header class="border-b border-slate-800 bg-darkBg/80 backdrop-blur-md sticky top-0 z-50">
+            <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                    <span class="font-display font-bold text-2xl tracking-wider text-white">PM.<span class="text-cyberCyan">PROFILE</span></span>
+                </div>
+                <button onclick="navigateToHome()" class="border border-slate-800 px-4 py-2 rounded-sm text-xs font-bold tracking-widest uppercase hover:bg-slate-900 text-white transition-all">
+                    ← Return to Terminal
+                </button>
+            </div>
+        </header>
+
+        <main class="flex-grow max-w-5xl mx-auto px-6 py-16 w-full">
+            <div class="border border-slate-800 bg-cardBg/40 p-8 sm:p-12 rounded-sm relative overflow-hidden mb-12">
+                <div class="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-cyberCyan via-transparent to-cyberRed"></div>
+                
+                <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 mb-8">
+                    <div>
+                        <span class="text-xs font-bold tracking-widest uppercase text-cyberCyan">Operational Dossier</span>
+                        <h1 class="font-display text-4xl font-bold text-white mt-1">Pranav Manglani</h1>
+                        <p class="text-slate-400 text-sm mt-1">Security Researcher & Executive Framework Builder</p>
+                    </div>
+                    <div class="flex flex-wrap gap-3">
+                        <button onclick="scrollToProfileSection('profile-books-shelf')" class="bg-gradient-to-r from-cyberCyan/10 to-cyberCyan/20 border border-cyberCyan text-cyberCyan font-bold px-5 py-2.5 rounded-sm text-xs uppercase tracking-wider hover:bg-cyberCyan hover:text-darkBg transition-all duration-300">
+                            📚 Books Read
+                        </button>
+                        <button onclick="scrollToProfileSection('profile-projects-shelf')" class="bg-gradient-to-r from-cyberRed/10 to-cyberRed/20 border border-cyberRed text-cyberRed font-bold px-5 py-2.5 rounded-sm text-xs uppercase tracking-wider hover:bg-cyberRed hover:text-white transition-all duration-300">
+                            ⚡ Built Projects
+                        </button>
+                    </div>
+                </div>
+
+                <p class="text-slate-300 text-sm leading-relaxed mb-8 max-w-3xl">
+                    Dedicated to developing accessible, production-ready interactive frameworks, organizing large-scale structural technical assets, and analyzing vulnerabilities in cross-platform codebases.
+                </p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <a href="https://github.com/pranavmanglani" target="_blank" class="bg-slate-950 border border-slate-800 hover:border-white text-white p-4 rounded-sm flex items-center justify-between group transition-all">
+                        <span class="text-xs font-bold uppercase tracking-wider">GitHub Node</span>
+                        <span class="text-slate-500 group-hover:text-white transition-colors">Access Profile ↗</span>
+                    </a>
+                    <div onclick="copyDiscordProfile()" class="bg-slate-950 border border-slate-800 hover:border-cyberCyan/50 text-white p-4 rounded-sm flex items-center justify-between cursor-pointer group transition-all">
+                        <div>
+                            <span class="block text-xs font-bold uppercase tracking-wider">Discord Comm</span>
+                            <span id="discord-status" class="text-[10px] text-slate-500 uppercase tracking-widest block mt-0.5">Click to Copy</span>
+                        </div>
+                        <span class="text-cyberCyan text-xs font-mono">Coolhello189</span>
+                    </div>
+                    <a href="https://chat.whatsapp.com/ED56BL8Qd0J1UNrtvOb1Rd?s=cl&p=a&mlu=4" target="_blank" class="bg-slate-950 border border-slate-800 hover:border-emerald-500/50 text-white p-4 rounded-sm flex items-center justify-between group transition-all">
+                        <span class="text-xs font-bold uppercase tracking-wider">WhatsApp Portal</span>
+                        <span class="text-emerald-400 text-xs font-bold">Secure Join ↗</span>
+                    </a>
+                </div>
+            </div>
+
+            <section id="profile-books-shelf" class="border-t border-slate-900 pt-16 mb-24">
+                <div class="mb-10">
+                    <span class="text-xs font-bold tracking-widest uppercase text-cyberCyan">Intellectual Stack</span>
+                    <h2 class="font-display text-3xl font-bold text-white mt-1">Syllabus & Literary Library</h2>
+                    <p class="text-slate-500 text-xs mt-1">A curated record of foundational books, manuals, and technical texts analyzed.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="border border-slate-900 bg-slate-950/40 p-6 rounded-sm">
+                        <h3 class="font-display font-bold text-lg text-cyberCyan mb-4 border-b border-slate-900 pb-2 flex items-center justify-between">
+                            <span>Cybersecurity & Technology</span>
+                            <span class="text-[10px] bg-cyberCyan/10 text-cyberCyan px-2 py-0.5 rounded uppercase tracking-wider">Core Engineering</span>
+                        </h3>
+                        <ul class="space-y-3 text-xs">
+                            <li class="flex justify-between items-start gap-4 p-2 bg-slate-950/80 rounded border border-cyberCyan/20"><span class="text-white font-medium">Real-World Bug Hunting <span class="text-slate-500 font-normal">— Peter Yaworski</span></span> <span class="text-[9px] text-cyberCyan font-bold uppercase whitespace-nowrap bg-cyberCyan/10 px-1.5 py-0.5 tracking-tighter">🧠 Mind-Shaping</span></li>
+                            <li class="flex justify-between items-start gap-4 p-2 bg-slate-950/80 rounded border border-cyberCyan/20"><span class="text-white font-medium">The Web Application Hacker's Handbook <span class="text-slate-500 font-normal">— Dafydd Stuttard & Marcus Pinto</span></span> <span class="text-[9px] text-cyberCyan font-bold uppercase whitespace-nowrap bg-cyberCyan/10 px-1.5 py-0.5 tracking-tighter">🧠 Mind-Shaping</span></li>
+                            <li class="flex justify-between items-start gap-4 p-2 bg-slate-950/80 rounded border border-cyberCyan/20"><span class="text-white font-medium">Principles of Compiler Design <span class="text-slate-500 font-normal">— Alfred V. Aho & Jeffrey D. Ullman</span></span> <span class="text-[9px] text-cyberCyan font-bold uppercase whitespace-nowrap bg-cyberCyan/10 px-1.5 py-0.5 tracking-tighter">🧠 Mind-Shaping</span></li>
+                            <li class="text-slate-300 p-2 border border-slate-900 rounded">Ninja Get Good <span class="text-slate-500">(Cybersecurity)</span></li>
+                            <li class="text-slate-300 p-2 border border-slate-900 rounded">Windows 8.1 Explained</li>
+                            <li class="text-slate-300 p-2 border border-slate-900 rounded">Oxford Computer Science Protocol Series</li>
+                            <li class="text-slate-300 p-2 border border-slate-900 rounded">Python Development Core Blueprints</li>
+                            <li class="text-slate-300 p-2 border border-slate-900 rounded">Python Programming Frameworks with Flask <span class="text-slate-500">— O'Reilly</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="border border-slate-900 bg-slate-950/40 p-6 rounded-sm">
+                        <h3 class="font-display font-bold text-lg text-cyberRed mb-4 border-b border-slate-900 pb-2 flex items-center justify-between">
+                            <span>Self-Development & Business</span>
+                            <span class="text-[10px] bg-cyberRed/10 text-cyberRed px-2 py-0.5 rounded uppercase tracking-wider">Strategy Architecture</span>
+                        </h3>
+                        <ul class="space-y-3 text-xs">
+                            <li class="flex justify-between items-start gap-4 p-2 bg-slate-950/80 rounded border border-cyberRed/20"><span class="text-white font-medium">How to Win Friends and Influence People <span class="text-slate-500 font-normal">— Dale Carnegie</span></span> <span class="text-[9px] text-cyberRed font-bold uppercase whitespace-nowrap bg-cyberRed/10 px-1.5 py-0.5 tracking-tighter">🧠 Mind-Shaping</span></li>
+                            <li class="flex justify-between items-start gap-4 p-2 bg-slate-950/80 rounded border border-cyberRed/20"><span class="text-white font-medium">Rich Dad Poor Dad <span class="text-slate-500 font-normal">— Robert Kiyosaki</span></span> <span class="text-[9px] text-cyberRed font-bold uppercase whitespace-nowrap bg-cyberRed/10 px-1.5 py-0.5 tracking-tighter">🧠 Mind-Shaping</span></li>
+                            <li class="flex justify-between items-start gap-4 p-2 bg-slate-950/80 rounded border border-cyberRed/20"><span class="text-white font-medium">Atomic Habits <span class="text-slate-500 font-normal">— James Clear</span></span> <span class="text-[9px] text-cyberRed font-bold uppercase whitespace-nowrap bg-cyberRed/10 px-1.5 py-0.5 tracking-tighter">🧠 Mind-Shaping</span></li>
+                            <li class="flex justify-between items-start gap-4 p-2 bg-slate-950/80 rounded border border-cyberRed/20"><span class="text-white font-medium">The Psychology of Money <span class="text-slate-500 font-normal">— Morgan Housel</span></span> <span class="text-[9px] text-cyberRed font-bold uppercase whitespace-nowrap bg-cyberRed/10 px-1.5 py-0.5 tracking-tighter">🧠 Mind-Shaping</span></li>
+                            <li class="flex justify-between items-start gap-4 p-2 bg-slate-950/80 rounded border border-cyberRed/20"><span class="text-white font-medium">1984 <span class="text-slate-500 font-normal">— George Orwell</span></span> <span class="text-[9px] text-cyberRed font-bold uppercase whitespace-nowrap bg-cyberRed/10 px-1.5 py-0.5 tracking-tighter">🧠 Mind-Shaping</span></li>
+                            <li class="text-slate-300 p-2 border border-slate-900 rounded">Elon Musk <span class="text-slate-500">— Ashlee Vance</span></li>
+                            <li class="text-slate-300 p-2 border border-slate-900 rounded">Ten Much <span class="text-slate-500">— A. G. Krishnamurthy</span></li>
+                            <li class="text-slate-300 p-2 border border-slate-900 rounded">Life's Amazing Secrets <span class="text-slate-500">— Gaur Gopal Das</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="border border-slate-900 bg-slate-950/40 p-6 rounded-sm">
+                        <h3 class="font-display font-bold text-lg text-slate-300 mb-4 border-b border-slate-900 pb-2 flex items-center justify-between">
+                            <span>Fiction, Literature & Young Adult</span>
+                            <span class="text-[10px] bg-slate-800 text-slate-400 px-2 py-0.5 rounded uppercase tracking-wider">Narratives</span>
+                        </h3>
+                        <ul class="space-y-2.5 text-xs text-slate-400">
+                            <li class="flex justify-between items-start gap-4 p-2 bg-slate-950/80 rounded border border-slate-800"><span class="text-white font-medium">The Diary of a Young Girl <span class="text-slate-500 font-normal">— Anne Frank</span></span> <span class="text-[9px] text-white font-bold uppercase whitespace-nowrap bg-slate-800 px-1.5 py-0.5 tracking-tighter">🧠 Mind-Shaping</span></li>
+                            <li class="flex justify-between items-start gap-4 p-2 bg-slate-950/80 rounded border border-slate-800"><span class="text-white font-medium">The White Tiger <span class="text-slate-500 font-normal">— Aravind Adiga</span></span> <span class="text-[9px] text-white font-bold uppercase whitespace-nowrap bg-slate-800 px-1.5 py-0.5 tracking-tighter">🧠 Mind-Shaping</span></li>
+                            <li class="flex justify-between items-start gap-4 p-2 bg-slate-950/80 rounded border border-slate-800"><span class="text-white font-medium">A Thousand Splendid Suns <span class="text-slate-500 font-normal">— Khaled Hosseini</span></span> <span class="text-[9px] text-white font-bold uppercase whitespace-nowrap bg-slate-800 px-1.5 py-0.5 tracking-tighter">🧠 Mind-Shaping</span></li>
+                            <li class="flex justify-between items-start gap-4 p-2 bg-slate-950/80 rounded border border-slate-800"><span class="text-white font-medium">The Cat Who Saved Books <span class="text-slate-500 font-normal"></span></span> <span class="text-[9px] text-white font-bold uppercase whitespace-nowrap bg-slate-800 px-1.5 py-0.5 tracking-tighter">🧠 Mind-Shaping</span></li>
+                            <li class="p-1.5 border border-slate-900/60 rounded">The Last Bear &mdash; Hannah Gold</li>
+                            <li class="p-1.5 border border-slate-900/60 rounded">Crusoe &mdash; Katherine Rundell</li>
+                            <li class="p-1.5 border border-slate-900/60 rounded">The BFG &mdash; Roald Dahl</li>
+                            <li class="p-1.5 border border-slate-900/60 rounded">Charlie and the Great Glass Elevator &mdash; Roald Dahl</li>
+                            <li class="p-1.5 border border-slate-900/60 rounded">The Arabian Nights Anthology</li>
+                            <li class="p-1.5 border border-slate-900/60 rounded">Boy &mdash; Roald Dahl</li>
+                            <li class="p-1.5 border border-slate-900/60 rounded">Lost in Time | The Gold of All Things</li>
+                            <li class="p-1.5 border border-slate-900/60 rounded">The Wonderful Wizard of Oz</li>
+                            <li class="p-1.5 border border-slate-900/60 rounded">A Wrinkle in Time | The Midnight Library</li>
+                            <li class="p-1.5 border border-slate-900/60 rounded">The Secret Horses of Briar Hill | Wonder</li>
+                            <li class="p-1.5 border border-slate-900/60 rounded font-semibold text-slate-500 uppercase tracking-wider text-[10px] mt-4 mb-1">Series: Diary of a Wimpy Kid Collection</li>
+                            <li class="p-1.5 bg-slate-900/30 rounded grid grid-cols-2 gap-2 text-[11px] text-slate-300">
+                                <span>• Hard Luck</span><span>• Cabin Fever</span>
+                                <span>• The Meltdown</span><span>• Big Shot</span>
+                                <span>• No Brainer</span><span>• Wrecking Ball</span>
+                                <span class="col-span-2">• The Deep End & Associated Works</span>
+                            </li>
+                            <li class="p-1.5 border border-slate-900/60 rounded font-semibold text-slate-500 uppercase tracking-wider text-[10px] mt-2">Youth Fiction Anthology</li>
+                            <li class="p-1.5 bg-slate-900/20 rounded">• Roboblocs Series | • Agatha Oddly (Multi-Edition Stack) | • The Dunders</li>
+                        </ul>
+                    </div>
+
+                    <div class="border border-slate-900 bg-slate-950/40 p-6 rounded-sm flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-display font-bold text-lg text-slate-400 mb-4 border-b border-slate-900 pb-2 flex items-center justify-between">
+                                <span>Reference & Academic Structures</span>
+                                <span class="text-[10px] bg-slate-900 text-slate-500 px-2 py-0.5 rounded uppercase tracking-wider">Research Frameworks</span>
+                            </h3>
+                            <ul class="space-y-2 text-xs text-slate-400">
+                                <li class="p-2 border border-slate-900 rounded text-slate-300">• Oxford School Atlas Matrix</li>
+                                <li class="p-2 border border-slate-900 rounded text-slate-300">• Pearson IIT Foundation Mathematics Logic Suite</li>
+                                <li class="p-2 border border-slate-900 rounded text-slate-300">• Pearson IIT Foundation Chemistry Analytics</li>
+                                <li class="p-2 border border-slate-900 rounded text-slate-300">• Pearson IIT Foundation Physics Empirical Lab Book</li>
+                                <li class="p-2 border border-slate-900 rounded text-slate-300">• Knowledge Genius & Answer Compendiums</li>
+                                <li class="p-2 border border-slate-900 rounded text-slate-300">• Manish Gold Reference Compilations</li>
+                            </ul>
+                        </div>
+                        <div class="mt-8 p-4 bg-gradient-to-br from-cardBg to-darkBg border border-slate-800 text-center rounded-sm">
+                            <span class="block text-xl font-bold font-display text-white">12 / 46</span>
+                            <span class="text-[10px] uppercase tracking-widest text-cyberCyan font-bold">Primary Thinking Matrix Catalysts Vetted</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="profile-projects-shelf" class="border-t border-slate-900 pt-16">
+                <div class="mb-10">
+                    <span class="text-xs font-bold tracking-widest uppercase text-cyberRed">Projects And frameworks designed</span>
+                    <h2 class="font-display text-3xl font-bold text-white mt-1">Technical Projects Node</h2>
+                    <p class="text-slate-500 text-xs mt-1">Functional prototypes, testing frameworks, and active development pipelines.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="border border-slate-800 bg-cardBg/20 p-6 rounded-sm flex flex-col justify-between">
+                        <div>
+                            <span class="text-[10px] font-mono tracking-widest text-cyberCyan uppercase block mb-1">[ NODE_ID: 0x01 ]</span>
+                            <h4 class="font-display font-bold text-xl text-white mb-2">Automated Vulnerability Scanner</h4>
+                            <p class="text-slate-400 text-xs leading-relaxed mb-6">
+                                This is a web vulnerability scanner with a gui, You may need to activate it by clicking Yes get this app back up                          </p>
+                        </div>
+                        <a href="https://vulscanner.streamlit.app/" class="text-center w-full border border-cyberCyan/30 text-cyberCyan font-bold text-xs uppercase tracking-widest py-2.5 rounded-sm hover:bg-cyberCyan hover:text-darkBg transition-all">
+                            Access Project Assets
+                        </a>
+                    </div>
+
+
+
+                    <div class="border border-slate-800 bg-cardBg/20 p-6 rounded-sm flex flex-col justify-between">
+                        <div>
+                            <span class="text-[10px] font-mono tracking-widest text-cyberRed uppercase block mb-1">[ NODE_ID: 0x02 ]</span>
+                            <h4 class="font-display font-bold text-xl text-white mb-2">Stark information finder (Web scraper)</h4>
+                            <p class="text-slate-400 text-xs leading-relaxed mb-6">
+                              Just a fun project of a web scraper a pytho gui app nnamed stark informatio finder to replicate jarvis information network now this project is archived and I wont be making changes u can fork it though
+                            </p>
+                        </div>
+                        <a href="https://github.com/pranavmanglani/information-finder-webscraper-" class="text-center w-full border border-cyberRed/30 text-cyberRed font-bold text-xs uppercase tracking-widest py-2.5 rounded-sm hover:bg-cyberRed hover:text-white transition-all">
+                            Access Project Assets
+                        </a>
+                    </div>
+<br>
+
+
+                </div>
+            </section>
+        </main>
+
+        <footer class="border-t border-slate-900 bg-slate-950/80 py-8 mt-auto">
+            <div class="max-w-5xl mx-auto px-6 flex justify-between items-center text-xs text-slate-500">
+                <span>Dossier Pipeline Node &copy; 2026</span>
+                <button onclick="navigateToHome()" class="hover:text-white transition-colors">Return Top ↑</button>
+            </div>
+        </footer>
+    </div>
 
     <div id="admin-modal" class="fixed inset-0 bg-darkBg/95 backdrop-blur-md hidden items-center justify-center z-50 p-4">
         <div class="bg-cardBg border border-slate-800 p-8 rounded-sm max-w-md w-full relative">
@@ -240,7 +446,7 @@
         </div>
     </div>
 
-    <footer class="border-t border-slate-900 bg-slate-950/80 pt-16 pb-12">
+    <footer class="border-t border-slate-900 bg-slate-950/80 pt-16 pb-12" id="primary-global-footer">
         <div class="max-w-7xl mx-auto px-6">
             <div class="grid grid-cols-2 md:grid-cols-3 gap-8 pb-12 text-xs">
                 <div>
@@ -270,15 +476,49 @@
     </footer>
 
     <script>
-        // =========================================================================
-        // 🛠️ INTEGRATED PRODUCTION API CREDENTIAL KEYS:
-        // =========================================================================
         const SUPABASE_URL = "https://dxabaafoboaoawwmignq.supabase.co"; 
         const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR4YWJhYWZvYm9hb2F3d21pZ25xIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAyMjY1MzgsImV4cCI6MjA5NTgwMjUzOH0.pBazFISQbM1srXh5GSSf2GUu7Kz0qhYgl_eB67RvJUc";
-        // =========================================================================
 
-        // Initialize connection cluster
         const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        // --- CORE VIEW ROUTERS ---
+        function navigateToCustomProfile() {
+            document.getElementById('main-homepage-view').classList.add('hidden');
+            document.getElementById('primary-global-footer').classList.add('hidden');
+            
+            const profileView = document.getElementById('custom-profile-view');
+            profileView.classList.remove('hidden');
+            window.scrollTo({ top: 0 });
+        }
+
+        function navigateToHome() {
+            document.getElementById('custom-profile-view').classList.add('hidden');
+            
+            document.getElementById('main-homepage-view').classList.remove('hidden');
+            document.getElementById('primary-global-footer').classList.remove('hidden');
+            window.scrollTo({ top: 0 });
+        }
+
+        function scrollToProfileSection(targetId) {
+            const element = document.getElementById(targetId);
+            if(element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        function copyDiscordProfile() {
+            navigator.clipboard.writeText('Coolhello189');
+            const status = document.getElementById('discord-status');
+            status.innerText = "COPIED TO CLIPBOARD!";
+            status.classList.remove('text-slate-500');
+            status.classList.add('text-cyberCyan');
+            
+            setTimeout(() => {
+                status.innerText = "Click to Copy";
+                status.classList.remove('text-cyberCyan');
+                status.classList.add('text-slate-500');
+            }, 2000);
+        }
 
         function toggleAdminModal() {
             const modal = document.getElementById('admin-modal');
@@ -286,9 +526,10 @@
             modal.classList.toggle('flex');
         }
 
-        // Generate dynamic HTML list layouts
+        // --- COURSE DATABASES METHODS ---
         function renderCourseCard(title, type, desc) {
             const container = document.getElementById('course-container');
+            if(!container) return;
             const badgeStyle = type === 'free' ? 'bg-emerald-500/10 text-emerald-400' : 'bg-cyberRed/10 text-cyberRed';
             const borderStyle = type === 'free' ? 'border-slate-800' : 'border-cyberRed/30';
             const targetAction = type === 'free'
@@ -308,27 +549,30 @@
             container.appendChild(courseCard);
         }
 
-        // Pull active entries from database pool
         async function fetchCoursesFromDatabase() {
-            const { data, error } = await _supabase
-                .from('courses')
-                .select('*')
-                .order('created_at', { ascending: false });
+            try {
+                const { data, error } = await _supabase
+                    .from('courses')
+                    .select('*')
+                    .order('created_at', { ascending: false });
 
-            if (error) {
-                console.error('Data sync synchronization engine failure:', error);
-                return;
+                if (error) {
+                    console.error('Data sync synchronization engine failure:', error);
+                    return;
+                }
+
+                const container = document.getElementById('course-container');
+                if(!container) return;
+                container.innerHTML = ''; 
+                 
+                data.forEach(course => {
+                    renderCourseCard(course.title, course.type, course.description);
+                });
+            } catch(e) {
+                console.error("Initialization runtime bypass caught:", e);
             }
-
-            const container = document.getElementById('course-container');
-            container.innerHTML = ''; // Clear loading frameworks
-             
-            data.forEach(course => {
-                renderCourseCard(course.title, course.type, course.description);
-            });
         }
 
-        // Handle structural data writes using security authentication rules
         async function handleCourseUpload(e) {
             e.preventDefault();
             const password = document.getElementById('admin-password').value;
@@ -336,7 +580,6 @@
             const type = document.getElementById('course-type').value;
             const desc = document.getElementById('course-desc').value;
 
-            // Universal Native Fetch Routine: Bypasses library wrapper method limits entirely
             try {
                 const response = await fetch(`${SUPABASE_URL}/rest/v1/courses`, {
                     method: 'POST',
@@ -345,7 +588,7 @@
                         'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
                         'Content-Type': 'application/json',
                         'Prefer': 'return=minimal',
-                        'x-admin-key': password // 🔑 Injects the secure environment credential directly over the wire
+                        'x-admin-key': password 
                     },
                     body: JSON.stringify({ title, type, description: desc })
                 });
@@ -355,7 +598,6 @@
                     return;
                 }
 
-                // Sync successful -> clean forms, update array matrix layout, toggle view off
                 fetchCoursesFromDatabase();
                 document.getElementById('course-form').reset();
                 toggleAdminModal();
@@ -367,7 +609,6 @@
             }
         }
 
-        // Bind core initialization events to frame rendering hooks
         window.addEventListener('DOMContentLoaded', fetchCoursesFromDatabase);
     </script>
 </body>
