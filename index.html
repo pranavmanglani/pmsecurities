@@ -756,7 +756,152 @@ PM. Securities Knowledge Base
                 alert('Network connection failure.');
             }
         }
+        /* ================= KNOWLEDGE BASE ================= */
 
+const WEB_SECURITY_ARTICLES = [
+"Web Application Technologies",
+"Mapping the Application",
+"Bypassing Client Side Controls",
+"Attacking Authentication",
+"Attacking Session Management",
+"Attacking Access Controls",
+"Attacking Data Stores",
+"Attacking Backend Components",
+"Attacking Application Logic",
+"Cross Site Scripting (XSS)",
+"Other Techniques",
+"Automating Customized Attacks",
+"Exploiting Information Disclosure",
+"Attacking Native Compiled Applications",
+"Attacking Application Architecture",
+"Attacking Application Servers",
+"Finding Vulnerabilities in Source Code",
+"Web Application Testing Methodology"
+];
+
+const RECON_ARTICLES = [
+"PASSIVE INFORMATION GATHERING",
+"Google Dorking",
+"WHOIS",
+"DNS Records",
+"crt.sh",
+"GitHub OSINT",
+"Shodan",
+"Censys",
+"Wayback Machine",
+"",
+"ACTIVE INFORMATION GATHERING",
+"Nmap",
+"Rustscan",
+"Netcat",
+"FFUF",
+"Gobuster",
+"Dirsearch",
+"httpx",
+"WhatWeb",
+"Nikto"
+];
+
+function showKnowledgeBase(type){
+
+document.getElementById("main-homepage-view").classList.add("hidden");
+document.getElementById("primary-global-footer").classList.add("hidden");
+
+document.getElementById("custom-profile-view").classList.add("hidden");
+
+document.getElementById("knowledge-base-view").classList.remove("hidden");
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+const title=document.getElementById("kb-title");
+const content=document.getElementById("kb-content");
+
+content.innerHTML="";
+
+let list=[];
+
+if(type==="web"){
+title.innerText="Web Application Security";
+list=WEB_SECURITY_ARTICLES;
+}else{
+title.innerText="Information Gathering";
+list=RECON_ARTICLES;
+}
+
+list.forEach(item=>{
+
+if(item===""){
+content.innerHTML+="<br>";
+return;
+}
+
+if(item===item.toUpperCase()){
+
+content.innerHTML+=`
+<div class="text-cyberRed font-bold uppercase tracking-widest text-sm mt-8 mb-2">
+${item}
+</div>
+`;
+
+return;
+
+}
+
+content.innerHTML+=`
+
+<div
+class="border border-slate-800 bg-cardBg/30 hover:border-cyberCyan transition-all p-5 rounded-sm flex justify-between items-center">
+
+<div>
+
+<div class="font-display text-white text-lg">
+
+${item}
+
+</div>
+
+<div class="text-xs text-slate-500 mt-1">
+
+Article coming soon
+
+</div>
+
+</div>
+
+<button
+class="border border-slate-700 px-4 py-2 text-xs uppercase tracking-widest hover:bg-slate-800 transition">
+
+Coming Soon
+
+</button>
+
+</div>
+
+`;
+
+});
+
+}
+
+function closeKnowledgeBase(){
+
+document.getElementById("knowledge-base-view").classList.add("hidden");
+
+document.getElementById("main-homepage-view").classList.remove("hidden");
+
+document.getElementById("primary-global-footer").classList.remove("hidden");
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+}
+
+/* ============== END KNOWLEDGE BASE ============== */
         window.addEventListener('DOMContentLoaded', fetchCoursesFromDatabase);
     </script>
 </body>
