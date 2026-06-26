@@ -165,6 +165,99 @@
                 <div id="course-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
             </div>
         </section>
+        <!-- ===================== KNOWLEDGE BASE ===================== -->
+<section id="knowledgebase" class="border-t border-slate-900 bg-slate-950/10 py-24">
+    <div class="max-w-7xl mx-auto px-6">
+
+        <div class="text-center mb-16">
+            <span class="text-xs font-bold tracking-widest uppercase text-cyberRed">
+                Technical Library
+            </span>
+
+            <h2 class="font-display text-4xl font-bold text-white mt-3">
+                Knowledge Base
+            </h2>
+
+            <p class="text-slate-400 max-w-2xl mx-auto mt-4 text-sm leading-relaxed">
+                Expand your cybersecurity knowledge through detailed technical write-ups,
+                practical research articles, offensive security methodologies and
+                information gathering guides.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+            <!-- WEB SECURITY -->
+            <div class="group border border-slate-800 bg-cardBg/30 p-10 rounded-sm hover:border-cyberCyan transition-all duration-300">
+
+                <div class="text-5xl mb-6">🌐</div>
+
+                <h3 class="font-display text-2xl font-bold text-white mb-4">
+                    Web Application Security
+                </h3>
+
+                <p class="text-slate-400 text-sm leading-relaxed mb-8">
+                    Explore web security from the ground up including authentication,
+                    access control, SQL injection, XSS, backend attacks, source code
+                    review and professional penetration testing methodology.
+                </p>
+
+                <div class="space-y-2 text-sm text-slate-300 mb-8">
+
+                    <div>✓ 18 Technical Articles</div>
+                    <div>✓ Practical Methodologies</div>
+                    <div>✓ Beginner → Advanced</div>
+
+                </div>
+
+                <button
+                    onclick="showKnowledgeBase('web')"
+                    class="w-full border border-cyberCyan text-cyberCyan py-3 rounded-sm font-bold hover:bg-cyberCyan hover:text-darkBg transition-all">
+
+                    Browse Articles →
+
+                </button>
+
+            </div>
+
+            <!-- INFO GATHERING -->
+            <div class="group border border-slate-800 bg-cardBg/30 p-10 rounded-sm hover:border-cyberRed transition-all duration-300">
+
+                <div class="text-5xl mb-6">🔎</div>
+
+                <h3 class="font-display text-2xl font-bold text-white mb-4">
+                    Information Gathering
+                </h3>
+
+                <p class="text-slate-400 text-sm leading-relaxed mb-8">
+                    Learn passive and active reconnaissance techniques using
+                    industry-standard tools such as Nmap, FFUF, Gobuster,
+                    OSINT resources, DNS enumeration and more.
+                </p>
+
+                <div class="space-y-2 text-sm text-slate-300 mb-8">
+
+                    <div>✓ Passive Recon</div>
+                    <div>✓ Active Recon</div>
+                    <div>✓ Industry Tools</div>
+
+                </div>
+
+                <button
+                    onclick="showKnowledgeBase('recon')"
+                    class="w-full border border-cyberRed text-cyberRed py-3 rounded-sm font-bold hover:bg-cyberRed hover:text-white transition-all">
+
+                    Browse Articles →
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
+<!-- =================== END KNOWLEDGE BASE =================== -->
 
         <section id="about" class="border-t border-slate-900 bg-slate-950/20 py-24">
             <div class="max-w-7xl mx-auto px-6">
