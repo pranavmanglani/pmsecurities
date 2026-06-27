@@ -10,4 +10,5 @@ async function loadArticles(){status.textContent='Loading...';const j=await api(
 async function loadArticle(){const j=await api({action:'load',slug:articleSelect.value});if(!j.success){status.textContent=j.error;return;}editor.value=j.article.content||'';preview.innerHTML=editor.value;status.textContent='Ready';}
 async function saveArticle(){const j=await api({action:'save',password:password.value,slug:articleSelect.value,content:editor.value});status.textContent=j.success?'Saved':'Error: '+j.error;}
 loadBtn.onclick=loadArticle;saveBtn.onclick=saveArticle;articleSelect.onchange=loadArticle;document.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key==='s'){e.preventDefault();saveArticle();}});loadArticles();
+<script src="js/security.js"></script>
 </script></body></html>
