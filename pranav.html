@@ -1,0 +1,13 @@
+
+<!DOCTYPE html><html lang='en'><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>Pranav Editor</title><style>body{font-family:Arial;background:#f5f5f5;padding:24px}.container{max-width:1400px;margin:auto}.row{display:flex;gap:10px;margin-bottom:15px}input,select,button{padding:10px}input,select{flex:1}.editor{display:grid;grid-template-columns:1fr 1fr;gap:16px}textarea{height:75vh;width:100%;font-family:Consolas}#preview{height:75vh;border:1px solid #ccc;background:#fff;padding:12px;overflow:auto}</style></head><body><div class='container'><h2>PM. Securities Editor</h2><div class='row'><input id='password' type='password' placeholder='Admin password'><select id='articleSelect'></select><button id='loadBtn'>Load</button><button id='saveBtn'>Save</button></div><div class='editor'><textarea id='editor'></textarea><div id='preview'></div></div><div id='status'>Ready.</div></div><script>
+const SUPABASE_URL='https://dxabaafoboaoawwmignq.supabase.co';
+const SUPABASE_ANON_KEY='REPLACE_WITH_YOUR_ANON_KEY';
+const EDGE_FUNCTION=SUPABASE_URL+'/functions/v1/update-article';
+const password=document.getElementById('password'),articleSelect=document.getElementById('articleSelect'),editor=document.getElementById('editor'),preview=document.getElementById('preview'),status=document.getElementById('status');
+editor.oninput=()=>preview.innerHTML=editor.value;
+async function api(body){const r=await fetch(EDGE_FUNCTION,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});return await r.json();}
+async function loadArticles(){status.textContent='Loading...';const j=await api({action:'list'});if(!j.success){status.textContent=j.error;return;}articleSelect.innerHTML='';j.articles.forEach(a=>{let o=document.createElement('option');o.value=a.slug;o.textContent=a.category+' • '+a.title;articleSelect.appendChild(o);});status.textContent='Loaded';if(j.articles.length)loadArticle();}
+async function loadArticle(){const j=await api({action:'load',slug:articleSelect.value});if(!j.success){status.textContent=j.error;return;}editor.value=j.article.content||'';preview.innerHTML=editor.value;status.textContent='Ready';}
+async function saveArticle(){const j=await api({action:'save',password:password.value,slug:articleSelect.value,content:editor.value});status.textContent=j.success?'Saved':'Error: '+j.error;}
+loadBtn.onclick=loadArticle;saveBtn.onclick=saveArticle;articleSelect.onchange=loadArticle;document.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key==='s'){e.preventDefault();saveArticle();}});loadArticles();
+</script></body></html>
