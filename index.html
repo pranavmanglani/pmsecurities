@@ -758,49 +758,55 @@ PM. Securities Knowledge Base
         }
         /* ================= KNOWLEDGE BASE ================= */
 
-const WEB_SECURITY_ARTICLES = [
-"Web Application Technologies",
-"Mapping the Application",
-"Bypassing Client Side Controls",
-"Attacking Authentication",
-"Attacking Session Management",
-"Attacking Access Controls",
-"Attacking Data Stores",
-"Attacking Backend Components",
-"Attacking Application Logic",
-"Cross Site Scripting (XSS)",
-"Other Techniques",
-"Automating Customized Attacks",
-"Exploiting Information Disclosure",
-"Attacking Native Compiled Applications",
-"Attacking Application Architecture",
-"Attacking Application Servers",
-"Finding Vulnerabilities in Source Code",
-"Web Application Testing Methodology"
-];
+// =========================
+// Supabase Knowledge Base
+// =========================
 
-const RECON_ARTICLES = [
-"PASSIVE INFORMATION GATHERING",
-"Google Dorking",
-"WHOIS",
-"DNS Records",
-"crt.sh",
-"GitHub OSINT",
-"Shodan",
-"Censys",
-"Wayback Machine",
-"",
-"ACTIVE INFORMATION GATHERING",
-"Nmap",
-"Rustscan",
-"Netcat",
-"FFUF",
-"Gobuster",
-"Dirsearch",
-"httpx",
-"WhatWeb",
-"Nikto"
-];
+const SUPABASE_URL =
+"https://dxabaafoboaoawwmignq.supabase.co";
+
+const EDGE_FUNCTION =
+SUPABASE_URL +
+"/functions/v1/update-article";
+
+let knowledgeArticles = [];
+
+async function loadKnowledgeArticles(){
+
+    try{
+
+        const res = await fetch(
+            EDGE_FUNCTION,
+            {
+                method:"POST",
+                headers:{
+                    "Content-Type":"application/json"
+                },
+                body:JSON.stringify({
+                    action:"list"
+                })
+            }
+        );
+
+        const json = await res.json();
+
+        if(json.success){
+
+            knowledgeArticles = json.articles;
+
+        }else{
+
+            console.error(json.error);
+
+        }
+
+    }catch(err){
+
+        console.error(err);
+
+    }
+
+}
 
 function showKnowledgeBase(type){
 
