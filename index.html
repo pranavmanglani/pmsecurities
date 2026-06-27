@@ -808,13 +808,11 @@ async function loadKnowledgeArticles(){
 
 }
 
-function showKnowledgeBase(type){
+async function showKnowledgeBase(type){
 
 document.getElementById("main-homepage-view").classList.add("hidden");
 document.getElementById("primary-global-footer").classList.add("hidden");
-
 document.getElementById("custom-profile-view").classList.add("hidden");
-
 document.getElementById("knowledge-base-view").classList.remove("hidden");
 
 window.scrollTo({
@@ -825,36 +823,39 @@ behavior:"smooth"
 const title=document.getElementById("kb-title");
 const content=document.getElementById("kb-content");
 
-content.innerHTML="";
-
-let list=[];
-
-if(type==="web"){
-title.innerText="Web Application Security";
-list=WEB_SECURITY_ARTICLES;
-}else{
-title.innerText="Information Gathering";
-list=RECON_ARTICLES;
-}
-
-list.forEach(item=>{
-
-if(item===""){
-content.innerHTML+="<br>";
-return;
-}
-
-if(item===item.toUpperCase()){
-
-content.innerHTML+=`
-<div class="text-cyberRed font-bold uppercase tracking-widest text-sm mt-8 mb-2">
-${item}
+content.innerHTML=`
+<div class="text-center text-slate-400 py-20">
+Loading articles...
 </div>
 `;
 
-return;
+if(knowledgeArticles.length===0){
+
+await loadKnowledgeArticles();
 
 }
+
+let category;
+
+if(type==="web"){
+
+title.innerText="Web Application Security";
+category="Web Application Security";
+
+}else{
+
+title.innerText="Information Gathering";
+category="Information Gathering";
+
+}
+
+const articles=knowledgeArticles.filter(
+a=>a.category===category
+);
+
+content.innerHTML="";
+
+articles.forEach(article=>{
 
 content.innerHTML+=`
 
@@ -865,22 +866,25 @@ class="border border-slate-800 bg-cardBg/30 hover:border-cyberCyan transition-al
 
 <div class="font-display text-white text-lg">
 
-${item}
+${article.title}
 
 </div>
 
 <div class="text-xs text-slate-500 mt-1">
 
-Article coming soon
+Click to read article
 
 </div>
 
 </div>
 
 <button
-class="border border-slate-700 px-4 py-2 text-xs uppercase tracking-widest hover:bg-slate-800 transition">
 
-Coming Soon
+onclick="openArticle('${article.slug}')"
+
+class="border border-cyberCyan text-cyberCyan hover:bg-cyberCyan hover:text-darkBg transition-all px-4 py-2 text-xs uppercase tracking-widest">
+
+Read →
 
 </button>
 
@@ -889,6 +893,16 @@ Coming Soon
 `;
 
 });
+
+if(articles.length===0){
+
+content.innerHTML=`
+<div class="text-slate-500 text-center py-20">
+No articles found.
+</div>
+`;
+
+}
 
 }
 
@@ -904,6 +918,94 @@ window.scrollTo({
 top:0,
 behavior:"smooth"
 });
+
+}
+
+async function openArticle(slug){
+
+const content=document.getElementById("kb-content");
+
+content.innerHTML=`
+<div class="text-center text-slate-400 py-20">
+Loading article...
+</div>
+`;
+
+try{
+
+const res=await fetch(
+EDGE_FUNCTION,
+{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify({
+action:"load",
+slug:slug
+})
+}
+);
+
+const json=await res.json();
+
+if(!json.success){
+
+content.innerHTML=`
+<div class="text-red-400 text-center py-20">
+${json.error}
+</div>
+`;
+
+return;
+
+}
+
+const article=json.article;
+
+content.innerHTML=`
+
+<button
+onclick="showKnowledgeBase('${article.category==="Web Application Security"?"web":"recon"}')"
+class="mb-8 border border-slate-700 px-5 py-2 rounded-sm hover:bg-slate-800">
+
+← Back to Articles
+
+</button>
+
+<div class="border border-slate-800 bg-cardBg/30 p-8 rounded-sm">
+
+<h1 class="font-display text-4xl font-bold text-white mb-3">
+
+${article.title}
+
+</h1>
+
+<div class="text-xs uppercase tracking-widest text-cyberCyan mb-8">
+
+${article.category}
+
+</div>
+
+<div class="prose prose-invert max-w-none text-slate-300">
+
+${article.content}
+
+</div>
+
+</div>
+
+`;
+
+}catch(err){
+
+content.innerHTML=`
+<div class="text-red-400 text-center py-20">
+${err}
+</div>
+`;
+
+}
 
 }
 
