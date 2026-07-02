@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PM. Securities | Access Training Labs</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <link rel="icon" type="image/png"
+        href="https://scontent-del3-2.cdninstagram.com/v/t51.82787-19/707097039_17897632374454018_8200499950204435188_n.jpg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        darkBg: '#0B111E',
+                        cardBg: '#121A2E',
+                        cyberRed: '#FF4A5A',
+                        cyberCyan: '#00F0FF',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+
+body{
+    background:#0B111E;
+    color:#E2E8F0;
+    overflow-x:hidden;
+    scroll-behavior:smooth;
+}
+
+.grid-bg{
+    background-image:
+        linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);
+    background-size:40px 40px;
+}
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background-image:
+        linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);
+    background-size:40px 40px;
+    z-index:-3;
+}
+
+.blur-one{
+    position:absolute;
+    width:500px;
+    height:500px;
+    border-radius:999px;
+    background:rgba(0,240,255,.08);
+    filter:blur(120px);
+    left:-150px;
+    top:120px;
+    pointer-events:none;
+}
+
+.blur-two{
+    position:absolute;
+    width:500px;
+    height:500px;
+    border-radius:999px;
+    background:rgba(255,74,90,.08);
+    filter:blur(120px);
+    right:-150px;
+    bottom:0;
+    pointer-events:none;
+}
+
+.hero{
+
+    padding-top:80px;
+    padding-bottom:40px;
+    position:relative;
+    z-index:2;
+
+}
+
+.hero-content{
+
+    max-width:900px;
+    margin:auto;
+    padding:0 24px;
+    text-align:center;
+
+}
+
+.hero-badge{
+
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+
+    padding:8px 18px;
+
+    border:1px solid rgb(30 41 59);
+
+    background:rgba(15,23,42,.65);
+
+    border-radius:999px;
+
+    font-size:11px;
+
+    letter-spacing:2px;
+
+    text-transform:uppercase;
+
+    color:#94A3B8;
+
+}
+
+.status-dot{
+
+    width:8px;
+    height:8px;
+    background:#00F0FF;
+    border-radius:999px;
+    animation:pulse 2s infinite;
+
+}
+
+.hero h1{
+
+    font-family:"Space Grotesk",sans-serif;
+
+    margin-top:30px;
+
+    font-size:56px;
+
+    font-weight:700;
+
+    color:white;
+
+}
+
+.hero p{
+
+    max-width:700px;
+
+    margin:20px auto;
+
+    color:#94A3B8;
+
+    line-height:1.8;
+
+    font-size:17px;
+
+}
+
+.login-section{
+
+    max-width:700px;
+
+    margin:auto;
+
+    padding:40px 25px 70px;
+
+}
+
+.login-card{
+
+    background:rgba(18,26,46,.55);
+
+    backdrop-filter:blur(20px);
+
+    border:1px solid rgb(30 41 59);
+
+    border-radius:8px;
+
+    padding:45px;
+
+    transition:.3s;
+
+}
+
+.login-card:hover{
+
+    border-color:rgba(0,240,255,.35);
+
+}
+
+.card-subtitle{
+
+    color:#00F0FF;
+
+    text-transform:uppercase;
+
+    letter-spacing:3px;
+
+    font-size:11px;
+
+    font-weight:700;
+
+}
+
+.card-header h2{
+
+    margin-top:10px;
+
+    color:white;
+
+    font-size:34px;
+
+    font-family:"Space Grotesk",sans-serif;
+
+}
+
+.card-header p{
+
+    margin-top:15px;
+
+    color:#94A3B8;
+
+    line-height:1.7;
+
+    margin-bottom:35px;
+
+}
+
+.input-group{
+
+    display:flex;
+
+    flex-direction:column;
+
+    margin-bottom:22px;
+
+}
+
+.input-group label{
+
+    color:#CBD5E1;
+
+    margin-bottom:8px;
+
+    font-size:13px;
+
+    text-transform:uppercase;
+
+    letter-spacing:2px;
+
+}
+
+.input-group input,
+.input-group select{
+
+    background:#0F172A;
+
+    border:1px solid rgb(51 65 85);
+
+    color:white;
+
+    padding:14px 16px;
+
+    border-radius:5px;
+
+    transition:.25s;
+
+    outline:none;
+
+}
+
+.input-group input:focus,
+.input-group select:focus{
+
+    border-color:#00F0FF;
+
+    box-shadow:0 0 0 3px rgba(0,240,255,.12);
+
+}
+
+button{
+
+    cursor:pointer;
+
+}
+
+#accessBtn{
+
+    width:100%;
+
+    margin-top:15px;
+
+    background:linear-gradient(
+    90deg,
+    #00F0FF,
+    #FF4A5A
+    );
+
+    color:#0B111E;
+
+    font-weight:700;
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:5px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:15px;
+
+    transition:.25s;
+
+}
+
+#accessBtn:hover{
+
+    transform:translateY(-2px);
+
+    opacity:.92;
+
+}
+
+.spinner{
+
+    width:18px;
+
+    height:18px;
+
+    border:2px solid rgba(255,255,255,.3);
+
+    border-top:2px solid #0B111E;
+
+    border-radius:999px;
+
+    animation:spin .8s linear infinite;
+
+}
+
+.hidden{
+
+    display:none !important;
+
+}
+
+#resultSection{
+
+    max-width:700px;
+
+    margin:0 auto 80px;
+
+    padding:0 25px;
+
+}
+
+.result-card{
+
+    background:rgba(18,26,46,.55);
+
+    backdrop-filter:blur(20px);
+
+    border:1px solid rgba(0,240,255,.25);
+
+    border-radius:8px;
+
+    padding:40px;
+
+}
+
+.result-card h3{
+
+    color:white;
+
+    margin-top:15px;
+
+    font-size:28px;
+
+    font-family:"Space Grotesk";
+
+}
+
+.result-description{
+
+    color:#94A3B8;
+
+    margin:15px 0 30px;
+
+}
+
+.result-box{
+
+    margin-bottom:20px;
+
+}
+
+.result-box label{
+
+    display:block;
+
+    margin-bottom:8px;
+
+    color:#CBD5E1;
+
+    text-transform:uppercase;
+
+    font-size:12px;
+
+    letter-spacing:2px;
+
+}
+
+.result-box p{
+
+    color:white;
+
+    font-weight:600;
+
+}
+
+.result-box input{
+
+    width:100%;
+
+    background:#0F172A;
+
+    border:1px solid rgb(51 65 85);
+
+    color:#00F0FF;
+
+    padding:13px;
+
+    border-radius:5px;
+
+}
+
+.button-row{
+
+    display:flex;
+
+    gap:15px;
+
+    margin-top:30px;
+
+}
+
+.button-row button,
+.button-row a{
+
+    flex:1;
+
+    padding:14px;
+
+    border-radius:5px;
+
+    text-align:center;
+
+    text-decoration:none;
+
+    font-weight:700;
+
+    transition:.25s;
+
+}
+
+#copyBtn{
+
+    background:#00F0FF;
+
+    color:#0B111E;
+
+    border:none;
+
+}
+
+#visitBtn{
+
+    border:1px solid #FF4A5A;
+
+    color:#FF4A5A;
+
+}
+
+#visitBtn:hover{
+
+    background:#FF4A5A;
+
+    color:white;
+
+}
+
+#copyBtn:hover{
+
+    opacity:.9;
+
+}
+
+#messageSection{
+
+    max-width:700px;
+
+    margin:30px auto;
+
+    padding:0 25px;
+
+}
+
+#messageBox{
+
+    background:#2A1A1A;
+
+    border-left:4px solid #FF4A5A;
+
+    padding:20px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    border-radius:6px;
+
+}
+
+#messageText{
+
+    color:#E2E8F0;
+
+}
+
+@keyframes spin{
+
+    to{
+
+        transform:rotate(360deg);
+
+    }
+
+}
+
+@keyframes pulse{
+
+    0%{
+
+        opacity:.3;
+
+        transform:scale(.9);
+
+    }
+
+    50%{
+
+        opacity:1;
+
+        transform:scale(1);
+
+    }
+
+    100%{
+
+        opacity:.3;
+
+        transform:scale(.9);
+
+    }
+
+}
+
+@media(max-width:768px){
+
+.hero h1{
+
+font-size:40px;
+
+}
+
+.login-card{
+
+padding:30px;
+
+}
+
+.button-row{
+
+flex-direction:column;
+
+}
+
+}
+
+</style>
+</head>
+
+<body class="font-sans antialiased">
+
+<header class="border-b border-slate-800 bg-darkBg/80 backdrop-blur-md sticky top-0 z-50">
+
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+
+        <span class="font-display font-bold text-2xl tracking-wider text-white">
+            PM.<span class="text-cyberRed">SECURITIES</span>
+        </span>
+
+        <a href="index.html"
+            class="border border-slate-800 px-5 py-2 rounded-sm text-xs uppercase tracking-widest hover:bg-slate-900 transition">
+
+            ← Return Home
+
+        </a>
+
+    </div>
+
+</header>
+
+<main class="relative overflow-hidden">
+
+<div class="blur-one"></div>
+<div class="blur-two"></div>
+
+<section class="hero">
+
+<div class="hero-content">
+
+<div class="hero-badge">
+
+<span class="status-dot"></span>
+
+Secure Authentication Gateway
+
+</div>
+
+<h1>
+
+Access Training Labs
+
+</h1>
+
+<p>
+
+Authenticate with your PM. Securities credentials to obtain secure access
+to our practical cybersecurity laboratory environments.
+
+</p>
+
+</div>
+
+</section>
+
+<section class="login-section">
+
+<div class="login-card">
+
+<div class="card-header">
+
+<span class="card-subtitle">
+
+Authentication Portal
+
+</span>
+
+<h2>
+
+Training Lab Access
+
+</h2>
+
+<p>
+
+Enter your credentials and choose the lab you wish to access.
+
+</p>
+
+</div>
+
+<form id="labForm">
+
+<div class="input-group">
+
+<label>
+
+Username
+
+</label>
+
+<input
+type="text"
+id="username"
+placeholder="Enter username"
+required>
+
+</div>
+
+<div class="input-group">
+
+<label>
+
+Password
+
+</label>
+
+<input
+type="password"
+id="password"
+placeholder="Enter password"
+required>
+
+</div>
+
+<div class="input-group">
+
+<label>
+
+Training Lab
+
+</label>
+
+<select id="labSelect" required>
+
+<option disabled selected>
+
+Loading Labs...
+
+</option>
+
+</select>
+
+</div>
+
+<button
+id="accessBtn"
+type="submit">
+
+<span id="buttonText">
+
+Access Lab
+
+</span>
+
+<div
+id="spinner"
+class="spinner hidden">
+
+</div>
+
+</button>
+
+</form>
+
+</div>
+
+</section>
+
+<section
+id="resultSection"
+class="hidden">
+
+<div class="result-card">
+
+<div
+id="resultIcon">
+
+✅
+
+</div>
+
+<h3
+id="resultTitle">
+
+Authentication Successful
+
+</h3>
+
+<p class="result-description">
+
+The requested laboratory endpoint has been retrieved successfully.
+
+</p>
+
+<div class="result-box">
+
+<label>
+
+Laboratory Name
+
+</label>
+
+<p id="labName">
+
+-
+
+</p>
+
+</div>
+
+<div class="result-box">
+
+<label>
+
+Laboratory URL
+
+</label>
+
+<input
+id="labURL"
+readonly>
+
+</div>
+
+<div class="button-row">
+
+<button
+id="copyBtn"
+type="button">
+
+Copy URL
+
+</button>
+
+<a
+id="visitBtn"
+target="_blank">
+
+Open Link
+
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+<section
+id="messageSection"
+class="hidden">
+
+<div
+id="messageBox">
+
+<span
+id="messageIcon">
+
+⚠️
+
+</span>
+
+<p
+id="messageText">
+
+Message
+
+</p>
+
+</div>
+
+</section>
+
+</main>
+
+<footer class="border-t border-slate-900 bg-slate-950/80 py-8">
+
+<div class="max-w-6xl mx-auto px-6 flex justify-between items-center">
+
+<span class="font-display font-bold tracking-wider text-sm text-slate-400">
+
+PM. SECURITIES
+
+</span>
+
+<p class="text-xs text-slate-600">
+
+© 2026 PM. Securities
+
+</p>
+
+</div>
+
+</footer>
+
+<script>
+const SUPABASE_URL = "https://dxabaafoboaoawwmignq.supabase.co";
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR4YWJhYWZvYm9hb2F3d21pZ25xIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAyMjY1MzgsImV4cCI6MjA5NTgwMjUzOH0.pBazFISQbM1srXh5GSSf2GUu7Kz0qhYgl_eB67RvJUc";
+
+const supabaseClient = supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_ANON_KEY
+);
+
+const listLabsURL =
+`${SUPABASE_URL}/functions/v1/list-labs`;
+
+const accessLabURL =
+`${SUPABASE_URL}/functions/v1/access-lab`;
+
+const form = document.getElementById("labForm");
+const dropdown = document.getElementById("labSelect");
+
+const spinner = document.getElementById("spinner");
+const buttonText = document.getElementById("buttonText");
+
+const resultSection =
+document.getElementById("resultSection");
+
+const messageSection =
+document.getElementById("messageSection");
+
+const messageBox =
+document.getElementById("messageBox");
+
+const messageIcon =
+document.getElementById("messageIcon");
+
+const messageText =
+document.getElementById("messageText");
+
+const copyBtn =
+document.getElementById("copyBtn");
+
+const visitBtn =
+document.getElementById("visitBtn");
+
+const labName =
+document.getElementById("labName");
+
+const labURL =
+document.getElementById("labURL");
+
+function showMessage(type,text){
+
+    messageSection.classList.remove("hidden");
+
+    if(type==="success"){
+
+        messageBox.style.borderLeft =
+        "4px solid #00F0FF";
+
+        messageBox.style.background =
+        "#0F2430";
+
+        messageIcon.innerHTML="✅";
+
+    }else{
+
+        messageBox.style.borderLeft =
+        "4px solid #FF4A5A";
+
+        messageBox.style.background =
+        "#2A1A1A";
+
+        messageIcon.innerHTML="⚠️";
+
+    }
+
+    messageText.innerHTML=text;
+
+}
+
+async function loadLabs(){
+
+    try{
+
+        const response =
+        await fetch(listLabsURL);
+
+        const json =
+        await response.json();
+
+        dropdown.innerHTML="";
+
+        if(!json.success){
+
+            dropdown.innerHTML=
+            "<option>Unable to load labs</option>";
+
+            return;
+
+        }
+
+        json.labs.forEach(lab=>{
+
+            const option =
+            document.createElement("option");
+
+            option.value =
+            lab.slug;
+
+            option.innerHTML =
+            lab.name;
+
+            dropdown.appendChild(option);
+
+        });
+
+    }
+
+    catch(err){
+
+        dropdown.innerHTML=
+        "<option>Connection Error</option>";
+
+    }
+
+}
+
+form.addEventListener(
+"submit",
+async function(e){
+
+e.preventDefault();
+
+spinner.classList.remove("hidden");
+buttonText.innerHTML="Authenticating...";
+
+resultSection.classList.add("hidden");
+messageSection.classList.add("hidden");
+
+const username =
+document.getElementById("username").value;
+
+const password =
+document.getElementById("password").value;
+
+const lab =
+dropdown.value;
+
+try{
+
+const response =
+await fetch(accessLabURL,{
+
+method:"POST",
+
+headers:{
+"Content-Type":"application/json"
+},
+
+body:JSON.stringify({
+
+username,
+password,
+lab
+
+})
+
+});
+
+const json =
+await response.json();
+
+spinner.classList.add("hidden");
+
+buttonText.innerHTML=
+"Access Lab";
+
+if(!json.success){
+
+showMessage(
+"error",
+json.message
+);
+
+return;
+
+}
+
+labName.innerHTML=
+json.lab;
+
+labURL.value=
+json.url;
+
+visitBtn.href=
+json.url;
+
+resultSection.classList.remove(
+"hidden"
+);
+
+showMessage(
+"success",
+"Authentication Successful."
+);
+
+}
+
+catch(err){
+
+spinner.classList.add("hidden");
+
+buttonText.innerHTML=
+"Access Lab";
+
+showMessage(
+"error",
+"Unable to contact authentication server."
+);
+
+}
+
+});
+
+copyBtn.addEventListener(
+"click",
+function(){
+
+navigator.clipboard.writeText(
+labURL.value
+);
+
+copyBtn.innerHTML=
+"Copied!";
+
+setTimeout(()=>{
+
+copyBtn.innerHTML=
+"Copy URL";
+
+},1500);
+
+});
+
+loadLabs();
+</script>
+<script src="js/security.js"></script>
+</body>
+</html>
