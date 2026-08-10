@@ -1,8 +1,4 @@
 /*
-==========================================
-PM. Securities Security Script
-Version: 1.0
-==========================================
 */
 
 (function () {
@@ -32,7 +28,7 @@ Version: 1.0
 
     if (SETTINGS.showConsoleBanner) {
         console.log(
-`%c
+            `%c
 ██████╗ ███╗   ███╗
 ██╔══██╗████╗ ████║
 ██████╔╝██╔████╔██║
@@ -52,7 +48,7 @@ all privileged actions are verified server-side.
 
 Have a great day.
 `,
-"color:#00E5FF;font-size:13px;font-family:monospace;font-weight:bold;"
+            "color:#00E5FF;font-size:13px;font-family:monospace;font-weight:bold;"
         );
     }
 
@@ -69,7 +65,7 @@ Have a great day.
             if (SETTINGS.showAlertOnRightClick) {
 
                 alert(
-`PM. Securities
+                    `PM. Securities
 
 Right click has been disabled.
 
@@ -112,7 +108,7 @@ feel free to inspect responsibly.`
                 if (SETTINGS.showAlertOnDevTools) {
 
                     alert(
-`PM. Securities
+                        `PM. Securities
 
 Developer tools detected.
 
@@ -155,7 +151,7 @@ securely on the server.`
                 if (SETTINGS.showAlertOnDevTools) {
 
                     alert(
-`PM. Securities
+                        `PM. Securities
 
 Developer tools appear to be open.
 
