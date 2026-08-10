@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PM. Securities | Cybersecurity Career Paths</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif']
+                    },
+                    colors: {
+                        darkBg: '#0B111E',
+                        darkPanel: '#0F1728',
+                        cardBg: '#121A2E',
+                        cyberRed: '#FF4A5A',
+                        cyberCyan: '#00F0FF'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        :root {
+            --bg: #0B111E;
+            --panel: #0F1728;
+            --card: #121A2E;
+            --border: #1E293B;
+            --red: #FF4A5A;
+            --cyan: #00F0FF;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background:
+                radial-gradient(circle at 15% 15%, rgba(255,74,90,.055), transparent 28%),
+                radial-gradient(circle at 85% 30%, rgba(0,240,255,.045), transparent 28%),
+                var(--bg);
+            color: #E2E8F0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .grid-bg {
+            background-image:
+                linear-gradient(rgba(148,163,184,.025) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(148,163,184,.025) 1px, transparent 1px);
+            background-size: 44px 44px;
+        }
+
+        .scanlines {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 999;
+            opacity: .025;
+            background: repeating-linear-gradient(
+                to bottom,
+                transparent 0,
+                transparent 3px,
+                rgba(255,255,255,.18) 4px
+            );
+        }
+
+        .top-glow {
+            position: absolute;
+            width: 520px;
+            height: 520px;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: .08;
+            pointer-events: none;
+        }
+
+        .red-glow {
+            background: var(--red);
+        }
+
+        .cyan-glow {
+            background: var(--cyan);
+        }
+
+        .cyber-border {
+            border: 1px solid rgba(51,65,85,.75);
+        }
+
+        .path-card {
+            position: relative;
+            background: linear-gradient(180deg, rgba(18,26,46,.92), rgba(11,17,30,.94));
+            border: 1px solid rgba(51,65,85,.7);
+            transition: .28s ease;
+            overflow: hidden;
+        }
+
+        .path-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255,74,90,.5);
+            box-shadow:
+                0 18px 55px rgba(0,0,0,.35),
+                0 0 30px rgba(255,74,90,.035);
+        }
+
+        .path-card.cyan:hover {
+            border-color: rgba(0,240,255,.45);
+            box-shadow:
+                0 18px 55px rgba(0,0,0,.35),
+                0 0 30px rgba(0,240,255,.035);
+        }
+
+        .corner {
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            border-color: currentColor;
+            opacity: .5;
+        }
+
+        .corner.tl {
+            top: 0;
+            left: 0;
+            border-top: 1px solid;
+            border-left: 1px solid;
+        }
+
+        .corner.br {
+            right: 0;
+            bottom: 0;
+            border-right: 1px solid;
+            border-bottom: 1px solid;
+        }
+
+        .role {
+            position: relative;
+        }
+
+        .role:not(:last-child)::after {
+            content: "→";
+            position: absolute;
+            right: -16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #334155;
+            font-size: 16px;
+        }
+
+        .modal {
+            background:
+                radial-gradient(circle at top right, rgba(0,240,255,.045), transparent 35%),
+                radial-gradient(circle at bottom left, rgba(255,74,90,.045), transparent 35%),
+                #0D1525;
+        }
+
+        @media (max-width: 767px) {
+            .role:not(:last-child)::after {
+                content: "↓";
+                right: auto;
+                left: 50%;
+                top: auto;
+                bottom: -24px;
+                transform: translateX(-50%);
+            }
+        }
+    </style>
+</head>
+
+<body class="grid-bg antialiased">
+
+<div class="scanlines"></div>
+
+<!-- NAVIGATION -->
+<header class="sticky top-0 z-50 border-b border-slate-800/80 bg-[#0B111E]/90 backdrop-blur-xl">
+    <div class="max-w-7xl mx-auto px-6 h-[76px] flex items-center justify-between">
+
+        <a href="index.html"
+           class="font-display font-bold text-xl sm:text-2xl tracking-wider text-white">
+            PM.<span class="text-[#FF4A5A]">SECURITIES</span>
+        </a>
+
+        <nav class="hidden md:flex items-center gap-8 text-xs font-semibold tracking-widest uppercase text-slate-500">
+            <a href="#paths" class="hover:text-white transition">Career Paths</a>
+            <a href="#roadmap" class="hover:text-[#FF4A5A] transition">Roadmap</a>
+            <a href="#skills" class="hover:text-[#00F0FF] transition">Skills</a>
+        </nav>
+
+        <a href="index.html"
+           class="border border-slate-800 bg-slate-950/40 px-4 py-2.5 rounded-sm text-[10px] sm:text-xs font-bold tracking-widest uppercase text-slate-400 hover:text-white hover:border-slate-600 transition">
+            ← Home
+        </a>
+    </div>
+</header>
+
+<main>
+
+    <!-- HERO -->
+    <section class="relative overflow-hidden border-b border-slate-900">
+        <div class="top-glow red-glow -left-40 top-10"></div>
+        <div class="top-glow cyan-glow -right-40 top-40"></div>
+
+        <div class="max-w-7xl mx-auto px-6 pt-24 pb-24 relative">
+
+            <div class="max-w-4xl">
+                <div class="flex items-center gap-3 mb-7">
+                    <span class="h-px w-10 bg-[#FF4A5A]"></span>
+                    <span class="text-[10px] font-bold tracking-[.28em] uppercase text-[#FF4A5A]">
+                        Cybersecurity Career Intelligence
+                    </span>
+                </div>
+
+                <h1 class="font-display text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.02] text-white">
+                    Choose your
+                    <span class="text-[#FF4A5A]"> path.</span><br>
+                    Build your
+                    <span class="text-[#00F0FF]"> skillset.</span>
+                </h1>
+
+                <p class="mt-7 max-w-2xl text-base sm:text-lg leading-relaxed text-slate-400">
+                    Cybersecurity is not one job. Explore the major security tracks,
+                    understand what each role demands, and map your learning from
+                    fundamentals to professional-level work.
+                </p>
+
+                <div class="mt-9 flex flex-col sm:flex-row gap-3">
+                    <a href="#paths"
+                       class="inline-flex justify-center items-center bg-[#FF4A5A] text-white font-bold px-7 py-3.5 rounded-sm text-xs tracking-widest uppercase hover:bg-[#ff5c69] transition shadow-lg shadow-red-950/20">
+                        Explore Career Paths
+                    </a>
+
+                    <a href="#roadmap"
+                       class="inline-flex justify-center items-center border border-slate-700 bg-slate-950/40 text-slate-300 font-bold px-7 py-3.5 rounded-sm text-xs tracking-widest uppercase hover:border-[#00F0FF]/50 hover:text-[#00F0FF] transition">
+                        View Learning Roadmap
+                    </a>
+                </div>
+            </div>
+
+            <div class="absolute right-6 bottom-12 hidden xl:block text-right">
+                <div class="font-mono text-[10px] leading-6 text-slate-700">
+                    <div>SYS.CAREER_MATRIX // ONLINE</div>
+                    <div>ACCESS_LEVEL: PUBLIC</div>
+                    <div>STATUS: <span class="text-[#00F0FF]">READY</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- METRICS -->
+    <section class="border-b border-slate-900 bg-[#090F1A]/70">
+        <div class="max-w-7xl mx-auto px-6 py-7">
+            <div class="grid grid-cols-2 md:grid-cols-4 divide-x divide-slate-900">
+                <div class="px-5 first:pl-0">
+                    <div class="font-display text-2xl font-bold text-white">06</div>
+                    <div class="mt-1 text-[9px] uppercase tracking-[.2em] text-slate-600">Security Tracks</div>
+                </div>
+                <div class="px-5">
+                    <div class="font-display text-2xl font-bold text-[#FF4A5A]">03</div>
+                    <div class="mt-1 text-[9px] uppercase tracking-[.2em] text-slate-600">Career Levels</div>
+                </div>
+                <div class="px-5">
+                    <div class="font-display text-2xl font-bold text-[#00F0FF]">20+</div>
+                    <div class="mt-1 text-[9px] uppercase tracking-[.2em] text-slate-600">Core Skills</div>
+                </div>
+                <div class="px-5">
+                    <div class="font-display text-2xl font-bold text-white">∞</div>
+                    <div class="mt-1 text-[9px] uppercase tracking-[.2em] text-slate-600">Learning Curve</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CAREER PATHS -->
+    <section id="paths" class="max-w-7xl mx-auto px-6 py-24">
+
+        <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-12">
+            <div>
+                <div class="text-[10px] font-bold tracking-[.25em] uppercase text-[#00F0FF]">
+                    01 / Career Architecture
+                </div>
+                <h2 class="font-display text-3xl sm:text-4xl font-bold text-white mt-3">
+                    Find your security track.
+                </h2>
+            </div>
+
+            <p class="max-w-xl text-sm leading-relaxed text-slate-500">
+                Pick an area that interests you. The paths overlap at the fundamentals,
+                but each develops a different technical mindset.
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+
+            <!-- CARD -->
+            <article class="path-card p-7">
+                <span class="corner tl text-[#FF4A5A]"></span>
+                <span class="corner br text-[#FF4A5A]"></span>
+                <div class="absolute left-0 top-0 bottom-0 w-[2px] bg-[#FF4A5A]"></div>
+
+                <div class="flex items-start justify-between">
+                    <div class="font-mono text-2xl text-[#FF4A5A]">01</div>
+                    <span class="text-[9px] uppercase tracking-[.2em] text-[#FF4A5A] border border-[#FF4A5A]/20 bg-[#FF4A5A]/5 px-2 py-1">
+                        Offensive
+                    </span>
+                </div>
+
+                <h3 class="font-display text-xl font-bold text-white mt-8">
+                    Offensive Security
+                </h3>
+
+                <p class="text-xs leading-6 text-slate-500 mt-3">
+                    Discover and validate weaknesses through authorized security testing,
+                    from reconnaissance to professional reporting.
+                </p>
+
+                <div class="mt-6 space-y-2 text-xs text-slate-400">
+                    <div>+ Networking & Linux</div>
+                    <div>+ Recon & Enumeration</div>
+                    <div>+ Web Application Security</div>
+                    <div>+ Vulnerability Assessment</div>
+                    <div>+ Penetration Testing</div>
+                </div>
+
+                <button onclick="openPath('offensive')"
+                        class="mt-7 w-full border border-slate-700 py-3 text-[10px] font-bold uppercase tracking-[.2em] text-slate-400 hover:text-white hover:border-[#FF4A5A] transition">
+                    View Career Path →
+                </button>
+            </article>
+
+            <article class="path-card cyan p-7">
+                <span class="corner tl text-[#00F0FF]"></span>
+                <span class="corner br text-[#00F0FF]"></span>
+                <div class="absolute left-0 top-0 bottom-0 w-[2px] bg-[#00F0FF]"></div>
+
+                <div class="flex items-start justify-between">
+                    <div class="font-mono text-2xl text-[#00F0FF]">02</div>
+                    <span class="text-[9px] uppercase tracking-[.2em] text-[#00F0FF] border border-[#00F0FF]/20 bg-[#00F0FF]/5 px-2 py-1">
+                        Defensive
+                    </span>
+                </div>
+
+                <h3 class="font-display text-xl font-bold text-white mt-8">
+                    Defensive Security
+                </h3>
+
+                <p class="text-xs leading-6 text-slate-500 mt-3">
+                    Monitor environments, investigate suspicious activity, improve
+                    detections, and respond to security incidents.
+                </p>
+
+                <div class="mt-6 space-y-2 text-xs text-slate-400">
+                    <div>+ Networking Fundamentals</div>
+                    <div>+ Log Analysis</div>
+                    <div>+ SIEM Concepts</div>
+                    <div>+ Detection Engineering</div>
+                    <div>+ Incident Response</div>
+                </div>
+
+                <button onclick="openPath('defensive')"
+                        class="mt-7 w-full border border-slate-700 py-3 text-[10px] font-bold uppercase tracking-[.2em] text-slate-400 hover:text-white hover:border-[#00F0FF] transition">
+                    View Career Path →
+                </button>
+            </article>
+
+            <article class="path-card cyan p-7">
+                <span class="corner tl text-[#00F0FF]"></span>
+                <span class="corner br text-[#00F0FF]"></span>
+                <div class="absolute left-0 top-0 bottom-0 w-[2px] bg-[#00F0FF]"></div>
+
+                <div class="flex items-start justify-between">
+                    <div class="font-mono text-2xl text-[#00F0FF]">03</div>
+                    <span class="text-[9px] uppercase tracking-[.2em] text-[#00F0FF] border border-[#00F0FF]/20 bg-[#00F0FF]/5 px-2 py-1">
+                        Application
+                    </span>
+                </div>
+
+                <h3 class="font-display text-xl font-bold text-white mt-8">
+                    Web App Security
+                </h3>
+
+                <p class="text-xs leading-6 text-slate-500 mt-3">
+                    Specialize in websites and APIs, with a focus on authentication,
+                    access control, application behavior, and secure development.
+                </p>
+
+                <div class="mt-6 space-y-2 text-xs text-slate-400">
+                    <div>+ HTTP & Web Architecture</div>
+                    <div>+ Burp Suite Workflow</div>
+                    <div>+ Authentication & Sessions</div>
+                    <div>+ Access Control</div>
+                    <div>+ Secure Code Review</div>
+                </div>
+
+                <button onclick="openPath('web')"
+                        class="mt-7 w-full border border-slate-700 py-3 text-[10px] font-bold uppercase tracking-[.2em] text-slate-400 hover:text-white hover:border-[#00F0FF] transition">
+                    View Career Path →
+                </button>
+            </article>
+
+            <article class="path-card p-7">
+                <span class="corner tl text-[#FF4A5A]"></span>
+                <span class="corner br text-[#FF4A5A]"></span>
+                <div class="absolute left-0 top-0 bottom-0 w-[2px] bg-[#FF4A5A]"></div>
+
+                <div class="flex items-start justify-between">
+                    <div class="font-mono text-2xl text-[#FF4A5A]">04</div>
+                    <span class="text-[9px] uppercase tracking-[.2em] text-[#FF4A5A] border border-[#FF4A5A]/20 bg-[#FF4A5A]/5 px-2 py-1">
+                        Cloud
+                    </span>
+                </div>
+
+                <h3 class="font-display text-xl font-bold text-white mt-8">
+                    Cloud Security
+                </h3>
+
+                <p class="text-xs leading-6 text-slate-500 mt-3">
+                    Secure cloud environments by understanding identity, permissions,
+                    workloads, network boundaries, secrets, and monitoring.
+                </p>
+
+                <div class="mt-6 space-y-2 text-xs text-slate-400">
+                    <div>+ IAM & Permissions</div>
+                    <div>+ Cloud Networking</div>
+                    <div>+ Containers & Workloads</div>
+                    <div>+ Secrets Management</div>
+                    <div>+ Cloud Monitoring</div>
+                </div>
+
+                <button onclick="openPath('cloud')"
+                        class="mt-7 w-full border border-slate-700 py-3 text-[10px] font-bold uppercase tracking-[.2em] text-slate-400 hover:text-white hover:border-[#FF4A5A] transition">
+                    View Career Path →
+                </button>
+            </article>
+
+            <article class="path-card cyan p-7">
+                <span class="corner tl text-[#00F0FF]"></span>
+                <span class="corner br text-[#00F0FF]"></span>
+                <div class="absolute left-0 top-0 bottom-0 w-[2px] bg-[#00F0FF]"></div>
+
+                <div class="flex items-start justify-between">
+                    <div class="font-mono text-2xl text-[#00F0FF]">05</div>
+                    <span class="text-[9px] uppercase tracking-[.2em] text-[#00F0FF] border border-[#00F0FF]/20 bg-[#00F0FF]/5 px-2 py-1">
+                        Investigation
+                    </span>
+                </div>
+
+                <h3 class="font-display text-xl font-bold text-white mt-8">
+                    DFIR & Forensics
+                </h3>
+
+                <p class="text-xs leading-6 text-slate-500 mt-3">
+                    Investigate incidents, analyze digital artifacts, reconstruct attacker
+                    activity, and communicate technical findings.
+                </p>
+
+                <div class="mt-6 space-y-2 text-xs text-slate-400">
+                    <div>+ Digital Evidence</div>
+                    <div>+ Windows & Linux Artifacts</div>
+                    <div>+ Timeline Analysis</div>
+                    <div>+ Malware Triage</div>
+                    <div>+ Incident Investigation</div>
+                </div>
+
+                <button onclick="openPath('dfir')"
+                        class="mt-7 w-full border border-slate-700 py-3 text-[10px] font-bold uppercase tracking-[.2em] text-slate-400 hover:text-white hover:border-[#00F0FF] transition">
+                    View Career Path →
+                </button>
+            </article>
+
+            <article class="path-card p-7">
+                <span class="corner tl text-[#FF4A5A]"></span>
+                <span class="corner br text-[#FF4A5A]"></span>
+                <div class="absolute left-0 top-0 bottom-0 w-[2px] bg-[#FF4A5A]"></div>
+
+                <div class="flex items-start justify-between">
+                    <div class="font-mono text-2xl text-[#FF4A5A]">06</div>
+                    <span class="text-[9px] uppercase tracking-[.2em] text-[#FF4A5A] border border-[#FF4A5A]/20 bg-[#FF4A5A]/5 px-2 py-1">
+                        Engineering
+                    </span>
+                </div>
+
+                <h3 class="font-display text-xl font-bold text-white mt-8">
+                    Security Engineering
+                </h3>
+
+                <p class="text-xs leading-6 text-slate-500 mt-3">
+                    Combine software, infrastructure, automation, and security to build
+                    reliable security controls and tooling.
+                </p>
+
+                <div class="mt-6 space-y-2 text-xs text-slate-400">
+                    <div>+ Python & Automation</div>
+                    <div>+ Systems & Networking</div>
+                    <div>+ Security Architecture</div>
+                    <div>+ DevSecOps</div>
+                    <div>+ Security Tooling</div>
+                </div>
+
+                <button onclick="openPath('engineering')"
+                        class="mt-7 w-full border border-slate-700 py-3 text-[10px] font-bold uppercase tracking-[.2em] text-slate-400 hover:text-white hover:border-[#FF4A5A] transition">
+                    View Career Path →
+                </button>
+            </article>
+
+        </div>
+    </section>
+
+    <!-- ROADMAP -->
+    <section id="roadmap" class="border-y border-slate-900 bg-[#090F1A]/65">
+        <div class="max-w-7xl mx-auto px-6 py-24">
+
+            <div class="mb-12">
+                <div class="text-[10px] font-bold tracking-[.25em] uppercase text-[#FF4A5A]">
+                    02 / Progression Framework
+                </div>
+                <h2 class="font-display text-3xl sm:text-4xl font-bold text-white mt-3">
+                    Learn in layers.
+                </h2>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-5">
+
+                <div class="cyber-border bg-[#0D1525]/80 p-7">
+                    <div class="flex justify-between items-start">
+                        <span class="font-mono text-3xl font-bold text-[#00F0FF]">01</span>
+                        <span class="text-[9px] uppercase tracking-[.2em] text-slate-600">Foundation</span>
+                    </div>
+
+                    <h3 class="font-display text-xl font-bold text-white mt-8">Build the Base</h3>
+
+                    <div class="mt-6 space-y-3 text-xs text-slate-500">
+                        <p><span class="text-[#00F0FF]">→</span> TCP/IP, DNS, HTTP & networking</p>
+                        <p><span class="text-[#00F0FF]">→</span> Linux & Windows fundamentals</p>
+                        <p><span class="text-[#00F0FF]">→</span> Command line & scripting</p>
+                        <p><span class="text-[#00F0FF]">→</span> Git & basic programming</p>
+                        <p><span class="text-[#00F0FF]">→</span> Security concepts</p>
+                    </div>
+                </div>
+
+                <div class="cyber-border bg-[#0D1525]/80 p-7">
+                    <div class="flex justify-between items-start">
+                        <span class="font-mono text-3xl font-bold text-[#FF4A5A]">02</span>
+                        <span class="text-[9px] uppercase tracking-[.2em] text-slate-600">Specialize</span>
+                    </div>
+
+                    <h3 class="font-display text-xl font-bold text-white mt-8">Pick a Track</h3>
+
+                    <div class="mt-6 space-y-3 text-xs text-slate-500">
+                        <p><span class="text-[#FF4A5A]">→</span> Offensive Security</p>
+                        <p><span class="text-[#FF4A5A]">→</span> Defensive Security</p>
+                        <p><span class="text-[#FF4A5A]">→</span> Web / Application Security</p>
+                        <p><span class="text-[#FF4A5A]">→</span> Cloud Security</p>
+                        <p><span class="text-[#FF4A5A]">→</span> DFIR / Security Engineering</p>
+                    </div>
+                </div>
+
+                <div class="cyber-border bg-[#0D1525]/80 p-7">
+                    <div class="flex justify-between items-start">
+                        <span class="font-mono text-3xl font-bold text-white">03</span>
+                        <span class="text-[9px] uppercase tracking-[.2em] text-slate-600">Professional</span>
+                    </div>
+
+                    <h3 class="font-display text-xl font-bold text-white mt-8">Prove Your Skills</h3>
+
+                    <div class="mt-6 space-y-3 text-xs text-slate-500">
+                        <p><span class="text-slate-300">→</span> Build practical projects</p>
+                        <p><span class="text-slate-300">→</span> Practice in legal labs & CTFs</p>
+                        <p><span class="text-slate-300">→</span> Document technical work</p>
+                        <p><span class="text-slate-300">→</span> Contribute to the community</p>
+                        <p><span class="text-slate-300">→</span> Prepare for real roles</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="max-w-7xl mx-auto px-6 py-24">
+
+        <div class="mb-12">
+            <div class="text-[10px] font-bold tracking-[.25em] uppercase text-[#00F0FF]">
+                03 / Common Core
+            </div>
+            <h2 class="font-display text-3xl sm:text-4xl font-bold text-white mt-3">
+                Skills every path touches.
+            </h2>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+
+            <div class="cyber-border bg-[#0D1525]/70 p-6">
+                <div class="font-mono text-xs text-[#00F0FF]">[01]</div>
+                <h3 class="font-display font-bold text-white mt-4">Networking</h3>
+                <p class="text-xs leading-5 text-slate-600 mt-2">
+                    TCP/IP, DNS, HTTP, ports, protocols and network behavior.
+                </p>
+            </div>
+
+            <div class="cyber-border bg-[#0D1525]/70 p-6">
+                <div class="font-mono text-xs text-[#FF4A5A]">[02]</div>
+                <h3 class="font-display font-bold text-white mt-4">Operating Systems</h3>
+                <p class="text-xs leading-5 text-slate-600 mt-2">
+                    Linux, Windows, processes, permissions, filesystems and services.
+                </p>
+            </div>
+
+            <div class="cyber-border bg-[#0D1525]/70 p-6">
+                <div class="font-mono text-xs text-[#00F0FF]">[03]</div>
+                <h3 class="font-display font-bold text-white mt-4">Programming</h3>
+                <p class="text-xs leading-5 text-slate-600 mt-2">
+                    Python, shell scripting, automation, APIs and Git workflows.
+                </p>
+            </div>
+
+            <div class="cyber-border bg-[#0D1525]/70 p-6">
+                <div class="font-mono text-xs text-[#FF4A5A]">[04]</div>
+                <h3 class="font-display font-bold text-white mt-4">Security Thinking</h3>
+                <p class="text-xs leading-5 text-slate-600 mt-2">
+                    Threats, vulnerabilities, risk, controls, detection and defense.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="border-t border-slate-900 bg-[#090F1A]/70">
+        <div class="max-w-4xl mx-auto px-6 py-24 text-center">
+
+            <div class="font-mono text-[10px] text-slate-700 mb-5">
+                // NEXT_MISSION
+            </div>
+
+            <h2 class="font-display text-3xl sm:text-4xl font-bold text-white">
+                Don't just learn cybersecurity.
+            </h2>
+
+            <h3 class="font-display text-3xl sm:text-4xl font-bold text-[#FF4A5A] mt-2">
+                Build with it.
+            </h3>
+
+            <p class="text-sm text-slate-500 max-w-xl mx-auto mt-5 leading-6">
+                Turn theory into demonstrable skills through labs, projects,
+                technical notes, and consistent practice.
+            </p>
+
+            <a href="index.html#courses"
+               class="inline-flex mt-8 border border-[#FF4A5A]/50 bg-[#FF4A5A]/5 text-[#FF4A5A] px-7 py-3.5 rounded-sm text-[10px] font-bold uppercase tracking-[.2em] hover:bg-[#FF4A5A] hover:text-white transition">
+                Explore PM. Securities Academy →
+            </a>
+        </div>
+    </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="border-t border-slate-900 bg-[#080D17]">
+    <div class="max-w-7xl mx-auto px-6 py-7 flex flex-col md:flex-row justify-between gap-3 items-center text-[10px] uppercase tracking-[.15em] text-slate-700">
+        <span class="font-display font-bold tracking-wider text-slate-500">PM. SECURITIES</span>
+        <span>Cybersecurity Career Paths © 2026</span>
+        <a href="index.html" class="hover:text-slate-400 transition">Return Home ↑</a>
+    </div>
+</footer>
+
+<!-- MODAL -->
+<div id="pathModal"
+     class="hidden fixed inset-0 z-[100] bg-black/80 backdrop-blur-md p-4 overflow-y-auto">
+
+    <div class="modal max-w-3xl mx-auto mt-10 mb-10 border border-slate-800 rounded-sm p-7 sm:p-9 relative shadow-2xl">
+
+        <button onclick="closePath()"
+                class="absolute top-4 right-5 text-slate-600 hover:text-white text-2xl transition">
+            ×
+        </button>
+
+        <div id="modalCategory"
+             class="text-[10px] font-bold uppercase tracking-[.25em] text-[#FF4A5A]">
+        </div>
+
+        <h2 id="modalTitle"
+            class="font-display text-3xl font-bold text-white mt-3">
+        </h2>
+
+        <p id="modalDescription"
+           class="text-sm text-slate-500 leading-6 mt-4 max-w-2xl">
+        </p>
+
+        <div class="mt-9">
+            <div class="text-[10px] font-bold uppercase tracking-[.2em] text-slate-600 mb-4">
+                Career Progression
+            </div>
+
+            <div id="modalRoles" class="grid md:grid-cols-3 gap-4"></div>
+        </div>
+
+        <div class="mt-9">
+            <div class="text-[10px] font-bold uppercase tracking-[.2em] text-slate-600 mb-4">
+                Priority Skills
+            </div>
+
+            <div id="modalSkills" class="flex flex-wrap gap-2"></div>
+        </div>
+
+        <button onclick="closePath()"
+                class="mt-9 w-full border border-slate-800 py-3 text-[10px] font-bold uppercase tracking-[.2em] text-slate-500 hover:text-white hover:border-slate-600 transition">
+            Close
+        </button>
+    </div>
+</div>
+
+<script>
+const paths = {
+    offensive: {
+        category: "01 / Offensive Security",
+        title: "Offensive Security Path",
+        description: "A progression toward understanding how weaknesses are discovered, validated, and communicated through authorized security testing.",
+        roles: ["Security Learner", "Penetration Tester", "Red Team / Research"],
+        skills: ["Networking", "Linux", "Recon", "Enumeration", "Web Security", "Burp Suite", "Scripting", "Reporting"]
+    },
+    defensive: {
+        category: "02 / Defensive Security",
+        title: "Defensive Security Path",
+        description: "Build the ability to monitor environments, recognize suspicious activity, investigate alerts, and strengthen defensive controls.",
+        roles: ["SOC Analyst", "Incident Responder", "Threat Hunter"],
+        skills: ["Networking", "Logs", "SIEM", "Detection", "Threat Intel", "Incident Response", "Windows", "Linux"]
+    },
+    web: {
+        category: "03 / Application Security",
+        title: "Web Application Security Path",
+        description: "Specialize in websites and APIs, focusing on authentication, access control, application behavior, and secure development.",
+        roles: ["Web Security Learner", "Web Pentester", "AppSec Engineer"],
+        skills: ["HTTP", "JavaScript", "Burp Suite", "Authentication", "Access Control", "SQL", "XSS", "API Security"]
+    },
+    cloud: {
+        category: "04 / Cloud Security",
+        title: "Cloud Security Path",
+        description: "Learn to reason about identity, permissions, workloads, network boundaries, secrets, logging, and cloud security controls.",
+        roles: ["Cloud Security Learner", "Cloud Security Analyst", "Cloud Security Engineer"],
+        skills: ["IAM", "Cloud Networking", "Containers", "Secrets", "Logging", "Architecture", "Automation", "Risk"]
+    },
+    dfir: {
+        category: "05 / Investigation",
+        title: "DFIR & Forensics Path",
+        description: "Develop investigative skills for understanding incidents, collecting evidence, analyzing artifacts, and reconstructing attacker activity.",
+        roles: ["Forensics Learner", "DFIR Analyst", "Incident Investigator"],
+        skills: ["Evidence", "Windows Artifacts", "Linux", "Timelines", "Memory", "Disk Analysis", "Malware Triage", "Reporting"]
+    },
+    engineering: {
+        category: "06 / Engineering",
+        title: "Security Engineering Path",
+        description: "Combine software, infrastructure, automation, and security knowledge to build reliable security systems and tooling.",
+        roles: ["Security Developer", "Security Engineer", "Security Architect"],
+        skills: ["Python", "Linux", "Networking", "APIs", "Automation", "DevSecOps", "Cloud", "Architecture"]
+    }
+};
+
+function openPath(key) {
+    const path = paths[key];
+    if (!path) return;
+
+    document.getElementById("modalCategory").textContent = path.category;
+    document.getElementById("modalTitle").textContent = path.title;
+    document.getElementById("modalDescription").textContent = path.description;
+
+    document.getElementById("modalRoles").innerHTML = path.roles.map((role, i) => `
+        <div class="role border border-slate-800 bg-[#080D17]/70 p-5 rounded-sm">
+            <div class="font-mono text-[9px] uppercase tracking-widest text-slate-700">LEVEL 0${i + 1}</div>
+            <div class="text-sm font-bold text-white mt-2">${role}</div>
+        </div>
+    `).join("");
+
+    document.getElementById("modalSkills").innerHTML = path.skills.map(skill => `
+        <span class="border border-slate-800 bg-[#080D17]/70 px-3 py-2 text-[10px] text-slate-400 rounded-sm">
+            ${skill}
+        </span>
+    `).join("");
+
+    document.getElementById("pathModal").classList.remove("hidden");
+    document.body.classList.add("overflow-hidden");
+}
+
+function closePath() {
+    document.getElementById("pathModal").classList.add("hidden");
+    document.body.classList.remove("overflow-hidden");
+}
+
+document.getElementById("pathModal").addEventListener("click", function(e) {
+    if (e.target === this) closePath();
+});
+
+document.addEventListener("keydown", function(e) {
+    if (e.key === "Escape") closePath();
+});
+</script>
+
+</body>
+</html>
