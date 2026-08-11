@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1154,12 +1155,23 @@ ${err}
 /* ============== END KNOWLEDGE BASE ============== */
 
         /* =========================================================
-           CURRICULUM ROADMAP
+           COURSE-SPECIFIC CURRICULUM ROADMAPS
+
+           IMPORTANT:
+           - Existing Web Application Security titles/slugs below are
+             preserved exactly as they already exist.
+           - Information Gathering uses the exact title/slug values
+             returned by the Knowledge Base, so nothing is renamed.
+           - Add another course configuration without changing article
+             titles or slugs.
         ========================================================= */
 
         let activeCurriculumCourseTitle = "Cybersecurity";
         let returnToRoadmapAfterArticle = false;
+        let activeCurriculumNodes = [];
 
+        /* EXISTING WEB APPLICATION SECURITY ROADMAP
+           Titles and slugs intentionally unchanged. */
         const curriculumRoadmap = [
             {
                 number: "01",
@@ -1233,9 +1245,88 @@ ${err}
             }
         ];
 
-        function openCurriculumRoadmap(courseTitle) {
+        /*
+           Course -> roadmap configuration.
+
+           For Information Gathering we deliberately do NOT hard-code
+           titles/slugs. The roadmap takes the exact article.title and
+           article.slug from your Knowledge Base.
+        */
+        const courseRoadmapConfigs = {
+            "web application security": {
+                mode: "static",
+                nodes: curriculumRoadmap
+            },
+
+            "information gathering": {
+                mode: "category",
+                category: "Information Gathering"
+            },
+
+            "information gathering & security vulnerabilties": {
+                mode: "category",
+                category: "Information Gathering"
+            }
+        };
+
+        function normalizeCourseKey(value) {
+            return String(value || "")
+                .toLowerCase()
+                .replace(/[^a-z0-9]+/g, " ")
+                .trim();
+        }
+
+        function getCourseRoadmapConfig(courseTitle) {
+            const key = normalizeCourseKey(courseTitle);
+
+            if (courseRoadmapConfigs[key]) {
+                return courseRoadmapConfigs[key];
+            }
+
+            /* Flexible matching so the exact course title in Supabase
+               can contain extra words without changing the course title. */
+            if (key.includes("web application security")) {
+                return courseRoadmapConfigs["web application security"];
+            }
+
+            if (key.includes("information gathering")) {
+                return courseRoadmapConfigs["information gathering"];
+            }
+
+            return null;
+        }
+
+        function buildCategoryRoadmap(category) {
+            const articles = knowledgeArticles.filter(
+                article => article.category === category
+            );
+
+            return articles.map((article, index) => ({
+                number: String(index + 1).padStart(2, "0"),
+                title: article.title,       // EXACT database title
+                description: "Study this technical note from the PM. Securities Knowledge Base.",
+                slug: article.slug,         // EXACT database slug
+                keywords: []
+            }));
+        }
+
+        async function openCurriculumRoadmap(courseTitle) {
             activeCurriculumCourseTitle = courseTitle || "Cybersecurity";
             returnToRoadmapAfterArticle = false;
+
+            const config = getCourseRoadmapConfig(activeCurriculumCourseTitle);
+
+            if (knowledgeArticles.length === 0) {
+                await loadKnowledgeArticles();
+            }
+
+            if (config && config.mode === "static") {
+                activeCurriculumNodes = config.nodes;
+            } else if (config && config.mode === "category") {
+                activeCurriculumNodes = buildCategoryRoadmap(config.category);
+            } else {
+                activeCurriculumNodes = [];
+            }
 
             document.getElementById('main-homepage-view').classList.add('hidden');
             document.getElementById('primary-global-footer').classList.add('hidden');
@@ -1254,6 +1345,25 @@ ${err}
         function renderCurriculumRoadmap() {
             const container = document.getElementById('roadmap-container');
             if (!container) return;
+
+            if (!activeCurriculumNodes.length) {
+                container.innerHTML = `
+                    <div class="max-w-2xl mx-auto border border-slate-800 bg-cardBg/40 p-8 rounded-sm text-center">
+                        <div class="text-xs uppercase tracking-widest text-cyberRed mb-3">
+                            Roadmap Configuration
+                        </div>
+                        <h3 class="font-display text-2xl font-bold text-white mb-3">
+                            ${activeCurriculumCourseTitle}
+                        </h3>
+                        <p class="text-slate-500 text-sm leading-relaxed">
+                            This course does not have a roadmap configured yet.
+                            Add its configuration inside <span class="text-cyberCyan">courseRoadmapConfigs</span>
+                            without changing any existing article titles or slugs.
+                        </p>
+                    </div>
+                `;
+                return;
+            }
 
             container.innerHTML = `
                 <div class="roadmap-shell">
@@ -1292,9 +1402,9 @@ ${err}
                     </svg>
 
                     <div class="relative z-10 space-y-10 md:space-y-0">
-                        ${curriculumRoadmap.map((node, index) => {
+                        ${activeCurriculumNodes.map((node, index) => {
                             const left = index % 2 === 0;
-                            const red = index >= 6;
+                            const red = index >= Math.max(6, activeCurriculumNodes.length - 4);
 
                             return `
                                 <div class="roadmap-node md:min-h-[120px] md:flex md:items-center
@@ -1306,7 +1416,7 @@ ${err}
 
                                     <button
                                         type="button"
-                                        onclick="openCurriculumArticle('${node.slug}')"
+                                        onclick="openCurriculumArticle(${JSON.stringify(node.slug)})"
                                         class="roadmap-card group w-full md:w-[41%] text-left
                                                border ${red ? 'border-cyberRed/30 hover:border-cyberRed' : 'border-slate-800 hover:border-cyberCyan'}
                                                bg-cardBg/60 backdrop-blur-sm p-6 rounded-sm">
@@ -1368,6 +1478,7 @@ ${err}
             document.getElementById('primary-global-footer').classList.remove('hidden');
 
             returnToRoadmapAfterArticle = false;
+            activeCurriculumNodes = [];
 
             window.scrollTo({ top: 0, behavior: "smooth" });
         }
@@ -1385,7 +1496,7 @@ ${err}
             }
 
             const exactSlug = knowledgeArticles.find(
-                article => String(article.slug || "").toLowerCase() === node.slug.toLowerCase()
+                article => String(article.slug || "").toLowerCase() === String(node.slug || "").toLowerCase()
             );
 
             if (exactSlug) return exactSlug;
@@ -1400,7 +1511,7 @@ ${err}
 
             return knowledgeArticles.find(article => {
                 const articleTitle = normalizeRoadmapText(article.title);
-                return node.keywords.some(keyword =>
+                return (node.keywords || []).some(keyword =>
                     articleTitle.includes(normalizeRoadmapText(keyword))
                 );
             }) || null;
@@ -1413,13 +1524,15 @@ ${err}
                 await loadKnowledgeArticles();
             }
 
-            const node = curriculumRoadmap.find(item => item.slug === slug);
+            const node = activeCurriculumNodes.find(item => item.slug === slug);
 
             if (!node) {
                 alert("Curriculum node not found.");
                 return;
             }
 
+            /* The slug is preserved exactly. For category-based roadmaps
+               it comes directly from the article returned by Supabase. */
             const matchedArticle = findRoadmapArticle(node);
 
             if (matchedArticle) {
@@ -1428,7 +1541,6 @@ ${err}
             }
 
             const content = document.getElementById("kb-content");
-
             document.getElementById('curriculum-roadmap-view').classList.add('hidden');
             document.getElementById('knowledge-base-view').classList.remove('hidden');
             document.getElementById('primary-global-footer').classList.add('hidden');
