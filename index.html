@@ -1254,9 +1254,90 @@ ${err}
         */
         const courseRoadmapConfigs = {
             "Technologies in Web security": {
-                mode: "static",
-                nodes: curriculumRoadmap
-            },
+            mode: "static",
+
+    nodes: [
+        {
+            number: "01",
+            title: "HTTP & Web Fundamentals",
+            slug: "web-technologies",
+            description: "Requests, responses, methods, headers, cookies, sessions and the basic architecture of modern web applications.",
+            keywords: ["http", "web fundamentals", "requests", "responses"]
+        },
+
+        {
+            number: "02",
+            title: "Reconnaissance",
+            slug: "mapping-the-application",
+            description: "Map the attack surface by identifying technologies, endpoints, parameters, directories and exposed services.",
+            keywords: ["reconnaissance", "recon", "information gathering"]
+        },
+
+        {
+            number: "03",
+            title: "Client Side Controls",
+            slug: "bypassing-client-side-controls",
+            description: "Understand login flows, credentials, sessions, cookies and common authentication weaknesses.",
+            keywords: ["authentication", "auth", "login", "sessions"]
+        },
+
+        {
+            number: "04",
+            title: "Authentication",
+            slug: "attacking-authentication",
+            description: "Learn authorization concepts, IDOR, privilege boundaries and insecure direct object access.",
+            keywords: ["access control", "authorization", "idor"]
+        },
+
+        {
+            number: "05",
+            title: "Session Management",
+            slug: "attacking-session-management",
+            description: "Study how unsafe database queries can turn attacker-controlled input into unintended SQL operations.",
+            keywords: ["sql injection", "sqli"]
+        },
+
+        {
+            number: "06",
+            title: "Acess Controls",
+            slug: "attacking-access-controls",
+            description: "Explore reflected, stored and DOM-based XSS and understand the conditions that make them possible.",
+            keywords: ["xss", "cross site scripting", "cross-site scripting"]
+        },
+
+        {
+            number: "07",
+            title: "Data Stores",
+            slug: "attacking-data-stores",
+            description: "Understand cross-site request forgery, state-changing requests and the defenses that prevent unwanted actions.",
+            keywords: ["csrf", "cross site request forgery"]
+        },
+
+        {
+            number: "08",
+            title: "Back end components",
+            slug: "attacking-back-end-components",
+            description: "Learn the browser origin model and how insecure cross-origin configurations can expose application data.",
+            keywords: ["cors", "cross origin resource sharing"]
+        },
+
+        {
+            number: "09",
+            title: "Application Logic",
+            slug: "ssrf",
+            description: "Understand server-side request forgery and the risks created when servers make attacker-influenced requests.",
+            keywords: ["ssrf", "server side request forgery"]
+        },
+
+        {
+            number: "10",
+            title: "Cross Site Scripting",
+            slug: "attacking-application-logic",
+            description: "Study request parsing inconsistencies between HTTP components and why they can create security boundaries that disagree.",
+            keywords: ["request smuggling", "http request smuggling"]
+        }
+    ]
+}
 
             "XSS, SQLI, LDAP, all vulnerabilties": {
                 mode: "category",
