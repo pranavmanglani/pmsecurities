@@ -35,6 +35,85 @@
                               linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
             background-size: 40px 40px;
         }
+        /* ================= CURRICULUM ROADMAP ================= */
+        .roadmap-shell {
+            position: relative;
+            isolation: isolate;
+        }
+
+        .roadmap-path {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .roadmap-node {
+            position: relative;
+            z-index: 2;
+        }
+
+        .roadmap-card {
+            position: relative;
+            overflow: hidden;
+            transition: transform 250ms ease, border-color 250ms ease, box-shadow 250ms ease;
+        }
+
+        .roadmap-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 18px 50px rgba(0, 240, 255, 0.08);
+        }
+
+        .roadmap-waypoint {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 54px;
+            height: 54px;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #0B111E;
+            border: 2px solid #00F0FF;
+            color: #00F0FF;
+            box-shadow: 0 0 0 7px rgba(11, 17, 30, 0.95), 0 0 28px rgba(0, 240, 255, 0.22);
+            z-index: 4;
+        }
+
+        .roadmap-waypoint.is-red {
+            border-color: #FF4A5A;
+            color: #FF4A5A;
+            box-shadow: 0 0 0 7px rgba(11, 17, 30, 0.95), 0 0 28px rgba(255, 74, 90, 0.18);
+        }
+
+        .roadmap-connector {
+            position: absolute;
+            top: 50%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.45), transparent);
+            z-index: 1;
+        }
+
+        .roadmap-node:nth-child(even) .roadmap-connector {
+            background: linear-gradient(90deg, transparent, rgba(255, 74, 90, 0.45), transparent);
+        }
+
+        @media (max-width: 767px) {
+            .roadmap-path,
+            .roadmap-waypoint,
+            .roadmap-connector {
+                display: none;
+            }
+
+            .roadmap-node {
+                margin-bottom: 1rem;
+            }
+        }
+
     </style>
 </head>
 <body class="font-sans antialiased grid-bg">
@@ -566,6 +645,62 @@ PM. Securities Knowledge Base
 
 <!-- =============== END KNOWLEDGE BASE VIEW =============== -->
 
+    <!-- ================= CURRICULUM ROADMAP VIEW ================= -->
+    <div id="curriculum-roadmap-view" class="hidden min-h-screen flex flex-col">
+
+        <header class="border-b border-slate-800 bg-darkBg/80 backdrop-blur-md sticky top-0 z-50">
+            <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                    <span class="font-display font-bold text-2xl tracking-wider text-white">
+                        PM.<span class="text-cyberCyan">CURRICULUM</span>
+                    </span>
+                </div>
+                <button onclick="closeCurriculumRoadmap()"
+                    class="border border-slate-800 px-4 py-2 rounded-sm text-xs font-bold tracking-widest uppercase hover:bg-slate-900 text-white transition-all">
+                    ← Return to Academy
+                </button>
+            </div>
+        </header>
+
+        <main class="flex-grow w-full">
+            <section class="relative overflow-hidden border-b border-slate-900">
+                <div class="absolute inset-0 pointer-events-none">
+                    <div class="absolute top-0 left-1/4 w-96 h-96 bg-cyberCyan/5 rounded-full blur-3xl"></div>
+                    <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-cyberRed/5 rounded-full blur-3xl"></div>
+                </div>
+
+                <div class="max-w-6xl mx-auto px-6 py-16 md:py-20 text-center relative z-10">
+                    <span class="text-xs font-bold tracking-widest uppercase text-cyberCyan">Learning Architecture</span>
+                    <h1 id="roadmap-course-title" class="font-display text-4xl md:text-5xl font-bold text-white mt-3">
+                        Cybersecurity Learning Roadmap
+                    </h1>
+                    <p class="text-slate-400 max-w-2xl mx-auto mt-5 text-sm md:text-base leading-relaxed">
+                        Follow the path in order. Every waypoint opens the corresponding study note from the PM. Securities Knowledge Base.
+                    </p>
+
+                    <div class="mt-8 flex justify-center flex-wrap gap-3 text-[10px] uppercase tracking-widest font-bold">
+                        <span class="px-3 py-2 border border-cyberCyan/30 bg-cyberCyan/5 text-cyberCyan rounded-sm">01 — Fundamentals</span>
+                        <span class="px-3 py-2 border border-slate-800 bg-slate-950/50 text-slate-500 rounded-sm">02 — Vulnerabilities</span>
+                        <span class="px-3 py-2 border border-cyberRed/30 bg-cyberRed/5 text-cyberRed rounded-sm">03 — Advanced</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="max-w-7xl mx-auto px-4 sm:px-6 py-16 md:py-24">
+                <div id="roadmap-container" class="relative max-w-6xl mx-auto">
+                    <!-- Roadmap nodes are injected by renderCurriculumRoadmap() -->
+                </div>
+            </section>
+        </main>
+
+        <footer class="border-t border-slate-900 bg-slate-950/80 py-8">
+            <div class="max-w-7xl mx-auto px-6 text-xs text-slate-500 text-center">
+                PM. Securities Curriculum Architecture © 2026
+            </div>
+        </footer>
+    </div>
+    <!-- =============== END CURRICULUM ROADMAP VIEW =============== -->
+
     <div id="admin-modal" class="fixed inset-0 bg-darkBg/95 backdrop-blur-md hidden items-center justify-center z-50 p-4">
         <div class="bg-cardBg border border-slate-800 p-8 rounded-sm max-w-md w-full relative">
             <button onclick="toggleAdminModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-xl">&times;</button>
@@ -681,8 +816,9 @@ PM. Securities Knowledge Base
             if(!container) return;
             const badgeStyle = type === 'free' ? 'bg-emerald-500/10 text-emerald-400' : 'bg-cyberRed/10 text-cyberRed';
             const borderStyle = type === 'free' ? 'border-slate-800' : 'border-cyberRed/30';
+            const safeTitle = String(title).replace(/\\/g, '\\\\').replace(/'/g, "\\'");
             const targetAction = type === 'free'
-                ? `<a href="https://chat.whatsapp.com/ED56BL8Qd0J1UNrtvOb1Rd?s=cl&p=a&mlu=4" target="_blank" class="bg-slate-800 text-center py-2.5 text-sm font-bold text-white rounded-sm hover:bg-slate-700 transition-colors">Access Curriculum Assets</a>`
+                ? `<button onclick="openCurriculumRoadmap('${safeTitle}')" class="w-full bg-slate-800 text-center py-2.5 text-sm font-bold text-white rounded-sm hover:bg-cyberCyan hover:text-darkBg transition-all">Access Curriculum Assets →</button>`
                 : `<a href="https://chat.whatsapp.com/ED56BL8Qd0J1UNrtvOb1Rd?s=cl&p=a&mlu=4" target="_blank" class="bg-gradient-to-r from-cyberCyan to-cyberRed text-darkBg text-center py-2.5 text-sm font-bold rounded-sm hover:opacity-90 transition-all">Request Direct Enrollment</a>`;
 
             const courseCard = document.createElement('div');
@@ -807,6 +943,8 @@ async function loadKnowledgeArticles(){
 }
 
 async function showKnowledgeBase(type){
+
+returnToRoadmapAfterArticle = false;
 
 document.getElementById("main-homepage-view").classList.add("hidden");
 document.getElementById("primary-global-footer").classList.add("hidden");
@@ -960,14 +1098,20 @@ return;
 }
 
 const article=json.article;
+const articleBackAction = returnToRoadmapAfterArticle
+? "returnToCurriculumRoadmap()"
+: `showKnowledgeBase('${article.category==="Web Application Security"?"web":"recon"}')`;
+const articleBackLabel = returnToRoadmapAfterArticle
+? "← Back to Roadmap"
+: "← Back to Articles";
 
 content.innerHTML=`
 
 <button
-onclick="showKnowledgeBase('${article.category==="Web Application Security"?"web":"recon"}')"
-class="mb-8 border border-slate-700 px-5 py-2 rounded-sm hover:bg-slate-800">
+onclick="${articleBackAction}"
+class="mb-8 border border-slate-700 px-5 py-2 rounded-sm hover:bg-slate-800 text-white">
 
-← Back to Articles
+${articleBackLabel}
 
 </button>
 
@@ -1008,6 +1152,330 @@ ${err}
 }
 
 /* ============== END KNOWLEDGE BASE ============== */
+
+        /* =========================================================
+           CURRICULUM ROADMAP
+        ========================================================= */
+
+        let activeCurriculumCourseTitle = "Cybersecurity";
+        let returnToRoadmapAfterArticle = false;
+
+        const curriculumRoadmap = [
+            {
+                number: "01",
+                title: "HTTP & Web Fundamentals",
+                description: "Requests, responses, methods, headers, cookies, sessions and the basic architecture of modern web applications.",
+                slug: "http-web-fundamentals",
+                keywords: ["http", "web fundamentals", "requests", "responses"]
+            },
+            {
+                number: "02",
+                title: "Reconnaissance",
+                description: "Map the attack surface by identifying technologies, endpoints, parameters, directories and exposed services.",
+                slug: "reconnaissance",
+                keywords: ["reconnaissance", "recon", "information gathering"]
+            },
+            {
+                number: "03",
+                title: "Authentication",
+                description: "Understand login flows, credentials, sessions, cookies and common authentication weaknesses.",
+                slug: "authentication",
+                keywords: ["authentication", "auth", "login", "sessions"]
+            },
+            {
+                number: "04",
+                title: "Access Control",
+                description: "Learn authorization concepts, IDOR, privilege boundaries and insecure direct object access.",
+                slug: "access-control",
+                keywords: ["access control", "authorization", "idor"]
+            },
+            {
+                number: "05",
+                title: "SQL Injection",
+                description: "Study how unsafe database queries can turn attacker-controlled input into unintended SQL operations.",
+                slug: "sql-injection",
+                keywords: ["sql injection", "sqli"]
+            },
+            {
+                number: "06",
+                title: "Cross-Site Scripting",
+                description: "Explore reflected, stored and DOM-based XSS and understand the conditions that make them possible.",
+                slug: "xss",
+                keywords: ["xss", "cross site scripting", "cross-site scripting"]
+            },
+            {
+                number: "07",
+                title: "CSRF",
+                description: "Understand cross-site request forgery, state-changing requests and the defenses that prevent unwanted actions.",
+                slug: "csrf",
+                keywords: ["csrf", "cross site request forgery"]
+            },
+            {
+                number: "08",
+                title: "CORS",
+                description: "Learn the browser origin model and how insecure cross-origin configurations can expose application data.",
+                slug: "cors",
+                keywords: ["cors", "cross origin resource sharing"]
+            },
+            {
+                number: "09",
+                title: "SSRF",
+                description: "Understand server-side request forgery and the risks created when servers make attacker-influenced requests.",
+                slug: "ssrf",
+                keywords: ["ssrf", "server side request forgery"]
+            },
+            {
+                number: "10",
+                title: "HTTP Request Smuggling",
+                description: "Study request parsing inconsistencies between HTTP components and why they can create security boundaries that disagree.",
+                slug: "request-smuggling",
+                keywords: ["request smuggling", "http request smuggling"]
+            }
+        ];
+
+        function openCurriculumRoadmap(courseTitle) {
+            activeCurriculumCourseTitle = courseTitle || "Cybersecurity";
+            returnToRoadmapAfterArticle = false;
+
+            document.getElementById('main-homepage-view').classList.add('hidden');
+            document.getElementById('primary-global-footer').classList.add('hidden');
+            document.getElementById('custom-profile-view').classList.add('hidden');
+            document.getElementById('knowledge-base-view').classList.add('hidden');
+            document.getElementById('curriculum-roadmap-view').classList.remove('hidden');
+
+            document.getElementById('roadmap-course-title').innerText =
+                activeCurriculumCourseTitle + " — Learning Roadmap";
+
+            renderCurriculumRoadmap();
+
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+
+        function renderCurriculumRoadmap() {
+            const container = document.getElementById('roadmap-container');
+            if (!container) return;
+
+            container.innerHTML = `
+                <div class="roadmap-shell">
+
+                    <svg class="roadmap-path hidden md:block"
+                         viewBox="0 0 1000 1100"
+                         preserveAspectRatio="none"
+                         aria-hidden="true">
+
+                        <path
+                            d="M500 25
+                               C410 90 590 135 500 205
+                               C410 275 590 320 500 385
+                               C410 450 590 495 500 555
+                               C410 620 590 665 500 730
+                               C410 795 590 840 500 905
+                               C450 950 530 1010 500 1075"
+                            fill="none"
+                            stroke="rgba(71,85,105,0.65)"
+                            stroke-width="3"
+                            stroke-dasharray="7 10"
+                        />
+
+                        <path
+                            d="M500 25
+                               C410 90 590 135 500 205
+                               C410 275 590 320 500 385
+                               C410 450 590 495 500 555
+                               C410 620 590 665 500 730
+                               C410 795 590 840 500 905
+                               C450 950 530 1010 500 1075"
+                            fill="none"
+                            stroke="rgba(0,240,255,0.35)"
+                            stroke-width="1"
+                        />
+                    </svg>
+
+                    <div class="relative z-10 space-y-10 md:space-y-0">
+                        ${curriculumRoadmap.map((node, index) => {
+                            const left = index % 2 === 0;
+                            const red = index >= 6;
+
+                            return `
+                                <div class="roadmap-node md:min-h-[120px] md:flex md:items-center
+                                            ${left ? 'md:justify-start' : 'md:justify-end'}">
+
+                                    <div class="roadmap-connector hidden md:block
+                                                ${left ? 'right-[50%] w-[7%]' : 'left-[50%] w-[7%]'}">
+                                    </div>
+
+                                    <button
+                                        type="button"
+                                        onclick="openCurriculumArticle('${node.slug}')"
+                                        class="roadmap-card group w-full md:w-[41%] text-left
+                                               border ${red ? 'border-cyberRed/30 hover:border-cyberRed' : 'border-slate-800 hover:border-cyberCyan'}
+                                               bg-cardBg/60 backdrop-blur-sm p-6 rounded-sm">
+
+                                        <div class="flex items-center gap-3 mb-4">
+                                            <span class="text-[10px] font-mono font-bold tracking-[0.25em]
+                                                         ${red ? 'text-cyberRed' : 'text-cyberCyan'}">
+                                                NODE_${node.number}
+                                            </span>
+
+                                            <span class="h-px flex-1 bg-slate-800"></span>
+
+                                            <span class="text-[9px] uppercase tracking-widest text-slate-600">
+                                                Study
+                                            </span>
+                                        </div>
+
+                                        <div class="flex items-start gap-4">
+                                            <div class="shrink-0 w-10 h-10 rounded-full
+                                                        ${red ? 'border-cyberRed/40 text-cyberRed bg-cyberRed/5' : 'border-cyberCyan/40 text-cyberCyan bg-cyberCyan/5'}
+                                                        border flex items-center justify-center font-display font-bold text-xs">
+                                                ${node.number}
+                                            </div>
+
+                                            <div class="min-w-0">
+                                                <h3 class="font-display text-xl font-bold text-white
+                                                           ${red ? 'group-hover:text-cyberRed' : 'group-hover:text-cyberCyan'}
+                                                           transition-colors">
+                                                    ${node.title}
+                                                </h3>
+
+                                                <p class="text-sm text-slate-500 mt-2 leading-relaxed">
+                                                    ${node.description}
+                                                </p>
+
+                                                <div class="mt-5 text-[10px] font-bold uppercase tracking-[0.18em]
+                                                            ${red ? 'text-cyberRed' : 'text-cyberCyan'}">
+                                                    Open Study Notes →
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </button>
+
+                                    <div class="roadmap-waypoint hidden md:flex ${red ? 'is-red' : ''}">
+                                        <span class="font-display font-bold text-xs">${node.number}</span>
+                                    </div>
+                                </div>
+                            `;
+                        }).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        function closeCurriculumRoadmap() {
+            document.getElementById('curriculum-roadmap-view').classList.add('hidden');
+            document.getElementById('knowledge-base-view').classList.add('hidden');
+            document.getElementById('main-homepage-view').classList.remove('hidden');
+            document.getElementById('primary-global-footer').classList.remove('hidden');
+
+            returnToRoadmapAfterArticle = false;
+
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+
+        function normalizeRoadmapText(value) {
+            return String(value || "")
+                .toLowerCase()
+                .replace(/[^a-z0-9]+/g, " ")
+                .trim();
+        }
+
+        function findRoadmapArticle(node) {
+            if (!Array.isArray(knowledgeArticles) || knowledgeArticles.length === 0) {
+                return null;
+            }
+
+            const exactSlug = knowledgeArticles.find(
+                article => String(article.slug || "").toLowerCase() === node.slug.toLowerCase()
+            );
+
+            if (exactSlug) return exactSlug;
+
+            const target = normalizeRoadmapText(node.title);
+
+            const exactTitle = knowledgeArticles.find(
+                article => normalizeRoadmapText(article.title) === target
+            );
+
+            if (exactTitle) return exactTitle;
+
+            return knowledgeArticles.find(article => {
+                const articleTitle = normalizeRoadmapText(article.title);
+                return node.keywords.some(keyword =>
+                    articleTitle.includes(normalizeRoadmapText(keyword))
+                );
+            }) || null;
+        }
+
+        async function openCurriculumArticle(slug) {
+            returnToRoadmapAfterArticle = true;
+
+            if (knowledgeArticles.length === 0) {
+                await loadKnowledgeArticles();
+            }
+
+            const node = curriculumRoadmap.find(item => item.slug === slug);
+
+            if (!node) {
+                alert("Curriculum node not found.");
+                return;
+            }
+
+            const matchedArticle = findRoadmapArticle(node);
+
+            if (matchedArticle) {
+                await openArticle(matchedArticle.slug);
+                return;
+            }
+
+            const content = document.getElementById("kb-content");
+
+            document.getElementById('curriculum-roadmap-view').classList.add('hidden');
+            document.getElementById('knowledge-base-view').classList.remove('hidden');
+            document.getElementById('primary-global-footer').classList.add('hidden');
+
+            content.innerHTML = `
+                <button
+                    onclick="returnToCurriculumRoadmap()"
+                    class="mb-8 border border-slate-700 px-5 py-2 rounded-sm hover:bg-slate-800 text-white">
+                    ← Back to Roadmap
+                </button>
+
+                <div class="border border-slate-800 bg-cardBg/30 p-8 rounded-sm">
+                    <div class="text-xs uppercase tracking-widest text-cyberCyan mb-3">
+                        Curriculum Node ${node.number}
+                    </div>
+
+                    <h1 class="font-display text-3xl font-bold text-white mb-4">
+                        ${node.title}
+                    </h1>
+
+                    <p class="text-slate-400 leading-relaxed mb-6">
+                        ${node.description}
+                    </p>
+
+                    <div class="border border-cyberRed/20 bg-cyberRed/5 p-4 rounded-sm text-sm text-slate-400">
+                        The roadmap node is ready, but no matching study article was found in the current Knowledge Base.
+                        Add an article with the matching title or slug to connect this waypoint automatically.
+                    </div>
+                </div>
+            `;
+
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+
+        function returnToCurriculumRoadmap() {
+            document.getElementById('knowledge-base-view').classList.add('hidden');
+            document.getElementById('curriculum-roadmap-view').classList.remove('hidden');
+            document.getElementById('primary-global-footer').classList.add('hidden');
+
+            document.getElementById('roadmap-course-title').innerText =
+                activeCurriculumCourseTitle + " — Learning Roadmap";
+
+            renderCurriculumRoadmap();
+
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+
         window.addEventListener('DOMContentLoaded', fetchCoursesFromDatabase);
     </script>
     <script src="js/security.js"></script>
